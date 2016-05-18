@@ -3,26 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <h1>
+    <div class="container">
+    <h2>
         Login
-    </h1>
+    </h2>
     <form>
-        <input name="username"
+        <input class="form-control"
+               name="username"
                id="username"
                type="text"
-               placeholder="username"/><br/>
-        <input name="password"
+               placeholder="username"/>
+        <input class="form-control"
+               name="password"
                id="password"
                type="password"
-               placeholder="password"/><br/>
-        <button type="button" onclick="location.href = 'profile.html'" class="btn btn-block btn-primary">
-            Login
-        </button>
+               placeholder="password"/>
     </form>
-    <button type="button" onclick="location.href = 'register.html'" class="btn btn-block btn-primary">
-        Register
+    <button type="button" onclick="location.href = 'profile.html'" class="btn btn-block btn-primary">
+        Login
     </button>
+    <button type="button" onclick="location.href = 'register.html'" class="btn btn-block btn-success">
+        Register
+    </button></div>
 </body>
 </html>
