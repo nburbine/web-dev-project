@@ -3,44 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <h1>
+    <div class="container">
+    <h2>
         Profile
         <span class="pull-right">+</span>
-    </h1>
+    </h2>
 
-    <label for="username">Username</label><br/>
-    <input name="username"
-           id="username"
-           type="text"
-           placeholder="NBurbine"/><br/>
-
-    <label for="email">Email</label><br/>
-    <input name="email"
-           id="email"
-           type="email"
-           placeholder="burbine.n@husky.neu.edu"/><br/>
-
-    <label for="firstName">First Name</label><br/>
-    <input name="firstName"
-           id="firstName"
-           type="text"
-           placeholder="Nathaniel"/><br/>
-
-    <label for="lastName">Last Name</label><br/>
-    <input name="lastName"
-           id="lastName"
-           type="text"
-           placeholder="Burbine"/><br/>
+    <form>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input class="form-control"
+                   name="username"
+                   id="username"
+                   type="text"
+                   placeholder="NBurbine"/>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control"
+                   name="email"
+                   id="email"
+                   type="email"
+                   placeholder="burbine.n@husky.neu.edu"/>
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input class="form-control"
+                   name="firstName"
+                   id="firstName"
+                   type="text"
+                   placeholder="Nathaniel"/>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input class="form-control"
+                   name="lastName"
+                   id="lastName"
+                   type="text"
+                   placeholder="Burbine"/>
+        </div>
+    </form>
 
     <button type="btn-block" onclick="location.href = 'website-list.html'" class="btn btn-block btn-primary">
         Applications
-    </button><br/>
-
-    <button type="button" onclick="location.href = 'login.html'" class="btn btn-block btn-primary">
+    </button>
+    <button type="button" onclick="location.href = 'login.html'" class="btn btn-block btn-danger">
         Logout
     </button>
-
+    </div>
 </body>
 </html>
