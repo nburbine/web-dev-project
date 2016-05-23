@@ -21,3 +21,7 @@ p.navbar-text.pull-left {
 a.list-group-item {
     color: #337ab7;
 }
+
+.nbb-select {
+    margin-bottom: 15px;
+}
