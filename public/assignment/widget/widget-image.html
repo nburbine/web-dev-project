@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
+    <title>Web App Maker</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="widget-list.html" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </p>
+            <a class="navbar-brand" href="#">
+                Widget Edit
+            </a>
+            <p class="navbar-text pull-right">
+                <a href="widget-list.html" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <form>
+        <div class="form-group">
+            <label for="widgetName">Name</label>
+            <input class="form-control"
+                   id="widgetName"
+                   name="widgetName"/>
+        </div>
+        <div class="form-group">
+            <label for="widgetText">Text</label>
+            <input class="form-control"
+                   id="widgetText"
+                   name="pageTitle"/>
+        </div>
+        <div class="form-group">
+            <label for="widgetURL">URL</label>
+            <input class="form-control"
+                   id="widgetURL"
+                   name="pageTitle"
+                   value="https://youtu.be/uLWLashCXHE"/>
+        </div>
+        <div class="form-group">
+            <label for="widgetWidth">Width</label>
+            <input class="form-control"
+                   id="widgetWidth"
+                   name="pageTitle"
+                   value="100%"/>
+        </div>
+        <div class="form-group">
+            <label for="widgetImage">Upload</label>
+            <input class="form-control"
+                   id="widgetImage"
+                   name="pageTitle"
+                   value="Choose File  No file chosen"/>
+            <button type="button" class="btn btn-block btn-primary">Upload Image</button>
+        </div>
+
+    </form>
+
+    <button type="button" onclick="location.href = 'widget-list.html'" class="btn btn-block btn-danger">
+        Delete
+    </button>
+</div>
+
+</body>
+</html>
