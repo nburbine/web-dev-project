@@ -14,15 +14,15 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text pull-left">
-                    <a href="widget-list.html" class="navbar-link">
+                    <a href="page-list.view.client.html" class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </a>
                 </p>
                 <a class="navbar-brand" href="#">
-                    Widget Edit
+                    New Page
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="widget-list.html" class="navbar-link">
+                    <a href="page-list.view.client.html" class="navbar-link">
                         <span class="glyphicon glyphicon-ok"></span>
                     </a>
                 </p>
@@ -34,7 +34,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text pull-right">
-                    <a href="../user/profile.html" class="navbar-link" id="navbar-profile">
+                    <a href="../user/profile.view.client.html" class="navbar-link" id="navbar-profile">
                         <span class="glyphicon glyphicon-user"></span>
                     </a>
                 </p>
@@ -45,41 +45,22 @@
     <div class="container">
         <form>
             <div class="form-group">
-                <label for="widgetName">Name</label>
+                <label for="pageName">Name</label>
                 <input class="form-control"
-                       id="widgetName"
-                       placeholder="Article Name"
+                       id="pageName"
+                       name="pageName"
                        type="text"
-                       name="widgetName"/>
+                       placeholder="Page Name"/>
             </div>
             <div class="form-group">
-                <label for="widgetText">Text</label>
+                <label for="pageTitle">Title</label>
                 <input class="form-control"
-                       id="widgetText"
+                       id="pageTitle"
                        name="pageTitle"
-                       placeholder="Article Title"
                        type="text"
-                       value="How Paper Shaped Civilization"/>
-            </div>
-            <div class="nbb-select">
-                <label for="dropdownmenu">Size</label>
-                <select class="form-control" id="dropdownmenu">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3" selected="selected">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                </select>
+                       placeholder="Page Title"/>
             </div>
         </form>
-
-
-
-
-        <button type="button" onclick="location.href = 'widget-list.html'" class="btn btn-block btn-danger">
-            Delete
-        </button>
     </div>
 
 </body>
