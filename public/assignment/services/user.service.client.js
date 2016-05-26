@@ -22,7 +22,13 @@
         return api;
 
         function createUser(user) {
-            users.push(user);
+            var newUser = {
+                _id: (new Date().getTime()),
+                username: user.username,
+                firstname: user.firstname,
+                lastname: user.lastname
+            };
+            users.push(newUser);
             return true;
         }
 
