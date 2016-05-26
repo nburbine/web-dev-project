@@ -1,68 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <title>Web App Maker</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-</head>
-<body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <p class="navbar-text pull-left">
-                    <a href="website-list.view.client.html" class="navbar-link">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                </p>
-                <a class="navbar-brand" href="#">
-                    New Website
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="website-list.view.client.html" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
-                <p class="navbar-text pull-right">
-                    <a href="website-list.view.client.html" class="navbar-link">
-                        <span class="glyphicon glyphicon-ok"></span>
-                    </a>
-                </p>
-            </div>
+            </p>
+            <a class="navbar-brand" href="#">
+                New Website
+            </a>
+            <p class="navbar-text pull-right">
+                <a href="website-list.view.client.html" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </p>
         </div>
-    </nav>
-
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <p class="navbar-text pull-right">
-                    <a href="../user/profile.view.client.html" class="navbar-link" id="navbar-profile">
-                        <span class="glyphicon glyphicon-user"></span>
-                    </a>
-                </p>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container">
-        <form>
-            <div class="form-group">
-                <label for="websiteName">Website Name</label>
-                <input class="form-control"
-                       id="websiteName"
-                       name="websiteName"
-                       type="text"
-                       placeholder="Name"/>
-            </div>
-            <div class="form-group">
-                <label for="websiteDescription">Website Description</label>
-                <textarea rows="3" id="websiteDescription" class="form-control" placeholder="Description"></textarea>
-            </div>
-        </form>
-
-
-        <button type="button" onclick="location.href = 'website-list.view.client.html'" class="btn btn-block btn-danger">
-            Delete
-        </button>
     </div>
+</nav>
 
-</body>
-</html>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="../user/profile.view.client.html" class="navbar-link" id="navbar-profile">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <form>
+        <div class="form-group">
+            <label for="websiteName">Website Name</label>
+            <input class="form-control"
+                   id="websiteName"
+                   name="websiteName"
+                   type="text"
+                   placeholder="Name"/>
+        </div>
+        <div class="form-group">
+            <label for="websiteDescription">Website Description</label>
+            <textarea rows="3" id="websiteDescription" class="form-control" placeholder="Description"></textarea>
+        </div>
+    </form>
+
+
+    <button type="button" onclick="location.href = 'website-list.view.client.html'" class="btn btn-block btn-danger">
+        Delete
+    </button>
+</div>
