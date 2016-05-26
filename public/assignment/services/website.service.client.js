@@ -23,9 +23,12 @@
         return api;
 
         function createWebsite(userId, website) {
-            website_copy = angular.copy(website);
-            website_copy.developerId = userId;
-            websites.push(website_copy);
+            var newWebsite = {
+                _id: (new Date().getTime()),
+                name: website.name,
+                developerId: userId
+            };
+            websites.push(newWebsite);
             return true;
         }
 
