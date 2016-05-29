@@ -1,22 +1,30 @@
 <div class="container">
-<h2>
-    Login
-</h2>
-<form>
-    <input class="form-control"
-           name="username"
-           id="username"
-           type="text"
-           placeholder="username"/>
-    <input class="form-control"
-           name="password"
-           id="password"
-           type="password"
-           placeholder="password"/>
-</form>
-<button type="button" onclick="location.href = '#/profile'" class="btn btn-block btn-primary">
-    Login
-</button>
-<button type="button" onclick="location.href = '#/register'" class="btn btn-block btn-success">
-    Register
-</button></div>
+    <h2>
+        Login
+    </h2>
+
+    <dv ng-if="model.alert" class="alert alert-danger">
+        {{model.alert}}
+    </dv>
+
+    <form>
+        <input ng-model="username"
+               class="form-control"
+               name="username"
+               id="username"
+               type="text"
+               placeholder="username"/>
+        <input ng-model="password"
+               class="form-control"
+               name="password"
+               id="password"
+               type="password"
+               placeholder="password"/>
+    </form>
+    <button ng-click="model.login(username, password)" class="btn btn-block btn-primary">
+        Login
+    </button>
+    <button type="button" onclick="location.href = '#/register'" class="btn btn-block btn-success">
+        Register
+    </button>
+</div>
