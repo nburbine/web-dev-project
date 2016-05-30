@@ -25,11 +25,22 @@
     
     function ProfileController($routeParams, UserService) {
         var vm = this;
+        vm.updateUser = updateUser;
         
         vm.userId = $routeParams['id'];
         function init() {
-            vm.user = UserService.findUserById(vm.userId);
+            vm.user = angular.copy(UserService.findUserById(vm.userId));
         }
         init();
+
+        function updateUser() {
+            var result = UserService.updateUser(vm.userId, vm.user);
+            console.log(result);
+            if (result) {
+                vm.success = "User successfully updated";
+            } else {
+                vm.alert = "User not found";
+            }
+        }
     }
 })();
