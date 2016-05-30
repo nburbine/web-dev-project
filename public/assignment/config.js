@@ -20,7 +20,11 @@
                 controller: "ProfileController",
                 controllerAs: "model"
             })
-            .when("")
+            .when("/user/:id/website", {
+                templateUrl: "views/website/website-list.view.client.html",
+                controller:  "WebsiteController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/login"
             });
