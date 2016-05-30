@@ -10,11 +10,9 @@
         vm.login = login;
         
         function login(username, password) {
-            console.log([username, password]);
             var user = UserService.findUserByCredentials(username, password);
             if(user) {
-                console.log('/user/'+user._id);
-                $location.url('/user/' + user._id);
+                $location.url('/profile/' + user._id);
             } else {
                 vm.alert = "Unable to login";
             }
@@ -27,7 +25,8 @@
     
     function ProfileController($routeParams, UserService) {
         var vm = this;
-        vm.userId = $routeParams['userId'];
+        
+        vm.userId = $routeParams['id'];
         function init() {
             vm.user = UserService.findUserById(vm.userId);
         }
