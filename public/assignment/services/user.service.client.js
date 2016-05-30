@@ -22,14 +22,19 @@
         return api;
 
         function createUser(user) {
-            var newUser = {
-                _id: (new Date().getTime()),
-                username: user.username,
-                firstname: user.firstname,
-                lastname: user.lastname
-            };
-            users.push(newUser);
-            return true;
+            if (findUserByUsername(user.username)) {
+                return false;
+            } else {
+                var newUser = {
+                    _id: (new Date().getTime()).toString(),
+                    username: user.username,
+                    password: user.password,
+                    firstName: "",
+                    lastName: ""
+                };
+                users.push(newUser);
+                return newUser._id;
+            }
         }
 
         function updateUser(userId, user) {
