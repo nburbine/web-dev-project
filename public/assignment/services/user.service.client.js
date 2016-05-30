@@ -35,8 +35,8 @@
         function updateUser(userId, user) {
             var old_user = findUserById(userId);
             if (old_user) {
-                old_user.firstname = user.firstname;
-                old_user.lastname = user.lastname;
+                old_user.firstName = user.firstName;
+                old_user.lastName = user.lastName;
                 return true;
             }
             else {
