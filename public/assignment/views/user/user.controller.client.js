@@ -10,6 +10,8 @@
         vm.login = login;
         
         function login(username, password) {
+
+
             var user = UserService.findUserByCredentials(username, password);
             if(user) {
                 $location.url('/user/' + user._id);
@@ -48,9 +50,10 @@
         vm.updateUser = updateUser;
         
         vm.userId = $routeParams['id'];
-        console.log(vm.userId);
         function init() {
-            vm.user = angular.copy(UserService.findUserById(vm.userId));
+            if (!(vm.user = angular.copy(UserService.findUserById(vm.userId)))) {
+                window.location = "#/login";
+            }
         }
         init();
 
