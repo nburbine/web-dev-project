@@ -5,7 +5,7 @@
                 Websites
             </a>
             <p class="navbar-text pull-right">
-                <a href="website-new.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/new/" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </p>
@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="../user/profile.view.client.html" class="navbar-link" id="navbar-profile">
+                <a href="#/user/{{model.userId}}" class="navbar-link" id="navbar-profile">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
@@ -27,39 +27,12 @@
 
 <div class="container">
     <ul class="list-group">
-        <li class="list-group-item">
-            <a href="../page/page-list.view.client.html">Blogging App</a>
-            <a href="#" class="pull-right">
+        <li ng-repeat="website in model.websites" class="list-group-item">
+            <a href="#/user/{{website.developerId}}/website/{{website._id}}/page/">{{website.name}}</a>
+            <a href="" class="pull-right">
                 <span class="glyphicon glyphicon-play"></span>
             </a>
-            <a href="website-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../page/page-list.view.client.html">Address Book App</a>
-            <a href="#" class="pull-right">
-                <span class="glyphicon glyphicon-play"></span>
-            </a>
-            <a href="website-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../page/page-list.view.client.html">Script Testing App</a>
-            <a href="#" class="pull-right">
-                <span class="glyphicon glyphicon-play"></span>
-            </a>
-            <a href="website-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../page/page-list.view.client.html">Blogger</a>
-            <a href="#" class="pull-right">
-                <span class="glyphicon glyphicon-play"></span>
-            </a>
-            <a href="website-edit.view.client.html" class="pull-right">
+            <a href="#/user/{{website.developerId}}/website/{{website._id}}/" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </li>
