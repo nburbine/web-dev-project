@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("WebAppController")
+        .module("WebAppMaker")
         .factory("WebsiteService", WebsiteService);
 
     function WebsiteService() {
