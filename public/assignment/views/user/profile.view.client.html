@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="" onclick="location.reload(true)" class="navbar-link" id="navbar-profile">
+                <a href="#/user/{{model.user._id}}" class="navbar-link" id="navbar-profile">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
@@ -26,6 +26,12 @@
 </nav>
 
 <div class="container">
+    <div ng-if="model.success" class="alert alert-success">
+        {{model.success}}
+    </div>
+    <div ng-if="model.alert" class="alert alert-danger">
+        {{model.alert}}
+    </div>
 <form>
     <div class="form-group">
         <label for="username">Username</label>
