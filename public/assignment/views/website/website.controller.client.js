@@ -13,8 +13,6 @@
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
         }
         init();
-
-        console.log(vm.websites);
     }
     
     function NewWebsiteController($routeParams, WebsiteService) {
