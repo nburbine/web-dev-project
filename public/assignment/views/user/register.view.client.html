@@ -3,26 +3,29 @@
     Register
 </h2>
 <form>
-    <input class="form-control"
+    <input ng-model="model.user.username"
+           class="form-control"
            name="username"
            id="username"
            type="text"
            placeholder="username"/>
-    <input class="form-control"
+    <input ng-model="model.user.password"
+           class="form-control"
            name="password"
            id="password"
            type="password"
            placeholder="password"/>
-    <input class="form-control"
+    <input ng-model="model.user.verifyPassword"
+           class="form-control"
            name="verifyPassword"
            id="verifyPassword"
            type="password"
            placeholder="verify password"/>
 </form>
-<button type="button" onclick="location.href = '#/profile'" class="btn btn-block btn-primary">
+<a ng-click="model.addUser()" class="btn btn-block btn-primary">
     Register
-</button>
-<button type="button" onclick="location.href = '#/login'" class="btn btn-block btn-danger">
+</a>
+<a href="#/login" class="btn btn-block btn-danger">
     Cancel
-</button>
+</a>
 </div>
