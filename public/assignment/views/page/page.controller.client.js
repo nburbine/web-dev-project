@@ -15,8 +15,6 @@
             vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
         }
         init();
-
-        console.log(vm.pages);
     }
     
     function NewPageController($routeParams, PageService) {
