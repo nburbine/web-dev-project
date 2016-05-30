@@ -12,7 +12,7 @@
         function login(username, password) {
             var user = UserService.findUserByCredentials(username, password);
             if(user) {
-                $location.url('/profile/' + user._id);
+                $location.url('/user/' + user._id);
             } else {
                 vm.alert = "Unable to login";
             }

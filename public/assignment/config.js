@@ -15,10 +15,14 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            .when("/profile/:id/", {
+            .when("/user/:id", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model"
+            })
+            .when("")
+            .otherwise({
+                redirectTo: "/login"
             });
     }
 })();
