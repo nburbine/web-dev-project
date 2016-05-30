@@ -52,6 +52,7 @@
         vm.userId = $routeParams['id'];
         function init() {
             if (!(vm.user = angular.copy(UserService.findUserById(vm.userId)))) {
+                // redirect to login if profile does not exist
                 window.location = "#/login";
             }
         }
