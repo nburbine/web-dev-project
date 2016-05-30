@@ -42,3 +42,7 @@ a.list-group-item {
 #navbar-eye {
     padding-left: 10px;
 }
+
+textarea {
+    max-width: 100%;
+}
