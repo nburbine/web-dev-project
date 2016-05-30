@@ -22,7 +22,7 @@
             })
             .when("/user/:id/website", {
                 templateUrl: "views/website/website-list.view.client.html",
-                controller:  "WebsiteController",
+                controller:  "WebsiteListController",
                 controllerAs: "model"
             })
             .otherwise({
