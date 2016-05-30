@@ -14,7 +14,7 @@
             createPage: createPage,
             updatePage: updatePage,
             deletePage: deletePage,
-            findPageByWebsiteId: findPageByWebsiteId,
+            findPagesByWebsiteId: findPagesByWebsiteId,
             findPageById: findPageById
         };
         return api;
@@ -41,7 +41,7 @@
             return true;
         }
 
-        function findPageByWebsiteId(websiteId) {
+        function findPagesByWebsiteId(websiteId) {
             var matching_pages = [];
             for (var i in pages) {
                 if (pages[i].websiteId === websiteId) {
