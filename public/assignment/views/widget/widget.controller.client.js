@@ -57,7 +57,6 @@
                 text: ''
             };
             var result = WidgetService.createWidget(vm.pageId, newWidget);
-            console.log(result);
             if (result) {
                 window.location = '#/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+result;
             } else {
@@ -72,7 +71,6 @@
                 url: ""
             };
             var result = WidgetService.createWidget(vm.pageId, newWidget);
-            console.log(result);
             if (result) {
                 window.location = '#/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+result;
             } else {
@@ -87,7 +85,6 @@
                 url: ""
             };
             var result = WidgetService.createWidget(vm.pageId, newWidget);
-            console.log(result);
             if (result) {
                 window.location = '#/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+result;
             } else {
@@ -107,7 +104,6 @@
         vm.widgetId = $routeParams['wgid'];
 
         vm.widget = angular.copy(WidgetService.findWidgetById(vm.widgetId));
-        console.log(vm.widget);
 
         function deleteWidget() {
             var result = WidgetService.deleteWidget(vm.widgetId);
@@ -121,12 +117,10 @@
         switch(vm.widget.widgetType) {
             case "HEADER":
                 vm.editWidget = function editWidget() {
-                    console.log(vm.widget);
                     if (vm.widget.text.length === 0) {
                         vm.alert = 'Please enter text';
                     } else {
                         var result = WidgetService.updateWidget(vm.widgetId, vm.widget);
-                        console.log(result);
                         if (result) {
                             window.location = '#/user/' + vm.userId.toString() + '/website/' + vm.websiteId.toString() + '/page/' + vm.pageId.toString() + '/widget/';
                         } else {
