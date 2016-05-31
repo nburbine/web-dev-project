@@ -2,11 +2,11 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="widget-list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="">
                 Choose Widget
             </a>
         </div>
@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="../user/profile.view.client.html" class="navbar-link" id="navbar-profile">
+                <a href="#/user/{{model.userId}}" class="navbar-link" id="navbar-profile">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
@@ -27,15 +27,8 @@
 
 <div class="container">
     <div class="list-group">
-        <a class="list-group-item" href="widget-heading.view.client.html">Header</a>
-        <a class="list-group-item" href="#">Label</a>
-        <a class="list-group-item" href="#">HTML</a>
-        <a class="list-group-item" href="#">Text Input</a>
-        <a class="list-group-item" href="#">Link</a>
-        <a class="list-group-item" href="#">Button</a>
-        <a class="list-group-item" href="widget-image.view.client.html">Image</a>
-        <a class="list-group-item" href="widget-youtube.view.client.html">YouTube</a>
-        <a class="list-group-item" href="#">Data Table</a>
-        <a class="list-group-item" href="#">Repeater</a>
+        <a class="list-group-item" ng-click="model.addHeader()">Header</a>
+        <a class="list-group-item" ng-click="model.addImage()">Image</a>
+        <a class="list-group-item" ng-click="model.addYoutube()">YouTube</a>
     </div>
 </div>
