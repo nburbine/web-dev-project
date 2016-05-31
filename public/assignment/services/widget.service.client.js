@@ -46,8 +46,10 @@
                     newWidget.url = widget.url;
                     break;
                 default:
-                    vm.alert = "No widget type"
+                    return false;
             }
+            widgets.push(newWidget);
+            return newWidget._id;
         }
         
         function updateWidget(widgetId, widget) {
