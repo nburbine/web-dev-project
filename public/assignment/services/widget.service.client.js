@@ -56,6 +56,8 @@
                 oldWidget.name = widget.name;
                 oldWidget.size = widget.size;
                 oldWidget.text = widget.text;
+                oldWidget.width = widget.width;
+                oldWidget.url = widget.url;
                 return true;
             } else {
                 return false;

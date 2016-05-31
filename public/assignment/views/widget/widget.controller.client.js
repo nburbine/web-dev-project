@@ -78,7 +78,6 @@
             case "IMAGE":
                 vm.editWidget = function editWidget() {
                     var result = WidgetService.updateWidget(vm.widgetId, vm.widget);
-                    console.log([vm.widget, result]);
                     if (result) {
                         window.location = '#/user/' + vm.userId.toString() + '/website/' + vm.websiteId.toString() + '/page/' + vm.pageId.toString() + '/widget/';
                     } else {
