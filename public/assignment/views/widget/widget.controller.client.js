@@ -34,6 +34,66 @@
 
     function NewWidgetController($routeParams, WidgetService) {
         var vm = this;
+
+        vm.addHeader = addHeader;
+        vm.addImage = addImage;
+        vm.addYoutube = addYoutube;
+
+        vm.userId = $routeParams['id'];
+        vm.websiteId = $routeParams['wid'];
+        vm.pageId = $routeParams['pid'];
+
+        vm.types = [
+            {name: "Header", addWidget: 'model.addHeader()'},
+            {name: "Image", addWidget: 'model.addImage()'},
+            {name: "YouTube", addWidget: 'model.addYoutube()'},
+            {name: "HTML", addWidget: 'model.addHtml()'}
+        ];
+
+        function addHeader() {
+            var newWidget = {
+                widgetType: 'HEADER',
+                size: 1,
+                text: ''
+            };
+            var result = WidgetService.createWidget(vm.pageId, newWidget);
+            console.log(result);
+            if (result) {
+                window.location = '#/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+result;
+            } else {
+                vm.alert = 'Failed to create new header widget'
+            }
+        }
+
+        function addImage() {
+            var newWidget = {
+                widgetType: 'IMAGE',
+                width: '',
+                url: ""
+            };
+            var result = WidgetService.createWidget(vm.pageId, newWidget);
+            console.log(result);
+            if (result) {
+                window.location = '#/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+result;
+            } else {
+                vm.alert = 'Failed to create new image widget'
+            }
+        }
+
+        function addYoutube() {
+            var newWidget = {
+                widgetType: 'YOUTUBE',
+                width: '',
+                url: ""
+            };
+            var result = WidgetService.createWidget(vm.pageId, newWidget);
+            console.log(result);
+            if (result) {
+                window.location = '#/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+result;
+            } else {
+                vm.alert = 'Failed to create new image widget'
+            }
+        }
     }
 
     function EditWidgetController($routeParams, WidgetService) {
