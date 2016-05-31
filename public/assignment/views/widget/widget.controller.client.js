@@ -92,7 +92,12 @@
                 break;
             case "YOUTUBE":
                 vm.editWidget = function editWidget() {
-
+                    var result = WidgetService.updateWidget(vm.widgetId, vm.widget);
+                    if (result) {
+                        window.location = '#/user/' + vm.userId.toString() + '/website/' + vm.websiteId.toString() + '/page/' + vm.pageId.toString() + '/widget/';
+                    } else {
+                        vm.alert = 'Failed to update widget';
+                    }
                 };
                 break;
             default:

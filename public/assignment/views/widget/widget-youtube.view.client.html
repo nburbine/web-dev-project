@@ -2,15 +2,15 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="widget-list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
-            <a class="navbar-brand" href="#">
-                Widget Edit
+            <a class="navbar-brand" href="">
+                Edit Widget
             </a>
             <p class="navbar-text pull-right">
-                <a href="widget-list.view.client.html" class="navbar-link">
+                <a ng-click="model.editWidget()" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -21,8 +21,14 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <!-- Where should this point? Not specified in assignment. -->
+                <a href="" class="navbar-link">
+                    <span class="glyphicon glyphicon-share-alt"></span>
+                </a>
+            </p>
             <p class="navbar-text pull-right">
-                <a href="../user/profile.view.client.html" class="navbar-link" id="navbar-profile">
+                <a href="#/user/{{model.userId}}" class="navbar-link" id="navbar-profile">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
@@ -34,7 +40,8 @@
     <form>
         <div class="form-group">
             <label for="widgetName">Name</label>
-            <input class="form-control"
+            <input ng-model="model.widget.name"
+                   class="form-control"
                    id="widgetName"
                    type="text"
                    name="widgetName"
@@ -42,7 +49,8 @@
         </div>
         <div class="form-group">
             <label for="widgetText">Text</label>
-            <input class="form-control"
+            <input ng-model="model.widget.text"
+                   class="form-control"
                    id="widgetText"
                    type="text"
                    name="pageTitle"
@@ -50,24 +58,24 @@
         </div>
         <div class="form-group">
             <label for="widgetURL">URL</label>
-            <input class="form-control"
+            <input ng-model="model.widget.url"
+                   class="form-control"
                    id="widgetURL"
                    name="pageTitle"
-                   type="url"
-                   value=https://player.vimeo.com/video/165904278?quality=1080p"/>
+                   type="url"/>
         </div>
         <div class="form-group">
             <label for="widgetWidth">Width</label>
-            <input class="form-control"
+            <input ng-model="model.widget.width"
+                   class="form-control"
                    id="widgetWidth"
                    type="text"
                    name="pageTitle"
-                   value="100%"
-                   placeholder="100%"/>
+                   placeholder="95%"/>
         </div>
     </form>
 
-    <button type="button" onclick="location.href = 'widget-list.view.client.html'" class="btn btn-block btn-danger">
+    <a ng-click="model.deleteWidget()" class="btn btn-block btn-danger">
         Delete
-    </button>
+    </a>
 </div>
