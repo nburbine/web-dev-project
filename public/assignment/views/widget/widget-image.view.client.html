@@ -2,15 +2,15 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="widget-list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
             <a class="navbar-brand" href="#">
-                Widget Edit
+                Edit Widget
             </a>
             <p class="navbar-text pull-right">
-                <a href="widget-list.view.client.html" class="navbar-link">
+                <a ng-click="model.editWidget()" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -21,8 +21,14 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <!-- Where should this point? Not specified in assignment. -->
+                <a href="" class="navbar-link">
+                    <span class="glyphicon glyphicon-share-alt"></span>
+                </a>
+            </p>
             <p class="navbar-text pull-right">
-                <a href="../user/profile.view.client.html" class="navbar-link" id="navbar-profile">
+                <a href="#/user/{{model.userId}}" class="navbar-link" id="navbar-profile">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
@@ -34,7 +40,8 @@
     <form>
         <div class="form-group">
             <label for="widgetName">Name</label>
-            <input class="form-control"
+            <input ng-model="model.widget.name"
+                   class="form-control"
                    id="widgetName"
                    type="text"
                    placeholder="Image Name"
@@ -42,33 +49,33 @@
         </div>
         <div class="form-group">
             <label for="widgetText">Text</label>
-            <input class="form-control"
+            <input ng-model="model.widget.text"
+                   class="form-control"
                    id="widgetText"
                    type="text"
                    placeholder="Image Title"
-                   name="pageTitle"/>
+                   name="widgetText"/>
         </div>
         <div class="form-group">
             <label for="widgetURL">URL</label>
-            <input class="form-control"
+            <input ng-model="model.widget.url"
+                   class="form-control"
                    id="widgetURL"
-                   name="pageTitle"
-                   type="text"
-                   value="http://cdn.theatlantic.com/assets/media/img/mt/2016/05/RTR2SIBB/lead_960.jpg?1463756343"/>
+                   name="widgetURL"
+                   type="text"/>
         </div>
         <div class="form-group">
             <label for="widgetWidth">Width</label>
-            <input class="form-control"
+            <input ng-model="model.widget.width" class="form-control"
                    id="widgetWidth"
-                   name="pageTitle"
-                   type="text"
-                   value="100%"/>
+                   name="widgetWidth"
+                   type="text"/>
         </div>
         <div class="form-group">
             <label for="widgetImage">Upload</label>
             <input class="form-control"
                    id="widgetImage"
-                   name="pageTitle"
+                   name="widgetFile"
                    type="text"
                    value="Choose File  No file chosen"/>
             <button type="button" class="btn btn-block btn-primary">Upload Image</button>
@@ -76,7 +83,7 @@
 
     </form>
 
-    <button type="button" onclick="location.href = 'widget-list.view.client.html'" class="btn btn-block btn-danger">
+    <a ng-click="model.deleteWidget()" class="btn btn-block btn-danger">
         Delete
-    </button>
+    </a>
 </div>
