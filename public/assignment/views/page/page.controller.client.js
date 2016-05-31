@@ -48,7 +48,7 @@
         var vm = this;
 
         vm.editPage = editPage;
-        vm.deltePage = deletePage;
+        vm.deletePage = deletePage;
 
         vm.userId = $routeParams['id'];
         vm.websiteId = $routeParams['wid'];
@@ -57,19 +57,24 @@
         
         function editPage() {
             if (vm.page.name.length === 0 ) {
-                vm.alert = "Website must have a name";
+                vm.alert = "Page must have a name";
             } else {
                 var result = PageService.updatePage(vm.pageId, vm.page);
                 if (result) {
                     window.location = '#/user/' + vm.userId.toString() + '/website/' + vm.websiteId.toString() + '/page';
                 } else {
-                    vm.alert = 'Failed to update website';
+                    vm.alert = 'Failed to update Page';
                 }
             }
         }
         
         function deletePage() {
-
+            var result = PageService.deletePage(vm.pageId);
+            if (result) {
+                window.location = '#/user/' + vm.userId.toString() + '/website/' + vm.websiteId.toString() + '/page';
+            } else {
+                vm.alert = 'Failed to delete page';
+            }
         }
     }
 })();
