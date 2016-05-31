@@ -23,7 +23,7 @@
         vm.addPage = addPage;
 
         vm.userId = $routeParams['id'];
-        vm.websiteId = $routeParams['id'];
+        vm.websiteId = $routeParams['wid'];
 
         vm.page = {
             name: "",
@@ -46,5 +46,30 @@
     
     function EditPageController($routeParams, PageService) {
         var vm = this;
+
+        vm.editPage = editPage;
+        vm.deltePage = deletePage;
+
+        vm.userId = $routeParams['id'];
+        vm.websiteId = $routeParams['wid'];
+        vm.pageId = $routeParams['pid'];
+        vm.page = angular.copy(PageService.findPageById(vm.pageId));
+        
+        function editPage() {
+            if (vm.page.name.length === 0 ) {
+                vm.alert = "Website must have a name";
+            } else {
+                var result = PageService.updatePage(vm.pageId, vm.page);
+                if (result) {
+                    window.location = '#/user/' + vm.userId.toString() + '/website/' + vm.websiteId.toString() + '/page';
+                } else {
+                    vm.alert = 'Failed to update website';
+                }
+            }
+        }
+        
+        function deletePage() {
+
+        }
     }
 })();

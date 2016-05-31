@@ -30,9 +30,19 @@
         }
 
         function updatePage(pageId, page) {
-            var old_page = findPageById(pageId);
-            old_page.name = page.name;
-            return true;
+            var oldPage = findPageById(pageId);
+            if (oldPage) {
+                oldPage.name = page.name;
+                if (page.title) {
+                    oldPage.title = page.title;
+                } else {
+                    oldPage.title = "";
+                }
+                return true;
+            }
+            else {
+                return false;
+            }
         }
 
         function deletePage(pageId) {
