@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="../page/page-list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
@@ -10,7 +10,7 @@
                 Widgets
             </a>
             <p class="navbar-text pull-right">
-                <a href="widget-chooser.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </p>
@@ -38,70 +38,64 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="nbb-widget">
-        <div class="nbb-widget-control">
-            <a href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <h1>The Atlantic</h1>
-    </div>
-    <div class="nbb-widget">
-        <div class="nbb-widget-control">
-            <a href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <h4>How Paper Shaped Civilization</h4>
-    </div>
-    <div class="nbb-widget">
-        <div class="nbb-widget-control">
-            <a href="widget-image.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <img  width="100%" src="http://cdn.theatlantic.com/assets/media/img/mt/2016/05/RTR2SIBB/lead_960.jpg?1463756343">
-    </div>
-    <div class="nbb-widget">
-        <div class="nbb-widget-control">
-            <a href="#">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <p>The material gave rise to currency, bureaucracy, and modern communication—and caused panic over technological change.</p>
-    </div>
-    <div class="nbb-widget">
-        <div class="nbb-widget-control">
-            <a href="widget-heading.html.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <h1>My Video</h1>
-    </div>
-    <div class="nbb-widget">
-        <div class="nbb-widget-control">
-            <a href="widget-youtube.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
+<!--<div ng-repeat="widget in model.widgets" ng-switch="widget.widgetType">-->
+    <!--<div class="jga-widget-tool">-->
+        <!--<a href="#">-->
+            <!--<span class="glyphicon glyphicon-cog"></span>-->
+        <!--</a>-->
+        <!--<span class="glyphicon glyphicon-align-justify"></span>-->
+    <!--</div>-->
+    <!--<div ng-switch-when="HEADER" class="jga-widget">-->
+        <!--<div ng-switch="widget.size">-->
+            <!--<h1 ng-switch-when="1">{{widget.text}}</h1>-->
+            <!--<h2 ng-switch-when="2">{{widget.text}}</h2>-->
+            <!--<h3 ng-switch-when="3">{{widget.text}}</h3>-->
+            <!--<h4 ng-switch-when="4">{{widget.text}}</h4>-->
+            <!--<h5 ng-switch-when="5">{{widget.text}}</h5>-->
+            <!--<h6 ng-switch-when="6">{{widget.text}}</h6>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div ng-switch-when="IMAGE" class="jga-widget">-->
+        <!--<img ng-src="{{widget.url}}"-->
+             <!--width="{{widget.width}}"/>-->
+    <!--</div>-->
+    <!--<div ng-switch-when="HTML" class="jga-widget" ng-bind-html="model.getTrustedHtml(widget)">-->
+    <!--</div>-->
+    <!--<div ng-switch-when="YOUTUBE" class="jga-widget">-->
+        <!--<iframe width="{{widget.width}}" height="auto" ng-src="{{model.getTrustedUrl(widget)}}" frameborder="0" allowfullscreen></iframe>-->
+    <!--</div>-->
+    <!--<div ng-switch-default>-->
+        <!--{{widget}}-->
+    <!--</div>-->
+<!--</div>-->
 
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/165904278?quality=1080p" allowfullscreen></iframe></div>
-    </div>
-    <div class="nbb-widget">
+<div class="container">
+    <div ng-repeat="widget in model.widgets" ng-switch="widget.widgetType">
         <div class="nbb-widget-control">
-            <a href="#">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <span class="glyphicon glyphicon-align-justify"></span>
         </div>
-        <p><a href="https://vimeo.com/165904278">Spearfishing Black Grouper</a> from <a href="https://vimeo.com/user5957668">Nathaniel Burbine</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+        <div ng-switch-when="HEADER" class="nbb-widget">
+            <div ng-switch="widget.size">
+                <h1 ng-switch-when="1">{{widget.text}}</h1>
+                <h2 ng-switch-when="2">{{widget.text}}</h2>
+                <h3 ng-switch-when="3">{{widget.text}}</h3>
+                <h4 ng-switch-when="4">{{widget.text}}</h4>
+                <h5 ng-switch-when="5">{{widget.text}}</h5>
+                <h6 ng-switch-when="6">{{widget.text}}</h6>
+            </div>
+        </div>
+        <div ng-switch-when="IMAGE" class="nbb-widget">
+            <img ng-src="{{widget.url}}" width="{{widget.width}}"/>
+        </div>
+        <div ng-switch-when="HTML" ng-bind-html="model.getTrustedHtml(widget.text)" class="nbb-widget"></div>
+        <div ng-switch-when="YOUTUBE" class="nbb-widget">
+            <iframe width="{{widget.width}}" height="auto" ng-src="{{model.getTrustedUrl(widget.url)}}" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div ng-switch-default class="nbb-widget">
+            {{widget}}
+        </div>
     </div>
 </div>
