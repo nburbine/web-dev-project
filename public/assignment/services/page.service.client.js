@@ -23,6 +23,7 @@
             var newPage = {
                 _id: (new Date().getTime()).toString(),
                 name: page.name,
+                title: page.title,
                 websiteId: websiteId
             };
             pages.push(newPage);
