@@ -10,14 +10,17 @@
         vm.login = login;
         
         function login(username, password) {
-
-
-            var user = UserService.findUserByCredentials(username, password);
-            if(user) {
-                $location.url('/user/' + user._id);
-            } else {
-                vm.alert = "Unable to login";
-            }
+            UserService
+                .findUserByCredentials(username, password)
+                .then(function (response) {
+                    console.log(response);
+                    var user = response.data;
+                    if(user) {
+                        $location.url('/user/' + user._id);
+                    } else {
+                        vm.alert = "Unable to login";
+                    }
+                });
         }
     }
     
@@ -51,6 +54,8 @@
         
         vm.userId = $routeParams['id'];
         function init() {
+            
+            
             if (!(vm.user = angular.copy(UserService.findUserById(vm.userId)))) {
                 // redirect to login if profile does not exist
                 window.location = "#/login";
