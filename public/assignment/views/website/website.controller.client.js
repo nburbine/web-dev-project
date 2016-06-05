@@ -79,12 +79,16 @@
         }
         
         function deleteWebsite() {
-            var result = WebsiteService.deleteWebsite(vm.websiteId);
-            if (result) {
-                window.location = '#/user/'+vm.userId.toString()+'/website';
-            } else {
-                vm.alert = 'Failed to delete website';
-            }
+            WebsiteService
+                .deleteWebsite(vm.websiteId)
+                .then(
+                    function (response) {
+                        window.location = '#/user/'+vm.userId.toString()+'/website';
+                    },
+                    function (error) {
+                        vm.alert = error.data;
+                    }
+                );
         }
     }
 })();
