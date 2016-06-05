@@ -68,14 +68,14 @@ module.exports = function (app) {
 
     function deleteWebsite(req, res) {
         var websiteId = req.params.websiteId;
-        var site = findWebsiteById(websiteId);
 
-        if (site) {
-            websites.splice(websites.indexOf(site), 1);
-            res.send(200);
+        for (var i in websites) {
+            if (websites[i]._id === websiteId) {
+                websites.splice(i, 1);
+                res.send(200);
+                return;
+            }
         }
-        else {
-            res.status(400).send("Website with ID: " + websiteId + " not found");
-        }
+        res.status(400).send("Website with ID: " + websiteId + " not found");
     }
 };
