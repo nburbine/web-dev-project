@@ -20,7 +20,7 @@
                 username: user.username,
                 password: user.password
             };
-            return $http.put(url, newUser);
+            return $http.post(url, newUser);
         }
 
         function updateUser(userId, user) {
