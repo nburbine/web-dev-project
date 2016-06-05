@@ -16,7 +16,17 @@
         vm.pageId = $routeParams['pid'];
         
         function init() {
-            vm.widgets = angular.copy(WidgetService.findWidgetsByPageId(vm.pageId));
+            WidgetService
+                .findWidgetsByPageId(vm.pageId)
+                .then(
+                    function (response) {
+                        console.log(response);
+                        vm.widgets = response.data;
+                    },
+                    function (error) {
+                        vm.alert = error.data;
+                    }
+                )
         }
         init();
         
