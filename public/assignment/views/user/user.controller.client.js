@@ -14,9 +14,7 @@
                 .findUserByCredentials(username, password)
                 .then(
                     function (response) {
-                        console.log(response);
                         var user = response.data;
-                        console.log(user);
                         $location.url('/user/' + user._id);
                     },
                     function (error) {
@@ -63,22 +61,29 @@
         
         vm.userId = $routeParams['id'];
         function init() {
-            
-            
-            if (!(vm.user = angular.copy(UserService.findUserById(vm.userId)))) {
-                // redirect to login if profile does not exist
-                window.location = "#/login";
-            }
+            UserService
+                .findUserById(vm.userId)
+                .then(
+                    function (response) {
+                        vm.user = response.data;
+                    },
+                    function (error) {
+                        // If user not found, redirect to login
+                        window.location = "#/login";
+                    });
         }
         init();
 
         function updateUser() {
-            var result = UserService.updateUser(vm.userId, vm.user);
-            if (result) {
-                vm.success = "User successfully updated";
-            } else {
-                vm.alert = "User not found";
-            }
+            UserService
+                .updateUser(vm.userId, vm.user)
+                .then(
+                    function (response) {
+                        vm.success = "User successfully updated";
+                    },
+                    function (error) {
+                        vm.alert = error.data;
+                    });
         }
     }
 })();
