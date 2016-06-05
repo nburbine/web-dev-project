@@ -14,7 +14,7 @@ module.exports = function (app) {
 
     function createPage(req, res) {
         var newPage = req.body;
-        newPage._id = (new Date().getTime).toString();
+        newPage._id = (new Date().getTime()).toString();
         pages.push(newPage);
         res.json(newPage);
     }
