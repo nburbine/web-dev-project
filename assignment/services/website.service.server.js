@@ -51,7 +51,7 @@ module.exports = function (app) {
         res.send({})
     }
 
-    function updateWesite(req, res) {
+    function updateWebsite(req, res) {
         var website = req.body;
         var websiteId = website._id;
         var old_website = findWebsiteById(websiteId);
