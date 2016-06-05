@@ -23,7 +23,7 @@ module.exports = function (app) {
             }
         }
 
-        newUser._id = (new Date().getTime).toString();
+        newUser._id = (new Date().getTime()).toString();
         users.push(newUser);
         res.json(newUser);
     }
@@ -36,7 +36,7 @@ module.exports = function (app) {
                 return;
             }
         }
-        res.send({});
+        res.status(401).send("Invalid username/password combination");
     }
 
     function findUserByUsername(username, res) {
@@ -46,7 +46,7 @@ module.exports = function (app) {
                 return;
             }
         }
-        res.send({});
+        res.send(400);
     }
 
     function findUserById(req, res) {
@@ -57,7 +57,7 @@ module.exports = function (app) {
                 return;
             }
         }
-        res.send({});
+        res.send(400);
     }
 
     function updateUser(req, res) {
