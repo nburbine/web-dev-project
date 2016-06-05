@@ -12,15 +12,16 @@
         function login(username, password) {
             UserService
                 .findUserByCredentials(username, password)
-                .then(function (response) {
-                    console.log(response);
-                    var user = response.data;
-                    if(user) {
+                .then(
+                    function (response) {
+                        console.log(response);
+                        var user = response.data;
+                        console.log(user);
                         $location.url('/user/' + user._id);
-                    } else {
-                        vm.alert = "Unable to login";
-                    }
-                });
+                    },
+                    function (error) {
+                        vm.alert = error.data;
+                    });
         }
     }
     
@@ -40,10 +41,18 @@
                 vm.alert = "Please enter username and passwords";
             } else if (!(vm.user.password === vm.user.verifyPassword)) {
                 vm.alert = "Passwords don't match";
-            } else if (! (result = UserService.createUser(vm.user))) {
-                vm.alert = "Username taken";
             } else {
-                window.location = "#/user/" + result.toString();
+                result = UserService
+                    .createUser(vm.user)
+                    .then(
+                        function (response) {
+                            var id = response.data._id;
+                            window.location = "#/user/" + id;
+                        },
+                        function (error) {
+                            vm.alert = error.data;
+                        }
+                    )
             }
         }
     }
