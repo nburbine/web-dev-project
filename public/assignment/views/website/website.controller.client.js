@@ -63,18 +63,27 @@
         
         vm.userId = $routeParams['id'];
         vm.websiteId = $routeParams['wid'];
-        vm.website = angular.copy(WebsiteService.findWebsiteById(vm.websiteId));
+
+        WebsiteService
+            .findWebsiteById(vm.websiteId)
+            .then(function (response) {
+                vm.website = response.data;
+            });
     
         function editWebsite() {
             if (vm.website.name.length === 0) {
                 vm.alert = 'Website must have a name';
             } else {
-                var result = WebsiteService.updateWebsite(vm.websiteId, vm.website);
-                if (result) {
-                    window.location = '#/user/' + vm.userId.toString() + '/website';
-                } else {
-                    vm.alert = 'Failed to update website';
-                }
+                WebsiteService
+                    .updateWebsite(vm.websiteId, vm.website)
+                    .then(
+                        function (response) {
+                            window.location = '#/user/' + vm.userId.toString() + '/website';
+                        },
+                        function (error) {
+                            vm.alert = error.data;
+                        }
+                    )
             }
         }
         
