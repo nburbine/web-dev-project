@@ -20,7 +20,7 @@ module.exports = function (app) {
     }
 
     function findAllPagesForWebsite(req, res) {
-        var websteId = req.params.websiteId;
+        var websiteId = req.params.websiteId;
         var matching_pages = [];
         for (var i in pages) {
             if (pages[i].websiteId === websiteId) {
