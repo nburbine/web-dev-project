@@ -32,19 +32,25 @@
         vm.userId = $routeParams['id'];
         vm.website = {
             name: "",
-            description: ""
+            description: "",
+            developerId: vm.userId
         };
 
         function addWebsite() {
             if (vm.website.name.length === 0) {
                 vm.alert = "Please enter website name";
             } else {
-                var result = WebsiteService.createWebsite(vm.userId, vm.website);
-                if (result) {
-                    window.location = '#/user/' + vm.userId.toString() + '/website';
-                } else {
-                    vm.alert = "Failed to create new website";
-                }
+                WebsiteService
+                    .createWebsite(vm.userId, vm.website)
+                    .then(
+                        function (response) {
+                            console.log(response);
+                            window.location = '#/user/' + vm.userId.toString() + '/website';
+                        },
+                        function (error) {
+                            vm.alert = error.data;
+                        }
+                    );
             }
         }
     }

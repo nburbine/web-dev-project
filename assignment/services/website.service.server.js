@@ -17,12 +17,7 @@ module.exports = function (app) {
 
     function createWebsite(req, res) {
         var newWebsite = req.body;
-
-        if (!newWebsite.description) {
-            newWebsite.description = ""
-        }
         newWebsite._id = (new Date().getTime()).toString();
-
         websites.push(newWebsite);
         res.json(newWebsite);
     }
