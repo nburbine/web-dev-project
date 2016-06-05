@@ -49,21 +49,16 @@ module.exports = function (app) {
     function updateWebsite(req, res) {
         var website = req.body;
         var websiteId = website._id;
-        var old_website = findWebsiteById(websiteId);
 
-        if (old_website) {
-            old_website.name = website.name;
-            if (website.description) {
-                old_website.description = website.description;
-            } else {
-                old_website.description = "";
+        for (var i in websites) {
+            if (websites[i]._id === websiteId) {
+                websites[i].name = website.name;
+                websites[i].description = website.description;
+                res.send(200);
+                return;
             }
-            res.send(200);
-            return;
         }
-        else {
-            res.status(400).send("Website with ID: " + websiteId + " not found");
-        }
+        res.status(400).send("Website with ID: " + websiteId + " not found");
     }
 
     function deleteWebsite(req, res) {
