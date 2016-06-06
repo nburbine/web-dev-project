@@ -77,17 +77,25 @@
                    placeholder="100%"
                    type="text"/>
         </div>
-        <div class="form-group">
-            <label for="widgetImage">Upload</label>
-            <input class="form-control"
-                   id="widgetImage"
-                   name="widgetFile"
-                   type="text"
-                   value="Choose File  No file chosen"/>
-            <button type="button" class="btn btn-block btn-primary">Upload Image</button>
-        </div>
-
     </form>
+
+    <div class="nbb-upload">
+        <label for="upload">Upload</label>
+        <form action="/api/upload"  method="post" enctype="multipart/form-data" id="upload">
+            <input  name="myFile"   type="file" class="form-control"/>
+            <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+            <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
+            <input  name="pageId" value="{{model.pageId}}"   style="display: none"/>
+            <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
+            <input  name="userId" value="{{model.userId}}"   style="display: none"/>
+            <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
+        </form>
+    </div>
+
+    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/flickr"
+       class="btn btn-block btn-info">
+        Search Flickr
+    </a>
 
     <a ng-click="model.deleteWidget()" class="btn btn-block btn-danger">
         Delete

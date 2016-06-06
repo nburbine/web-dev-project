@@ -46,3 +46,17 @@ a.list-group-item {
 textarea {
     max-width: 100%;
 }
+
+div.nbb-upload {
+    padding-bottom: 5px;
+}
+
+div.col-xs-4 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+div.row {
+    padding-left: 15px;
+    padding-right: 15px;
+}
