@@ -44,7 +44,6 @@
                     .createWebsite(vm.userId, vm.website)
                     .then(
                         function (response) {
-                            console.log(response);
                             window.location = '#/user/' + vm.userId.toString() + '/website';
                         },
                         function (error) {

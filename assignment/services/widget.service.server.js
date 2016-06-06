@@ -71,7 +71,6 @@ module.exports = function (app) {
                     case "YOUTUBE":
                         widgets[i].width = widget.width;
                         widgets[i].url = widget.url;
-                        console.log('a');
                         res.send(200);
                         break;
                     default:

@@ -20,7 +20,6 @@
                 .findWidgetsByPageId(vm.pageId)
                 .then(
                     function (response) {
-                        console.log(response);
                         vm.widgets = response.data;
                     },
                     function (error) {
@@ -119,33 +118,32 @@
         WidgetService
             .findWidgetById(vm.widgetId)
             .then(function (response) {
-                console.log(response);
                 vm.widget = response.data;
             });
 
         function deleteWidget() {
-            var result = WidgetService.deleteWidget(vm.widgetId);
-            if (result) {
-                window.location = '#/user/' + vm.userId.toString() + '/website/' + vm.websiteId.toString() + '/page/' + vm.pageId.toString() + '/widget/';
-                initEditWidget();
-            } else {
-                vm.alert = 'Failed to delete widget';
-            }
-        }
-
-        function editWidget() {
-            var push = function () {
-                console.log('b');
-                WidgetService
-                    .updateWidget(vm.widgetId, vm.widget)
-                    .then(
+            WidgetService
+                .deleteWidget(vm.widgetId)
+                .then(
                     function (response) {
-                        console.log(response);
                         window.location = '#/user/' + vm.userId.toString() + '/website/' + vm.websiteId.toString() + '/page/' + vm.pageId.toString() + '/widget/';
                     },
                     function (error) {
                         vm.alert = error.data;
-                        console.log(vm.alert);
+                    }
+                );
+        }
+
+        function editWidget() {
+            var push = function () {
+                WidgetService
+                    .updateWidget(vm.widgetId, vm.widget)
+                    .then(
+                    function (response) {
+                        window.location = '#/user/' + vm.userId.toString() + '/website/' + vm.websiteId.toString() + '/page/' + vm.pageId.toString() + '/widget/';
+                    },
+                    function (error) {
+                        vm.alert = error.data;
                     }
                 );
             };
@@ -173,7 +171,6 @@
                     }
                     break;
                 case "YOUTUBE":
-                    console.log('a');
                     if (vm.widget.url.length === 0) {
                         vm.alert = 'Please enter URL';
                     } else {
