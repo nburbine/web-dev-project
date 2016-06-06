@@ -26,7 +26,7 @@
                     function (error) {
                         vm.alert = error.data;
                     }
-                )
+                );
         }
         init();
         
@@ -78,6 +78,7 @@
             var newWidget = {
                 widgetType: 'IMAGE',
                 width: '',
+                text: '',
                 url: ""
             };
             var result = WidgetService.createWidget(vm.pageId, newWidget);
@@ -92,6 +93,7 @@
             var newWidget = {
                 widgetType: 'YOUTUBE',
                 width: '',
+                text: '',
                 url: ""
             };
             var result = WidgetService.createWidget(vm.pageId, newWidget);
@@ -107,65 +109,80 @@
         var vm = this;
 
         vm.deleteWidget = deleteWidget;
+        vm.editWidget = editWidget;
 
         vm.userId = $routeParams['id'];
         vm.websiteId = $routeParams['wid'];
         vm.pageId = $routeParams['pid'];
         vm.widgetId = $routeParams['wgid'];
 
-        vm.widget = angular.copy(WidgetService.findWidgetById(vm.widgetId));
+        WidgetService
+            .findWidgetById(vm.widgetId)
+            .then(function (response) {
+                console.log(response);
+                vm.widget = response.data;
+            });
 
         function deleteWidget() {
             var result = WidgetService.deleteWidget(vm.widgetId);
             if (result) {
                 window.location = '#/user/' + vm.userId.toString() + '/website/' + vm.websiteId.toString() + '/page/' + vm.pageId.toString() + '/widget/';
+                initEditWidget();
             } else {
                 vm.alert = 'Failed to delete widget';
             }
         }
 
-        switch(vm.widget.widgetType) {
-            case "HEADER":
-                vm.editWidget = function editWidget() {
+        function editWidget() {
+            var push = function () {
+                console.log('b');
+                WidgetService
+                    .updateWidget(vm.widgetId, vm.widget)
+                    .then(
+                    function (response) {
+                        console.log(response);
+                        window.location = '#/user/' + vm.userId.toString() + '/website/' + vm.websiteId.toString() + '/page/' + vm.pageId.toString() + '/widget/';
+                    },
+                    function (error) {
+                        vm.alert = error.data;
+                        console.log(vm.alert);
+                    }
+                );
+            };
+
+            switch (vm.widget.widgetType) {
+                case "HEADER":
                     if (vm.widget.text.length === 0) {
                         vm.alert = 'Please enter text';
                     } else {
-                        var result = WidgetService.updateWidget(vm.widgetId, vm.widget);
-                        if (result) {
-                            window.location = '#/user/' + vm.userId.toString() + '/website/' + vm.websiteId.toString() + '/page/' + vm.pageId.toString() + '/widget/';
-                        } else {
-                            vm.alert = 'Failed to update widget';
-                        }
+                        push();
                     }
-                };
-                break;
-            case "IMAGE":
-                vm.editWidget = function editWidget() {
-                    var result = WidgetService.updateWidget(vm.widgetId, vm.widget);
-                    if (result) {
-                        window.location = '#/user/' + vm.userId.toString() + '/website/' + vm.websiteId.toString() + '/page/' + vm.pageId.toString() + '/widget/';
+                    break;
+                case "IMAGE":
+                    if (vm.widget.url.length === 0) {
+                        vm.alert = 'Please enter URL';
                     } else {
-                        vm.alert = 'Failed to update widget';
+                        push();
                     }
-                };
-                break;
-            case "HTML":
-                vm.editWidget = function editWidget() {
-
-                };
-                break;
-            case "YOUTUBE":
-                vm.editWidget = function editWidget() {
-                    var result = WidgetService.updateWidget(vm.widgetId, vm.widget);
-                    if (result) {
-                        window.location = '#/user/' + vm.userId.toString() + '/website/' + vm.websiteId.toString() + '/page/' + vm.pageId.toString() + '/widget/';
+                    break;
+                case "HTML":
+                    if (vm.widget.text.length === 0) {
+                        vm.alert = 'Please enter text';
                     } else {
-                        vm.alert = 'Failed to update widget';
+                        push();
                     }
-                };
-                break;
-            default:
-                vm.alert = "No widget type"
+                    break;
+                case "YOUTUBE":
+                    console.log('a');
+                    if (vm.widget.url.length === 0) {
+                        vm.alert = 'Please enter URL';
+                    } else {
+                        push();
+                    }
+                    break;
+                default:
+                    vm.alert = "No widget type"
+            }
         }
     }
 })();

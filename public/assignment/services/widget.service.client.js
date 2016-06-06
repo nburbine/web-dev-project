@@ -15,21 +15,19 @@
 
         function createWidget(pageId, widget) {
             var newWidget = {
-                _id: (new Date().getTime()).toString(),
                 widgetType: widget.widgetType,
-                pageId: pageId
+                pageId: pageId,
+                text: widget.text
             };
             switch(newWidget.widgetType) {
                 case "HEADER":
                     newWidget.size = widget.size;
-                    newWidget.text = widget.text;
                     break;
                 case "IMAGE":
                     newWidget.width = widget.width;
                     newWidget.url = widget.url;
                     break;
                 case "HTML":
-                    newWidget.text = widget.text;
                     break;
                 case "YOUTUBE":
                     newWidget.width = widget.width;

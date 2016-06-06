@@ -48,19 +48,38 @@ module.exports = function (app) {
 
     function updateWidget(req, res) {
         var widget = req.body;
-        var id = newWidget._id;
+        var id = widget._id;
         for (var i in widgets) {
-            if (widgets[i]._id === id) {
+            if (widgets[i]._id === widget._id) {
                 widgets[i].name = widget.name;
-                widgets[i].size = widget.size;
                 widgets[i].text = widget.text;
-                widgets[i].width = widget.width;
-                widgets[i].url = widget.url;
-                res.send(200);
-                return;
+                switch(widgets[i].widgetType) {
+                    case "HEADER":
+                        widgets[i].size = widget.size;
+                        widgets[i].text = widget.text;
+                        res.send(200);
+                        break;
+                    case "IMAGE":
+                        widgets[i].width = widget.width;
+                        widgets[i].url = widget.url;
+                        res.send(200);
+                        break;
+                    case "HTML":
+                        widgets[i].text = widget.text;
+                        res.send(200);
+                        break;
+                    case "YOUTUBE":
+                        widgets[i].width = widget.width;
+                        widgets[i].url = widget.url;
+                        console.log('a');
+                        res.send(200);
+                        break;
+                    default:
+                        res.status(400).send("Widget with ID: " + id + " not found");
+                }
             }
         }
-        res.status(400).send("Widget with ID: " + id + " not found");
+        return;
     }
 
     function deleteWidget(req, res) {
