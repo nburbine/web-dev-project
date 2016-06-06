@@ -52,7 +52,7 @@
                 .updateWidget(vm.widgetId, vm.widget)
                 .then(
                     function (response) {
-                        window.location = '#/user/' + vm.userId.toString() + '/website/' + vm.websiteId.toString() + '/page/' + vm.pageId.toString() + '/widget/';
+                        window.location = '#/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget/' + vm.widgetId  ;
                     }
                 )
         }
