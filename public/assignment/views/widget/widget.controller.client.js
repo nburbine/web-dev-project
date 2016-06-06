@@ -44,63 +44,46 @@
     function NewWidgetController($routeParams, WidgetService) {
         var vm = this;
 
-        vm.addHeader = addHeader;
-        vm.addImage = addImage;
-        vm.addYoutube = addYoutube;
+        vm.addWidget = addWidget;
 
         vm.userId = $routeParams['id'];
         vm.websiteId = $routeParams['wid'];
         vm.pageId = $routeParams['pid'];
-
-        vm.types = [
-            {name: "Header", addWidget: 'model.addHeader()'},
-            {name: "Image", addWidget: 'model.addImage()'},
-            {name: "YouTube", addWidget: 'model.addYoutube()'},
-            {name: "HTML", addWidget: 'model.addHtml()'}
-        ];
-
-        function addHeader() {
+        
+        function addWidget(type) {
             var newWidget = {
-                widgetType: 'HEADER',
-                size: 1,
-                text: ''
+                pageId: vm.pageId,
+                text: 'Lorem Ipsum'
             };
-            var result = WidgetService.createWidget(vm.pageId, newWidget);
-            if (result) {
-                window.location = '#/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+result;
-            } else {
-                vm.alert = 'Failed to create new header widget'
+            switch (type) {
+                case 'HEADER':
+                    newWidget.widgetType = 'HEADER';
+                    newWidget.size = 1;
+                    break;
+                case 'IMAGE':
+                    newWidget.widgetType = 'IMAGE';
+                    newWidget.width = '95%';
+                    newWidget.url = 'http://lorempixel.com/400/200/';
+                    break;
+                case 'YOUTUBE':
+                    newWidget.widgetType = 'YOUTUBE';
+                    newWidget.width = '95%';
+                    newWidget.url = 'https://youtu.be/dQw4w9WgXcQ';
+                    break;
+                default:
+                    vm.alert("Invalid widget type");
             }
-        }
-
-        function addImage() {
-            var newWidget = {
-                widgetType: 'IMAGE',
-                width: '',
-                text: '',
-                url: ""
-            };
-            var result = WidgetService.createWidget(vm.pageId, newWidget);
-            if (result) {
-                window.location = '#/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+result;
-            } else {
-                vm.alert = 'Failed to create new image widget'
-            }
-        }
-
-        function addYoutube() {
-            var newWidget = {
-                widgetType: 'YOUTUBE',
-                width: '',
-                text: '',
-                url: ""
-            };
-            var result = WidgetService.createWidget(vm.pageId, newWidget);
-            if (result) {
-                window.location = '#/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+result;
-            } else {
-                vm.alert = 'Failed to create new image widget'
-            }
+            WidgetService
+                .createWidget(vm.pageId, newWidget)
+                .then(
+                    function (response) {
+                        var id = response.data._id;
+                        window.location = '#/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+id;
+                    },
+                    function (error) {
+                        vm.alert = error.data;
+                    }
+                )
         }
     }
 

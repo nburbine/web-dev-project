@@ -14,30 +14,8 @@
         return api;
 
         function createWidget(pageId, widget) {
-            var newWidget = {
-                widgetType: widget.widgetType,
-                pageId: pageId,
-                text: widget.text
-            };
-            switch(newWidget.widgetType) {
-                case "HEADER":
-                    newWidget.size = widget.size;
-                    break;
-                case "IMAGE":
-                    newWidget.width = widget.width;
-                    newWidget.url = widget.url;
-                    break;
-                case "HTML":
-                    break;
-                case "YOUTUBE":
-                    newWidget.width = widget.width;
-                    newWidget.url = widget.url;
-                    break;
-                default:
-                    return false;
-            }
             var url = "/api/page/"+pageId+"/widget";
-            return $http.post(url, newWidget);
+            return $http.post(url, widget);
         }
         
         function updateWidget(widgetId, widget) {

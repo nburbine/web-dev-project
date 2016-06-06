@@ -18,6 +18,7 @@ module.exports = function (app) {
 
     function createWidget(req, res) {
         var newWidget = req.body;
+        console.log(newWidget);
         newWidget._id = (new Date().getTime()).toString();
         widgets.push(newWidget);
         res.json(newWidget);
