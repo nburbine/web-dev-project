@@ -7,7 +7,7 @@ module.exports = function () {
         description: String,
         pages: [Page],
         dateCreated: {type: Date, default: Date.now}
-    }, {collection: "assignment.user"});
+    }, {collection: "assignment.website"});
 
     return WebsiteSchema;
 };
