@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                <a href="#/user/{{model.userid}}/website/{{model.websiteid}}/page/{{model.pageid}}/widget" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
@@ -22,13 +22,13 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <!-- Where should this point? Not specified in assignment. -->
+                <!-- where should this point? not specified in assignment. -->
                 <a href="" class="navbar-link">
                     <span class="glyphicon glyphicon-share-alt"></span>
                 </a>
             </p>
             <p class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}" class="navbar-link" id="navbar-profile">
+                <a href="#/user/{{model.userid}}" class="navbar-link" id="navbar-profile">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
@@ -41,11 +41,15 @@
         {{model.alert}}
     </div>
 
-    <div text-angular
-         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
-        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
-        ['indent','outdent'],['html']]"
-        ng-model="model.widget.text">
+    <div>
+        <label for="widget-text">Text</label>
+        <input ng-model="model.widget.text" class="form-control" id="widget-text"/>
+        <label for="widget-rows">Rows</label>
+        <input ng-model="model.widget.rows" class="form-control" id="widget-rows"/>
+        <label for="widget-placeholder">Placeholder</label>
+        <input ng-model="model.widget.placeholder" class="form-control" id="widget-placeholder"/>
+        <label for="widget-formatted">Formatted</label>
+        <input ng-model="model.widget.formatted" class="form-control" type="checkbox" id="widget-formatted"/>
     </div>
 
     <a ng-click="model.deleteWidget()" class="btn btn-block btn-danger">

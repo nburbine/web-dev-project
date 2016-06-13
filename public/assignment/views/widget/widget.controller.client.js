@@ -74,8 +74,16 @@
                     newWidget.width = '95%';
                     newWidget.url = 'https://youtu.be/dQw4w9WgXcQ';
                     break;
+                case 'TEXT':
+                    newWidget.type = 'TEXT';
+                    newWidget.rows = 1;
+                    newWidget.placeholder = 'Placeholder';
+                    newWidget.formatted = false;
+                    break;
+                case 'HTML':
+                    newWidget.type = 'HTML';
                 default:
-                    vm.alert("Invalid widget type");
+                    vm.alert="Invalid widget type";
             }
             WidgetService
                 .createWidget(vm.pageId, newWidget)
@@ -85,13 +93,14 @@
                         window.location = '#/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+id;
                     },
                     function (error) {
+                        console.log(error);
                         vm.alert = error.data;
                     }
                 )
         }
     }
 
-    function EditWidgetController($routeParams, WidgetService) {
+    function EditWidgetController($routeParams, WidgetService, $scope) {
         var vm = this;
 
         vm.deleteWidget = deleteWidget;
@@ -105,7 +114,6 @@
         WidgetService
             .findWidgetById(vm.widgetId)
             .then(function (response) {
-                console.log(response);
                 vm.widget = response.data;
             });
 
@@ -165,6 +173,19 @@
                         push();
                     }
                     break;
+                case "TEXT":
+                    if (false) {
+                        vm.alert = '';
+                    } else {
+                        push();
+                    }
+                    break;
+                case "HTML":
+                    if (false) {
+                        vm.alert = '';
+                    } else {
+                        push();
+                    }
                 default:
                     vm.alert = "No widget type"
             }

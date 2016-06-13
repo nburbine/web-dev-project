@@ -71,12 +71,30 @@ module.exports = function () {
                     }}
                 );
                 break;
+            case "TEXT":
+                return Widget.update(
+                    {_id: widgetId},
+                    {$set:
+                    {
+                        name: widget.name,
+                        rows: widget.rows,
+                        placeholder: widget.placeholder,
+                        formatted: widget.formatted
+                    }}
+                );
+                break;
+            case "HTML":
+                return Widget.update(
+                    {_id: widgetId},
+                    {$set:
+                    {
+                        name: widget.name
+                    }}
+                );
+                break;
             default:
-                console.log()
+                console.log(widget);
         }
-        
-        
-        
     }
     
     function findAllWidgetsForPage(pageId) {

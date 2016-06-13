@@ -29,6 +29,7 @@ module.exports = function (app, models) {
                     res.send(widget);
                 },
                 function (error) {
+                    console.log(error);
                     res.status(400).send(error);
                 }
             )
