@@ -15,7 +15,8 @@ module.exports = function () {
     return api;
     
     function createWebsiteForUser(userId, website) {
-        return Website.create(Website);
+        website._user = userId;
+        return Website.create(website);
     }
     
     function deleteWebsite(websiteId) {

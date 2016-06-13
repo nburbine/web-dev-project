@@ -14,7 +14,8 @@ module.exports = function () {
     return api;
     
     function createPage(websiteId, page) {
-        return Page.create(websiteId, page);
+        page._website = websiteId;
+        return Page.create(page);
     }
     
     function deletePage(pageId) {
