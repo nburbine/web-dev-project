@@ -1,15 +1,14 @@
 module.exports = function () {
 
-    var WebsiteSchema = require("./website.schema.server.js");
+    var WebsiteSchema = require("./website.schema.server.js")();
     var mongoose = require("mongoose");
     var website = mongoose.model("Website", WebsiteSchema);
 
     var api = {
-        createWebsite: createWebsite,
+        createWebsiteForUser: createWebsiteForUser,
         deleteWebsite: deleteWebsite,
         updateWebsite: updateWebsite,
-        findWebsiteByUsername: findWebsiteByUsername,
-        findWebsiteByCredentials: findWebsiteByCredentials,
+        findAllWebsitesForUser: findAllWebsitesForUser,
         findWebsiteById: findWebsiteById
     };
     return api;
@@ -34,8 +33,8 @@ module.exports = function () {
         );
     }
     
-    function findWebsiteByUsername(websiteId) {
-        return Website.findOne({_id: websiteId});
+    function findAllWebsitesForUser(userId) {
+        return Website.find({_id: websiteId});
     }
     
     function findWebsiteById(userId) {

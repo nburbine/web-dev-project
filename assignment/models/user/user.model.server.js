@@ -1,6 +1,6 @@
 module.exports = function () {
 
-    var UserSchema = require("./user.schema.server");
+    var UserSchema = require("./user.schema.server")();
     var mongoose = require("mongoose");
     var User = mongoose.model("User", UserSchema);
 
@@ -23,12 +23,14 @@ module.exports = function () {
     }
     
     function updateUser(userId, user) {
+        console.log(user);
         return User.update(
             {_id: userId},
             {$set:
                 {
-                    firstName: newUser.firstName,
-                    lastName: newUser.lastName
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email
                 }}
         );
     }
