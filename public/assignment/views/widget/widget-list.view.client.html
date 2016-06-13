@@ -61,8 +61,8 @@
             <img ng-src="{{widget.url}}" width="{{widget.width}}"/>
         </div>
         <div ng-switch-when="HTML" ng-bind-html="model.getTrustedHtml(widget.text)" class="nbb-widget"></div>
-        <div ng-switch-when="YOUTUBE" class="nbb-widget">
-            <iframe width="{{widget.width}}" height="auto" ng-src="{{model.getTrustedUrl(widget.url)}}" frameborder="0" allowfullscreen></iframe>
+        <div ng-switch-when="YOUTUBE" class="nbb-widget youtube-widget">
+            <iframe width="{{widget.width}}" ng-src="{{model.getTrustedUrl(widget.url)}}" frameborder="0" allowfullscreen></iframe>
         </div>
         <div ng-switch-default class="nbb-widget">
             {{widget}}
