@@ -27,8 +27,8 @@ module.exports = function () {
             {_id: websiteId},
             {$set:
                 {
-                    firstName: website.firstName,
-                    lastName: website.lastName
+                    name: website.name,
+                    description: website.description
                 }}
         );
     }
