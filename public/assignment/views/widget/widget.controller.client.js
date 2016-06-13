@@ -61,16 +61,16 @@
             };
             switch (type) {
                 case 'HEADER':
-                    newWidget.widgetType = 'HEADER';
+                    newWidget.type = 'HEADER';
                     newWidget.size = 1;
                     break;
                 case 'IMAGE':
-                    newWidget.widgetType = 'IMAGE';
+                    newWidget.type = 'IMAGE';
                     newWidget.width = '95%';
                     newWidget.url = 'http://lorempixel.com/400/200/';
                     break;
                 case 'YOUTUBE':
-                    newWidget.widgetType = 'YOUTUBE';
+                    newWidget.type = 'YOUTUBE';
                     newWidget.width = '95%';
                     newWidget.url = 'https://youtu.be/dQw4w9WgXcQ';
                     break;
@@ -105,6 +105,7 @@
         WidgetService
             .findWidgetById(vm.widgetId)
             .then(function (response) {
+                console.log(response);
                 vm.widget = response.data;
             });
 
@@ -135,7 +136,7 @@
                 );
             };
 
-            switch (vm.widget.widgetType) {
+            switch (vm.widget.type) {
                 case "HEADER":
                     if (vm.widget.text.length === 0) {
                         vm.alert = 'Please enter text';
