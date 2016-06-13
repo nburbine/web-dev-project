@@ -16,7 +16,18 @@ module.exports = function () {
     
     function createWidget(pageId, widget) {
         widget._page = pageId;
-        return Widget.create(widget);
+        return Widget
+            .find({_page: pageId})
+            .then(
+                function (widgets) {
+                    widget.order = widgets.length;
+                    console.log(widget.order);
+                    return Widget.create(widget);
+                },
+                function (error) {
+                    return null;
+                }
+            );
     }
     
     function deleteWidget(widgetId) {
