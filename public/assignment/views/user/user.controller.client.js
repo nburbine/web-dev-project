@@ -8,10 +8,13 @@
     function LoginController($location, UserService) {
         var vm = this;
         vm.login = login;
+
+        vm.username = '';
+        vm.password = '';
         
-        function login(username, password) {
+        function login() {
             UserService
-                .findUserByCredentials(username, password)
+                .findUserByCredentials(vm.username, vm.password)
                 .then(
                     function (response) {
                         var user = response.data;

@@ -8,20 +8,20 @@
     </div>
 
     <form>
-        <input ng-model="username"
+        <input ng-model="model.username"
                class="form-control"
                name="username"
                id="username"
                type="text"
                placeholder="username"/>
-        <input ng-model="password"
+        <input ng-model="model.password"
                class="form-control"
                name="password"
                id="password"
                type="password"
                placeholder="password"/>
     </form>
-    <button ng-click="model.login(username, password)" class="btn btn-block btn-primary">
+    <button ng-click="model.login()" class="btn btn-block btn-primary">
         Login
     </button>
     <button type="button" onclick="location.href = '#/register'" class="btn btn-block btn-success">
