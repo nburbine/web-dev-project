@@ -2,7 +2,7 @@ module.exports = function () {
 
     var WebsiteSchema = require("./website.schema.server.js")();
     var mongoose = require("mongoose");
-    var website = mongoose.model("Website", WebsiteSchema);
+    var Website = mongoose.model("Website", WebsiteSchema);
 
     var api = {
         createWebsiteForUser: createWebsiteForUser,
@@ -34,10 +34,10 @@ module.exports = function () {
     }
     
     function findAllWebsitesForUser(userId) {
-        return Website.find({_id: websiteId});
+        return Website.find({_user: userId});
     }
     
-    function findWebsiteById(userId) {
-        return Website.findOne({_id: userId});
+    function findWebsiteById(websiteId) {
+        return Website.findOne({_id: websiteId});
     }
 };
