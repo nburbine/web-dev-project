@@ -1,0 +1,53 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <span class="glyphicon glyphicon-search"></span> Im a Logo
+
+            <div class="input-group">
+                <input ng-model="searchText" type="text" class="form-control">
+    <span class="input-group-btn">
+        <a ng-click="model.searchPhotos(searchText)"
+           class="btn btn-default"
+           type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+            </div>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <a class="btn btn-success" href="project\stock\views\home\home.view.html" role="button">Project</a>
+            <a class="btn btn-success" href="assignment/" role="button">Assignment</a>
+            <a class="btn btn-success" href="https://youtu.be/avllwyXIlXY" role="button">Project Video</a>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="input-group">
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-4" ng-repeat="photo in model.photos.photo">
+        <img ng-click="model.selectPhoto(photo)" width="100%"
+             ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"/>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}" class="navbar-link" id="navbar-profile">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
+</div>

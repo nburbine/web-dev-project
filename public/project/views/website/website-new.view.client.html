@@ -1,0 +1,53 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/website" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </p>
+            <a class="navbar-brand" href="">
+                New Website
+            </a>
+            <p class="navbar-text pull-right">
+                <a ng-click="model.addWebsite()" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}" class="navbar-link" id="navbar-profile">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div ng-if="model.alert" class="alert alert-danger">
+        {{model.alert}}
+    </div>
+
+    <form>
+        <div class="form-group">
+            <label for="websiteName">Website Name</label>
+            <input ng-model="model.website.name"
+                   class="form-control"
+                   id="websiteName"
+                   name="websiteName"
+                   type="text"
+                   placeholder="Cool New Website"/>
+
+            <label for="websiteDescription">Website Description</label>
+            <textarea ng-model="model.website.description" rows="3" id="websiteDescription"
+                      class="form-control" placeholder="My website"></textarea>
+        </div>
+    </form>
+</div>
