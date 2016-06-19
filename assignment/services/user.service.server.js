@@ -14,6 +14,7 @@ module.exports = function (app, models) {
 
     app.post("/api/user", createUser);
     app.post("/api/login", passport.authenticate('wam'), login);
+    app.post("api/logout", logout);
     app.get("/api/user", getUsers);
     app.get("/api/user/login", findUserByCredentials);
     app.get("/api/user/:userId", findUserById);
@@ -27,6 +28,11 @@ module.exports = function (app, models) {
     function login(req, res) {
         var user = req.user;
         res.json(user);
+    }
+    
+    function logout(req, res) {
+        req.logout();
+        res.send(200);
     }
 
     function localStrategy(username, password, done) {

@@ -11,7 +11,8 @@
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
             findUserByCredentials: findUserByCredentials,
-            login: login
+            login: login,
+            logout: logout
         };
         return api;
         
@@ -22,6 +23,10 @@
                 password: password
             };
             return $http.post(url, user);
+        }
+        
+        function logout() {
+            return $http.post("/api/logout");
         }
 
         function createUser(user) {
