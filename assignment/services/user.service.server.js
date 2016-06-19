@@ -15,6 +15,7 @@ module.exports = function (app, models) {
     app.post("/api/user", createUser);
     app.post("/api/login", passport.authenticate('wam'), login);
     app.post("api/logout", logout);
+    app.post("/api/register", register);
     app.get("/api/user", getUsers);
     app.get("/api/user/login", findUserByCredentials);
     app.get("/api/user/:userId", findUserById);
@@ -33,6 +34,44 @@ module.exports = function (app, models) {
     function logout(req, res) {
         req.logout();
         res.send(200);
+    }
+
+    function register(req, res) {
+        var username = req.body.username;
+        var password = req.body.password;
+        userModel
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    if (user) {
+                        res.status(400).send("Username already exists");
+                        return;
+                    } else {
+                        req.body.password = bcrypt.hashSync(password);
+                        return userModel
+                            .createUser(req.body);
+                    }
+                },
+                function (error) {
+                    res.status(400).send(error);
+                }
+            )
+            .then(
+                function (user) {
+                    if(user) {
+                        req.login(user, function(err) {
+                            if(err) {
+                                res.status(400).send(err);
+                            } else {
+                                res.json(user);
+                            }
+                        });
+                    }
+                },
+                function (error) {
+                    res.status(400).send(error);
+                }
+            );
     }
 
     function localStrategy(username, password, done) {

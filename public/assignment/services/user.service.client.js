@@ -12,7 +12,8 @@
             findUserByUsername: findUserByUsername,
             findUserByCredentials: findUserByCredentials,
             login: login,
-            logout: logout
+            logout: logout,
+            register: register
         };
         return api;
         
@@ -27,6 +28,14 @@
         
         function logout() {
             return $http.post("/api/logout");
+        }
+        
+        function register(username, password) {
+            var user = {
+                username: username,
+                password: password
+            };
+            return $http.post("/api/register", user);
         }
 
         function createUser(user) {

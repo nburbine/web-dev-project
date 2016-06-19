@@ -24,7 +24,7 @@
                         }
                     },
                     function (error) {
-                        vm.alert = "User not found";
+                        vm.alert = error.data;
                     }
                 );
             
@@ -43,14 +43,16 @@
     
     function RegisterController(UserService) {
         var vm = this;
-        vm.addUser = addUser;
+        // vm.addUser = addUser;
+        vm.register = register;
 
         vm.user = {
             username: "",
             password: "",
             verifyPassword: ""
         };
-        function addUser() {
+        
+        function register() {
             if (vm.user.username.length === 0 ||
                 vm.user.password.length === 0 ||
                 vm.user.verifyPassword.length === 0) {
@@ -58,12 +60,13 @@
             } else if (!(vm.user.password === vm.user.verifyPassword)) {
                 vm.alert = "Passwords don't match";
             } else {
-                result = UserService
-                    .createUser(vm.user)
+                UserService
+                    .register(username, password)
                     .then(
                         function (response) {
-                            var id = response.data._id;
-                            window.location = "#/user/" + id;
+                            var user = response.data;
+                            $rootScope.currentUser = user;
+                            $location.url("/profile/" + user._id);
                         },
                         function (error) {
                             vm.alert = error.data;
@@ -71,6 +74,28 @@
                     )
             }
         }
+        
+        // function addUser() {
+        //     if (vm.user.username.length === 0 ||
+        //         vm.user.password.length === 0 ||
+        //         vm.user.verifyPassword.length === 0) {
+        //         vm.alert = "Please enter username and passwords";
+        //     } else if (!(vm.user.password === vm.user.verifyPassword)) {
+        //         vm.alert = "Passwords don't match";
+        //     } else {
+        //         result = UserService
+        //             .createUser(vm.user)
+        //             .then(
+        //                 function (response) {
+        //                     var id = response.data._id;
+        //                     window.location = "#/user/" + id;
+        //                 },
+        //                 function (error) {
+        //                     vm.alert = error.data;
+        //                 }
+        //             )
+        //     }
+        // }
     }
     
     function ProfileController($routeParams, UserService) {
