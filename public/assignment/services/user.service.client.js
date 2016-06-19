@@ -10,9 +10,19 @@
             deleteUser: deleteUser,
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
-            findUserByCredentials: findUserByCredentials
+            findUserByCredentials: findUserByCredentials,
+            login: login
         };
         return api;
+        
+        function login(username, password) {
+            var url = "/api/login";
+            var user = {
+                username: username,
+                password: password
+            };
+            return $http.post(url, user);
+        }
 
         function createUser(user) {
             var url = "/api/user";

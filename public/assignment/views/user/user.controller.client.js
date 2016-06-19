@@ -5,24 +5,39 @@
         .controller("RegisterController", RegisterController)
         .controller("ProfileController", ProfileController);
     
-    function LoginController($location, UserService) {
+    function LoginController($location, $rootScope, UserService) {
         var vm = this;
         vm.login = login;
 
         vm.username = '';
         vm.password = '';
         
-        function login() {
+        function login(username, password) {
             UserService
-                .findUserByCredentials(vm.username, vm.password)
+                .login(username, password)
                 .then(
                     function (response) {
                         var user = response.data;
-                        $location.url('/user/' + user._id);
+                        if (user) {
+                            $rootScope.currentUser = user;
+                            $location.url("/profile/" + user._id);
+                        }
                     },
                     function (error) {
-                        vm.alert = error.data;
-                    });
+                        vm.alert = "User not found";
+                    }
+                );
+            
+            // UserService
+            //     .findUserByCredentials(vm.username, vm.password)
+            //     .then(
+            //         function (response) {
+            //             var user = response.data;
+            //             $location.url('/user/' + user._id);
+            //         },
+            //         function (error) {
+            //             vm.alert = error.data;
+            //         });
         }
     }
     
@@ -60,7 +75,9 @@
     
     function ProfileController($routeParams, UserService) {
         var vm = this;
+
         vm.updateUser = updateUser;
+        vm.logout = logout;
         
         vm.userId = $routeParams['id'];
         function init() {
@@ -87,6 +104,21 @@
                     function (error) {
                         vm.alert = error.data;
                     });
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function () {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function () {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
         }
     }
 })();
