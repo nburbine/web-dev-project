@@ -114,11 +114,11 @@
                 .then(
                     function () {
                         $rootScope.currentUser = null;
-                        $location.url("/login");
+                        window.location = "#/login";
                     },
                     function () {
                         $rootScope.currentUser = null;
-                        $location.url("/login");
+                        window.location = "#/login";
                     }
                 );
         }

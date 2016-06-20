@@ -42,6 +42,12 @@ module.exports = function (app, models) {
         callbackURL  : process.env.FACEBOOK_CALLBACK_URL
     };
 
+    // var facebookConfig = {
+    //     clientID     : '129281260829444',
+    //     clientSecret : 'fc8f89a67cd722c3c8507b2a5f6dbec3',
+    //     callbackURL  : 'http://webdev-burbinenathaniel.rhcloud.com/auth/facebook/callback'
+    // };
+
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
     function facebookStrategy(token, refreshToken, profile, done) {
@@ -79,7 +85,7 @@ module.exports = function (app, models) {
     }
     
     function logout(req, res) {
-        req.logout();
+        req.logOut();
         res.send(200);
     }
 
