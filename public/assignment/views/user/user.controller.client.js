@@ -13,31 +13,25 @@
         vm.password = '';
         
         function login() {
-            UserService
-                .login(vm.username, vm.password)
-                .then(
-                    function (response) {
-                        var user = response.data;
-                        if (user) {
-                            $rootScope.currentUser = user;
-                            $location.url("/user/" + user._id);
+            if (vm.username.length == 0 ||
+                vm.password.length === 0) {
+                vm.alert = 'Please enter username and password';
+            } else {
+                UserService
+                    .login(vm.username, vm.password)
+                    .then(
+                        function (response) {
+                            var user = response.data;
+                            if (user) {
+                                $rootScope.currentUser = user;
+                                $location.url("/user/" + user._id);
+                            }
+                        },
+                        function (error) {
+                            vm.alert = error.data;
                         }
-                    },
-                    function (error) {
-                        vm.alert = error.data;
-                    }
-                );
-            
-            // UserService
-            //     .findUserByCredentials(vm.username, vm.password)
-            //     .then(
-            //         function (response) {
-            //             var user = response.data;
-            //             $location.url('/user/' + user._id);
-            //         },
-            //         function (error) {
-            //             vm.alert = error.data;
-            //         });
+                    );
+            }
         }
     }
     
@@ -57,7 +51,7 @@
                 vm.user.verifyPassword.length === 0) {
                 vm.alert = "Please enter username and passwords";
             } else if (!(vm.user.password === vm.user.verifyPassword)) {
-                vm.alert = "Passwords don't match";
+                vm.alert = "Passwords must match";
             } else {
                 UserService
                     .register(vm.user.username, vm.user.password)

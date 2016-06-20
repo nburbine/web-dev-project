@@ -57,7 +57,8 @@
         function addWidget(type) {
             var newWidget = {
                 pageId: vm.pageId,
-                text: 'Lorem Ipsum'
+                text: 'Lorem Ipsum',
+                name: ''
             };
             switch (type) {
                 case 'HEADER':
@@ -93,7 +94,6 @@
                         window.location = '#/user/'+vm.userId+'/website/'+vm.websiteId+'/page/'+vm.pageId+'/widget/'+id;
                     },
                     function (error) {
-                        console.log(error);
                         vm.alert = error.data;
                     }
                 )
@@ -144,50 +144,54 @@
                 );
             };
 
-            switch (vm.widget.type) {
-                case "HEADER":
-                    if (vm.widget.text.length === 0) {
-                        vm.alert = 'Please enter text';
-                    } else {
-                        push();
-                    }
-                    break;
-                case "IMAGE":
-                    if (vm.widget.url.length === 0) {
-                        vm.alert = 'Please enter URL';
-                    } else {
-                        push();
-                    }
-                    break;
-                case "HTML":
-                    if (vm.widget.text.length === 0) {
-                        vm.alert = 'Please enter text';
-                    } else {
-                        push();
-                    }
-                    break;
-                case "YOUTUBE":
-                    if (vm.widget.url.length === 0) {
-                        vm.alert = 'Please enter URL';
-                    } else {
-                        push();
-                    }
-                    break;
-                case "TEXT":
-                    if (false) {
-                        vm.alert = '';
-                    } else {
-                        push();
-                    }
-                    break;
-                case "HTML":
-                    if (false) {
-                        vm.alert = '';
-                    } else {
-                        push();
-                    }
-                default:
-                    vm.alert = "No widget type"
+            if (vm.widget.name.length === 0) {
+                vm.alert = 'Please enter widget name';
+            } else {
+                switch (vm.widget.type) {
+                    case "HEADER":
+                        if (vm.widget.text.length === 0) {
+                            vm.alert = 'Please enter text';
+                        } else {
+                            push();
+                        }
+                        break;
+                    case "IMAGE":
+                        if (vm.widget.url.length === 0) {
+                            vm.alert = 'Please enter URL';
+                        } else {
+                            push();
+                        }
+                        break;
+                    case "HTML":
+                        if (vm.widget.text.length === 0) {
+                            vm.alert = 'Please enter text';
+                        } else {
+                            push();
+                        }
+                        break;
+                    case "YOUTUBE":
+                        if (vm.widget.url.length === 0) {
+                            vm.alert = 'Please enter URL';
+                        } else {
+                            push();
+                        }
+                        break;
+                    case "TEXT":
+                        if (false) {
+                            vm.alert = '';
+                        } else {
+                            push();
+                        }
+                        break;
+                    case "HTML":
+                        if (false) {
+                            vm.alert = '';
+                        } else {
+                            push();
+                        }
+                    default:
+                        vm.alert = "No widget type"
+                }
             }
         }
     }

@@ -42,7 +42,7 @@
 
         function addPage() {
             if (vm.page.name.length === 0) {
-                vm.alert = 'Page must have a name';
+                vm.alert = 'Please enter page name';
             } else {
                 PageService
                     .createPage(vm.websiteId, vm.page)
@@ -76,7 +76,7 @@
         
         function editPage() {
             if (vm.page.name.length === 0 ) {
-                vm.alert = "Page must have a name";
+                vm.alert = "Please enter page name";
             } else {
                 PageService
                     .updatePage(vm.pageId, vm.page)

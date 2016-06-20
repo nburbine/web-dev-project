@@ -94,7 +94,6 @@
                         }
                     },
                     function (error) {
-                        console.log('a');
                         $rootScope.currentUser = null;
                         deferred.reject();
                     }

@@ -71,7 +71,7 @@
     
         function editWebsite() {
             if (vm.website.name.length === 0) {
-                vm.alert = 'Website must have a name';
+                vm.alert = 'Please enter website name';
             } else {
                 WebsiteService
                     .updateWebsite(vm.websiteId, vm.website)

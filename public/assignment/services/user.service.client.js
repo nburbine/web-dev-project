@@ -44,7 +44,6 @@
         }
 
         function createUser(user) {
-            console.log('creating user');
             var url = "/api/user";
             var newUser = {
                 username: user.username,
