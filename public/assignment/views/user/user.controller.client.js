@@ -41,9 +41,8 @@
         }
     }
     
-    function RegisterController(UserService) {
+    function RegisterController(UserService, $rootScope, $location) {
         var vm = this;
-        // vm.addUser = addUser;
         vm.register = register;
 
         vm.user = {
@@ -61,7 +60,7 @@
                 vm.alert = "Passwords don't match";
             } else {
                 UserService
-                    .register(username, password)
+                    .register(vm.user.username, vm.user.password)
                     .then(
                         function (response) {
                             var user = response.data;
@@ -74,31 +73,9 @@
                     )
             }
         }
-        
-        // function addUser() {
-        //     if (vm.user.username.length === 0 ||
-        //         vm.user.password.length === 0 ||
-        //         vm.user.verifyPassword.length === 0) {
-        //         vm.alert = "Please enter username and passwords";
-        //     } else if (!(vm.user.password === vm.user.verifyPassword)) {
-        //         vm.alert = "Passwords don't match";
-        //     } else {
-        //         result = UserService
-        //             .createUser(vm.user)
-        //             .then(
-        //                 function (response) {
-        //                     var id = response.data._id;
-        //                     window.location = "#/user/" + id;
-        //                 },
-        //                 function (error) {
-        //                     vm.alert = error.data;
-        //                 }
-        //             )
-        //     }
-        // }
     }
     
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($routeParams, UserService, $rootScope) {
         var vm = this;
 
         vm.updateUser = updateUser;

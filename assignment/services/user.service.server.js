@@ -14,7 +14,7 @@ module.exports = function (app, models) {
 
     app.post("/api/user", createUser);
     app.post("/api/login", passport.authenticate('wam'), login);
-    app.post("api/logout", logout);
+    app.post("/api/logout", logout);
     app.post("/api/register", register);
     app.get("/api/user", getUsers);
     app.get("/api/user/login", findUserByCredentials);
@@ -37,19 +37,19 @@ module.exports = function (app, models) {
     }
 
     function register(req, res) {
-        var username = req.body.username;
-        var password = req.body.password;
+        var newUser = req.body;
         userModel
-            .findUserByUsername(username)
+            .findUserByUsername(newUser.username)
             .then(
                 function (user) {
                     if (user) {
                         res.status(400).send("Username already exists");
                         return;
                     } else {
-                        req.body.password = bcrypt.hashSync(password);
+                        //var encryptedPassword = bcrypt.hashSync(newUser.password);
+                        //newUser.password = encryptedPassword;
                         return userModel
-                            .createUser(req.body);
+                            .createUser(newUser);
                     }
                 },
                 function (error) {
@@ -61,6 +61,7 @@ module.exports = function (app, models) {
                     if(user) {
                         req.login(user, function(err) {
                             if(err) {
+                                console.log("400");
                                 res.status(400).send(err);
                             } else {
                                 res.json(user);
@@ -110,7 +111,7 @@ module.exports = function (app, models) {
 
     function createUser(req, res) {
         var newUser = req.body;
-
+        console.log(newUser);
         userModel
             .createUser(newUser)
             .then(
