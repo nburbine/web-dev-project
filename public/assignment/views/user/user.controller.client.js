@@ -12,15 +12,15 @@
         vm.username = '';
         vm.password = '';
         
-        function login(username, password) {
+        function login() {
             UserService
-                .login(username, password)
+                .login(vm.username, vm.password)
                 .then(
                     function (response) {
                         var user = response.data;
                         if (user) {
                             $rootScope.currentUser = user;
-                            $location.url("/profile/" + user._id);
+                            $location.url("/user/" + user._id);
                         }
                     },
                     function (error) {
@@ -65,7 +65,7 @@
                         function (response) {
                             var user = response.data;
                             $rootScope.currentUser = user;
-                            $location.url("/profile/" + user._id);
+                            $location.url("/user/" + user._id);
                         },
                         function (error) {
                             vm.alert = error.data;

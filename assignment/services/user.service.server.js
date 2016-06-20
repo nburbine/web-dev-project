@@ -19,6 +19,7 @@ module.exports = function (app, models) {
     app.get("/api/user", getUsers);
     app.get("/api/user/login", findUserByCredentials);
     app.get("/api/user/:userId", findUserById);
+    app.get("/api/loggedin", loggedin);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
 
@@ -75,12 +76,17 @@ module.exports = function (app, models) {
             );
     }
 
+    function loggedin(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    }
+
     function localStrategy(username, password, done) {
         userModel
             .findUserByUsername(username)
             .then(
                 function (user) {
-                    if (user && bycrpyt.compareSync(password, user.password)) {
+                    // if (user && bycrpyt.compareSync(password, user.password)) {
+                    if (user && password === user.password) {
                         return done(null, user);
                     } else {
                         return done(null, false);

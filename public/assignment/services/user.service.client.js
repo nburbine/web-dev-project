@@ -13,7 +13,8 @@
             findUserByCredentials: findUserByCredentials,
             login: login,
             logout: logout,
-            register: register
+            register: register,
+            checkLoggedIn: checkLoggedIn
         };
         return api;
         
@@ -36,6 +37,10 @@
                 password: password
             };
             return $http.post("/api/register", user);
+        }
+
+        function checkLoggedIn() {
+            return $http.get("/api/loggedin");
         }
 
         function createUser(user) {
