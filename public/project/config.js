@@ -20,6 +20,11 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
+            .when("/restaurant/:rid", {
+                templateUrl: "views/restaurant/restaurant.view.client.html",
+                controller: "RestaurantController",
+                controllerAs: "model"
+            })
 
 
             //.when("/user/:id", {
