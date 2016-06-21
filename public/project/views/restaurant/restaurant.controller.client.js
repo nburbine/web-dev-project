@@ -58,7 +58,6 @@
             RestaurantService
                 .findRestaurantsByTerm(term)
                 .then(
-                    
                 )
         }
     }

@@ -25,13 +25,14 @@
                 controller: "RestaurantController",
                 controllerAs: "model"
             })
+            .when("/user/:id", {
+                templateUrl: "views/user/profile.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model"
+            })
 
 
-            //.when("/user/:id", {
-            //    templateUrl: "views/user/profile.view.client.html",
-            //    controller: "ProfileController",
-            //    controllerAs: "model"
-            //})
+
             //.when("/user/:id/website", {
             //    templateUrl: "views/website/website-list.view.client.html",
             //    controller:  "WebsiteListController",
