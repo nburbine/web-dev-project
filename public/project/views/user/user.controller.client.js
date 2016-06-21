@@ -3,11 +3,9 @@
         .module("RestaurantApp")
         .controller("LoginController", LoginController)
         .controller("RegisterController", RegisterController)
-        .controller("ProfileController", ProfileController);
-    
-    function LoginController($location, UserService) {
+    function LoginController($location) {
         var vm = this;
-        vm.login = login;
+        // vm.login = login;
 
         vm.username = '';
         vm.password = '';
@@ -25,8 +23,8 @@
         //            });
         //}
     }
-    
-    function RegisterController(UserService) {
+
+    function RegisterController() {
         var vm = this;
       //  vm.addUser = addUser;
 
@@ -57,36 +55,5 @@
         //    }
         //}
     }
-    
-    function ProfileController($routeParams, UserService) {
-        var vm = this;
-        vm.updateUser = updateUser;
-        
-        vm.userId = $routeParams['id'];
-        function init() {
-            UserService
-                .findUserById(vm.userId)
-                .then(
-                    function (response) {
-                        vm.user = response.data;
-                    },
-                    function (error) {
-                        // If user not found, redirect to login
-                        window.location = "#/login";
-                    });
-        }
-        init();
 
-        function updateUser() {
-            UserService
-                .updateUser(vm.userId, vm.user)
-                .then(
-                    function (response) {
-                        vm.success = "User successfully updated";
-                    },
-                    function (error) {
-                        vm.alert = error.data;
-                    });
-        }
-    }
 })();

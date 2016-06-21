@@ -5,21 +5,22 @@
     
     function HomeController($routeParams, RestaurantService) {
         var vm = this;
-        
-        vm.userId = $routeParams['id'];
-        vm.websiteId = $routeParams['wid'];
+        var restaurants = [{
+            restaurantsname: "foodhouse1",
+            discription: "place3Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See t"
+        },
+            {
+                restaurantsname: "foodhouse2",
+                discription: "good place3Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See the detailed description on Franz Josef restaurant or the Café-bar for ..."
+            },
+            {
+                restaurantsname: "foodhouse2",
+                discription: "good place3 Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See the detailed description on Franz Josef restaurant or the Café-bar for ..."
+            }];
         
         function init() {
-            RestaurantService
-                .findPagesByWebsiteId(vm.websiteId)
-                .then(
-                    function (response) {
-                        vm.pages = response.data;
-                    },
-                    function (error) {
-                        vm.alert = error.data;
-                    }
-                )
+            vm.restaurants = restaurants;
+            console.log(vm.restaurants);
         }
         init();
     }

@@ -24,58 +24,85 @@
         </div>
     </div>
 </nav>
-
 <div class="container">
-    <div ng-if="model.success" class="alert alert-success">
-        {{model.success}}
-    </div>
-    <div ng-if="model.alert" class="alert alert-danger">
-        {{model.alert}}
-    </div>
-<form>
-    <div class="form-group">
-        <label for="username">Username</label>
-        <input ng-model="model.user.username"
-               class="form-control"
-               name="username"
-               id="username"
-               placeholder="jannunzi"
-               type="text"/>
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input ng-model="model.user.email"
-               class="form-control"
-               name="email"
-               id="email"
-               placeholder="jannunzi@gmail.com"
-               type="email"/>
-    </div>
-    <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input ng-model = model.user.firstName
-               class="form-control"
-               name="firstName"
-               id="firstName"
-               placeholder="Jose"
-               type="text"/>
-    </div>
-    <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input ng-model="model.user.lastName"
-               class="form-control"
-               name="lastName"
-               id="lastName"
-               placeholder="Annunziato"
-               type="text"/>
-    </div>
-</form>
+    <div class="row">
+        <div class="col-xs-4">
+            <img class="img-rounded" src="photo\test.jpg" alt="Generic placeholder image" width="100%" height="100%">
+        </div>
+        <div class="col-xs-7">
+            <div class="container">
+                <div ng-if="model.success" class="alert alert-success">
+                    {{model.success}}
+                </div>
+                <div ng-if="model.alert" class="alert alert-danger">
+                    {{model.alert}}
+                </div>
+                <form class="responsive">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input ng-model="model.user.username"
+                               class="form-control"
+                               name="username"
+                               id="username"
+                               placeholder="jannunzi"
+                               type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input ng-model="model.user.email"
+                               class="form-control"
+                               name="email"
+                               id="email"
+                               placeholder="jannunzi@gmail.com"
+                               type="email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input ng-model=model.user.firstName
+                               class="form-control"
+                               name="firstName"
+                               id="firstName"
+                               placeholder="Jose"
+                               type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input ng-model="model.user.lastName"
+                               class="form-control"
+                               name="lastName"
+                               id="lastName"
+                               placeholder="Annunziato"
+                               type="text"/>
+                    </div>
+                </form>
+                <div class="form-group">
+                    <a href="" class="btn btn-primary">
+                        Update information
+                    </a>
 
-<a href="#/user/{{model.user._id}}/website" class="btn btn-block btn-primary">
-    Websites
-</a>
+                    <a href="" class="btn btn-danger">
+                        Logout
+                    </a>
+                </div>
+                <div class="form-group"><a href="" class="btn btn-block btn-danger ">
+                    My Reviews
+                </a></div>
+            </div>
+        </div>
+    </div>
+    <h3>Favorite restaurants</h3>
+    <div class="jumbotron" ng-repeat="restaurant in model.restaurants">
 
-<a href="#/login" class="btn btn-block btn-danger">
-    Logout
-</a>
+        <h4>{{restaurant.restaurantsname}}</h4>
+        <p>{{restaurant.discription}}</p>
+        <div class="rating">
+            <i class="glyphicon glyphicon-star"></i>
+            <i class="glyphicon glyphicon-star"></i>
+            <i class="glyphicon glyphicon-star"></i>
+            <i class="glyphicon glyphicon-star"></i>
+            <i class="glyphicon glyphicon-star half"></i>
+        </div>
+    </div>
+
+
 </div>

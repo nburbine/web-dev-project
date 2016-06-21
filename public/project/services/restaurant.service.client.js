@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("WebAppMaker")
+        .module("RestaurantApp")
         .factory("RestaurantService", RestaurantService);
 
     function RestaurantService($http) {
