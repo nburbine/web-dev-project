@@ -9,12 +9,12 @@ module.exports = function (app, models) {
     //     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
     // ];
 
-    app.post("/api/user", createUser);
-    app.get("/api/user", getUsers);
-    app.get("/api/user/login", findUserByCredentials);
-    app.get("/api/user/:userId", findUserById);
-    app.put("/api/user/:userId", updateUser);
-    app.delete("/api/user/:userId", deleteUser);
+    app.post("/projectApi/user", createUser);
+    app.get("/projectApi/user", getUsers);
+    app.get("/projectApi/user/login", findUserByCredentials);
+    app.get("/projectApi/user/:userId", findUserById);
+    app.put("/projectApi/user/:userId", updateUser);
+    app.delete("/projectApi/user/:userId", deleteUser);
 
     function createUser(req, res) {
         var newUser = req.body;
