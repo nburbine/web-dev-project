@@ -12,7 +12,7 @@ module.exports = function () {
             token: String
         },
         reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}],
-        friendList: {type: mongoose.Schema.Types.ObjectId, ref: 'Friendlist'},
+        friendList: [{type: mongoose.Schema.Types.ObjectId, ref: 'Friendlist'}],
         dateCreated: {type: Date, default: Date.now}
     }, {collection: "project.user"});
 
