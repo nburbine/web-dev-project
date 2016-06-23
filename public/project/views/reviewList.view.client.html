@@ -18,14 +18,16 @@
         <div class="navbar-brand text-primary pull-right">
             <input class="search-input" type="text" id="search-query" placeholder="Search Restaurant" name="q"
                    autocomplete="off" spellcheck="false">
-            <a ng-click="model.searchPhotos(searchText)" href="#search"
-               class="btn btn-default"
+            <a ng-click="model.searchPhotos(searchText)"
+               class="btn btn-default" href="#search"
                type="button">
-            <span class="glyphicon glyphicon-search"></span>
+                <span class="glyphicon glyphicon-search"></span>
             </a></div>
     </div>
 </nav>
 <div class="container">
+    I am review result
+
     <div class="jumbotron" ng-repeat="restaurant in model.restaurants">
         <div class="row">
             <div class="col-xs-4">
@@ -47,22 +49,6 @@
         </div>
     </div>
 </div>
-
-
-<ul>
-    <li>
-        <a href="#/restaurant/:rid">restaurant</a>
-    </li>
-    <li>
-        <a href="#/login">Login</a>
-    </li>
-    <li>
-        <a href="test/index.html">Test MongoDB</a>
-    </li>
-    <li>
-        <a href="#/user/3">Profile Page</a>
-    </li>
-</ul>
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

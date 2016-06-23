@@ -20,6 +20,11 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
+            .when("/search", {
+                templateUrl: "views/search.view.client.html",
+                controller: "RegisterController",
+                controllerAs: "model"
+            })
             .when("/restaurant/:rid", {
                 templateUrl: "views/restaurant/restaurant.view.client.html",
                 controller: "RestaurantController",
