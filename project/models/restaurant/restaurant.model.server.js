@@ -1,44 +1,43 @@
 module.exports = function () {
 
-    var WebsiteSchema = require("./restaurant .schema.server.js")();
+    var RestaurantSchema = require("./restaurant.schema.server.js")();
     var mongoose = require("mongoose");
-    var Website = mongoose.model("Website", WebsiteSchema);
+    var Restaurant = mongoose.model("Restaurant", RestaurantSchema);
 
     var api = {
-        createWebsiteForUser: createWebsiteForUser,
-        deleteWebsite: deleteWebsite,
-        updateWebsite: updateWebsite,
-        findAllWebsitesForUser: findAllWebsitesForUser,
-        findWebsiteById: findWebsiteById
+        createRestaurant: createRestaurant,
+        deleteRestaurant: deleteRestaurant,
+        updateRestaurant: updateRestaurant,
+        findAllRestaurants: findAllRestaurants,
+        findRestaurantById: findRestaurantById
     };
     return api;
 
-    function createWebsiteForUser(userId, website) {
-        website._user = userId;
-        return Website.create(website);
+    function createRestaurant(restaurant) {
+        return Restaurant.create(restaurant);
     }
 
-    function deleteWebsite(websiteId) {
-        return Website.remove({_id: websiteId});
+    function deleteRestaurant(restaurantId) {
+        return Restaurant.remove({_id: restaurantId});
     }
 
-    function updateWebsite(websiteId, website) {
-        return Website.update(
-            {_id: websiteId},
+    function updateRestaurant(restaurantId, restaurant) {
+        return Restaurant.update(
+            {_id: restaurantId},
             {
                 $set: {
-                    name: website.name,
-                    description: website.description
+                    name: restaurant.name,
+                    description: restaurant.description
                 }
             }
         );
     }
 
-    function findAllWebsitesForUser(userId) {
-        return Website.find({_user: userId});
+    function findAllRestaurants(userId) {
+        return Restaurant.find();
     }
 
-    function findWebsiteById(websiteId) {
-        return Website.findOne({_id: websiteId});
+    function findRestaurantById(restaurantId) {
+        return Restaurant.findOne({_id: restaurantId});
     }
 };
