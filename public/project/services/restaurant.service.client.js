@@ -4,39 +4,38 @@
         .factory("RestaurantService", RestaurantService);
 
     function RestaurantService($http) {
-        
-
         var api = {
-            createPage: createPage,
-            updatePage: updatePage,
-            deletePage: deletePage,
-            findPagesByWebsiteId: findPagesByWebsiteId,
-            findPageById: findPageById
+            createRestaurant: createRestaurant,
+            updateRestaurant: updateRestaurant,
+            deleteRestaurant: deleteRestaurant,
+            findAllRestaurants: findAllRestaurants,
+            findRestaurantById: findRestaurantById
         };
         return api;
 
-        function createPage(websiteId, page) {
-            var url = "/api/website/"+websiteId+"/page";
-            return $http.post(url, page);
+        function createRestaurant(restaurant) {
+            var url = "/projectApi/restaurant";
+            return $http.post(url, restaurant);
         }
 
-        function updatePage(pageId, page) {
-            var url = "/api/page/"+pageId;
-            return $http.put(url, page);
+        function updateRestaurant(restaurantId, restaurant) {
+            var url = "/projectApi/restaurant/"+restaurantId;
+            return $http.put(url, restaurant);
         }
 
-        function deletePage(pageId) {
-            var url = "/api/page/"+pageId;
+        function deleteRestaurant(restaurantId) {
+            var url = "/projectApi/restaurant/"+restaurantId;
             return $http.delete(url);
         }
 
-        function findPagesByWebsiteId(websiteId) {
-            var url = "/api/website/"+websiteId+"/page";
+        function findAllRestaurants(websiteId) {
+            var url = "/projectApi/restaurant";
             return $http.get(url);
         }
 
-        function findPageById(pageId) {
-            var url = "/api/page/"+pageId;
+        function findRestaurantById(restaurantId) {
+            var url = "/projectApi/restaurant/" + restaurantId;
+            console.log(url);
             return $http.get(url);
         }
     }

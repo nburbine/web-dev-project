@@ -1,6 +1,6 @@
 module.exports = function () {
 
-    var RestaurantSchema = require("./restaurant.schema.server.js")();
+    var RestaurantSchema = require("./restaurant .schema.server.js")();
     var mongoose = require("mongoose");
     var Restaurant = mongoose.model("Restaurant", RestaurantSchema);
 
@@ -33,7 +33,7 @@ module.exports = function () {
         );
     }
 
-    function findAllRestaurants(userId) {
+    function findAllRestaurants() {
         return Restaurant.find();
     }
 

@@ -3,12 +3,21 @@ module.exports = function (app, models) {
     
     app.get("/projectApi/restaurant/:rid", findRestaurantById);
     app.get("/projectApi/restaurant", findAllRestaurants);
-    app.post("/projectApi/restaurant", createRestaurant);
-    app.delete("projectApi/restaurant/:rid", deleteRestaurant);
-    app.put("projectApi/restaurant/:rid", updateRestaurant);
+    app.post("/projectApi/restaurant/", createRestaurant);
+    app.delete("/projectApi/restaurant/:rid", deleteRestaurant);
+    app.put("/projectApi/restaurant/:rid", updateRestaurant);
+    
+    function getRestaurants(req, res) {
+        var restaurantId = req.params.rid;
+        if (restaurantId) {
+            findRestaurantById(restaurantId, res)
+        } else {
+            findAllRestaurants(res)
+        }
+    }
 
-    function findRestaurantById(req, res) {
-        var restaurantId = req.params.restaurantId;
+    function findRestaurantById(req, res)  {
+        var restaurantId = req.params.rid;
         restaurantModel
             .findRestaurantById(restaurantId)
             .then(
@@ -51,7 +60,7 @@ module.exports = function (app, models) {
     }
 
     function updateRestaurant(req, res) {
-        var restaurantId = req.params.restaurantId;
+        var restaurantId = req.params.rid;
         var newRestaurant = req.body;
         restaurantModel
             .updateRestaurant(restaurantId, newRestaurant)
@@ -66,7 +75,7 @@ module.exports = function (app, models) {
     }
 
     function deleteRestaurant(req, res) {
-        var restaurantId = req.params.restaurantId;
+        var restaurantId = req.params.rid;
         restaurantModel
             .deleteRestaurant(restaurantId)
             .then(
