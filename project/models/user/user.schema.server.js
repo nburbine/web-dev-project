@@ -1,6 +1,5 @@
 module.exports = function () {
     var mongoose = require("mongoose");
-
     var UserSchema = mongoose.Schema({
         username: String,
         password: String,
@@ -11,10 +10,10 @@ module.exports = function () {
             id: String,
             token: String
         },
+        type: String,//VIP or not
         reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}],
         friendList: [{type: mongoose.Schema.Types.ObjectId, ref: 'Friendlist'}],
         dateCreated: {type: Date, default: Date.now}
     }, {collection: "project.user"});
-
     return UserSchema;
 };
