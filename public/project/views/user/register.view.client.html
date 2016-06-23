@@ -14,6 +14,18 @@
                id="username"
                type="text"
                placeholder="username"/>
+        <input ng-model="model.user.nickname"
+               class="form-control"
+               name="nickname"
+               id="nickname"
+               type="text"
+               placeholder="nickname"/>
+        <input ng-model="model.user.email"
+               class="form-control"
+               name="email"
+               id="email"
+               type="text"
+               placeholder="email"/>
         <input ng-model="model.user.password"
                class="form-control"
                name="password"
@@ -26,6 +38,11 @@
                id="verifyPassword"
                type="password"
                placeholder="verify password"/>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> VIP member(able to post reviews for restaurants)
+            </label>
+        </div>
     </form>
 
     <a ng-click="model.addUser()" class="btn btn-block btn-primary">
