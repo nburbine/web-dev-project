@@ -3,7 +3,8 @@ module.exports = function () {
 
     var ReviewSchema = mongoose.Schema({
         _user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-        rate: Number, // Todo add restriction on values
+        rate: {type: Number, min: 1, max: 5},
+        vip: Boolean,
         review: String,
         _restaurant: {type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant'},
         dateCreated: {type: Date, default: Date.now}

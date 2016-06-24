@@ -1,5 +1,6 @@
 module.exports = function (app, models) {
     var reviewModel = models.reviewModel;
+    var restaurantModel = models.restaurantModel;
     
     app.get("/projectApi/user/:uid/review", findAllReviewsForUser);
     app.get("/projectApi/review/:rid", findReviewById);
@@ -57,6 +58,7 @@ module.exports = function (app, models) {
             .findReviewById(reviewId)
             .then(
                 function (review) {
+                    console.log(review);
                     res.send(review)
                 },
                 function (error) {
@@ -75,6 +77,19 @@ module.exports = function (app, models) {
                 },
                 function (error) {
                     res.status(400).send(error);
+                }
+            );
+    }
+
+    function populateReview(partialReview) {
+        restaurantModel
+            .findRestaurantById(partialReview._restaurant)
+            .then(
+                function (restaurant) {
+                    return;
+                },
+                function (error) {
+                    return;
                 }
             );
     }

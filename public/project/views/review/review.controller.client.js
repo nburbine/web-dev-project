@@ -1,7 +1,9 @@
 (function () {
     angular
         .module("RestaurantApp")
-        .controller("ReviewListController", ReviewListController);
+        .controller("ReviewListController", ReviewListController)
+        .controller("NewReviewController", NewReviewController)
+        .controller("EditReviewController", EditReviewController);
     
     function ReviewListController($routeParams, ReviewService) {
         var vm = this;
@@ -39,5 +41,73 @@
                 )
         }
         init();
+
+        function addReview() {
+            var review = {
+                _user: vm.userId,
+                rate: 3,
+                review: "Average",
+                _restaurant: "576c7347acc6a5881e938847"
+            };
+            ReviewService
+                .createReviewForUser(vm.userId, review);
+        }
+        //addReview();
+    }
+    
+    function NewReviewController($routeParams, ReviewService) {
+        var vm = this;
+        
+        
+    }
+    
+    function EditReviewController($routeParams, ReviewService) {
+        var vm = this;
+        
+        vm.updateReview = updateReview;
+        vm.deleteReview = deleteReview;
+        
+        vm.userId = $routeParams['id'];
+        vm.reviewId = $routeParams['rid'];
+        
+        function init() {
+            ReviewService
+                .findReviewById(vm.reviewId)
+                .then(
+                    function (response) {
+                        vm.review = response.data;
+                    },
+                    function (error) {
+                        vm.alert = error.body;
+                    }
+                )
+        }
+        init();
+        
+        function updateReview() {
+            ReviewService
+                .updateReview(vm.reviewId, vm.review)
+                .then(
+                    function (response) {
+                        vm.success = "Changes Saved";
+                    },
+                    function (error) {
+                        vm.alert = error.data;
+                    }
+                )
+        }
+        
+        function deleteReview() {
+            ReviewService
+                .deleteReview(vm.reviewId)
+                .then(
+                    function (response) {
+                        console.log(response);
+                    },
+                    function (error) {
+                        vm.alert = error;
+                    }
+                );
+        }
     }
 })();

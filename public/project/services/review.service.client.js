@@ -14,7 +14,7 @@
         return api;
         
         function findReviewById(reviewId) {
-            var url = "/projectApi/review"+reviewId;
+            var url = "/projectApi/review/"+reviewId;
             return $http.get(url);
         }
         

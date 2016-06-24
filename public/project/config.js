@@ -45,6 +45,11 @@
                 controller: "ReviewListController",
                 controllerAs: "model"
             })
+            .when("/user/:id/review/:rid", {
+                templateUrl: "views/review/review-edit.view.client.html",
+                controller: "EditReviewController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/"
             });
