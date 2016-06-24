@@ -2,50 +2,82 @@
     angular
         .module("RestaurantApp")
         .controller("ProfileController", ProfileController);
-    function ProfileController($routeParams) {
-        var vm = this;
-        vm.updateUser = updateUser;
-        var restaurants = [{
-            restaurantsname: "foodhouse1",
-            discription: "place3Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See t"
+    var restaurants = [{
+        restaurantsname: "foodhouse1",
+        discription: "place3Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See t"
+    },
+        {
+            restaurantsname: "foodhouse2",
+            discription: "good place3Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See the detailed description on Franz Josef restaurant or the Café-bar for ..."
         },
-            {
-                restaurantsname: "foodhouse2",
-                discription: "good place3Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See the detailed description on Franz Josef restaurant or the Café-bar for ..."
-            },
-            {
-                restaurantsname: "foodhouse2",
-                discription: "good place3 Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See the detailed description on Franz Josef restaurant or the Café-bar for ..."
-            }];
+        {
+            restaurantsname: "foodhouse2",
+            discription: "good place3 Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See the detailed description on Franz Josef restaurant or the Café-bar for ..."
+        }];
 
 
-        vm.userId = $routeParams['id'];
+    function ProfileController($routeParams, UserService, $location, $rootScope) {
+        var vm = this;
+        var id = $routeParams["id"];
+        console.log(id);
+        vm.logout = logout;
+
+        vm.updateUser = updateUser;
+        vm.unregister = unregister;
+        var index = -1;
+
         function init() {
             vm.restaurants = restaurants;
-            //UserService
-            //    .findUserById(vm.userId)
-            //    .then(
-            //        function (response) {
-            //            vm.user = response.data;
-            //        },
-            //        function (error) {
-            //            // If user not found, redirect to login
-            //            window.location = "#/login";
-            //        });
+            UserService
+                .findUserById(id)
+                .then(function (response) {
+                    vm.user = response.data;
+                    console.log(vm.user);
+                });
         }
 
         init();
 
-        function updateUser() {
+        function logout() {
             UserService
-                .updateUser(vm.userId, vm.user)
+                .logout()
+                .then(
+                    function (response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/");
+                    },
+                    function (error) {
+                        $rootScope.currentUser = null;
+                        $location.url("/");
+                    });
+        }
+
+        function unregister() {
+            UserService
+                .deleteUser(id)
+                .then(
+                    function (response) {
+                        $location.url("/login");
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    }
+                );
+        }
+
+        function updateUser() {
+            console.log(vm.user);
+            UserService
+                .updateUser(id, vm.user)
                 .then(
                     function (response) {
                         vm.success = "User successfully updated";
                     },
                     function (error) {
-                        vm.alert = error.data;
-                    });
+                        vm.error = error.data;
+                    }
+                )
+
         }
     }
 })();

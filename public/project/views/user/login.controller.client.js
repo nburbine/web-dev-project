@@ -3,24 +3,28 @@
         .module("RestaurantApp")
         .controller("LoginController", LoginController)
 
-    function LoginController($location) {
+    function LoginController($location, UserService, $rootScope) {
         var vm = this;
-        // vm.login = login;
+        vm.login = login;
+        function login() {
+            UserService
+                .login(vm.username, vm.password)
+                .then(
+                    function (response) {
+                        var user = response.data;
+                        if (user) {
+                            $rootScope.currentUser = user;
+                            var id = user._id;
+                            $location.url("/user/" + id);
+                        } else {
+                            vm.error = "incorrect username or password";
+                        }
+                    },
+                    function (error) {
+                        vm.error = "User not found";
+                    }
+                );
 
-        vm.username = '';
-        vm.password = '';
-
-        //function login() {
-        //    UserService
-        //        .findUserByCredentials(vm.username, vm.password)
-        //        .then(
-        //            function (response) {
-        //                var user = response.data;
-        //                $location.url('/user/' + user._id);
-        //            },
-        //            function (error) {
-        //                vm.alert = error.data;
-        //            });
-        //}
+        }
     }
 })();

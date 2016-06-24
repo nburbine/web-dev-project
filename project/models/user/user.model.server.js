@@ -2,7 +2,7 @@ module.exports = function () {
 
     var UserSchema = require("./user.schema.server")();
     var mongoose = require("mongoose");
-    var User = mongoose.model("User", UserSchema);
+    var User = mongoose.model("ProjectUser", UserSchema);
 
     var api = {
         createUser: createUser,
@@ -29,7 +29,6 @@ module.exports = function () {
             {
                 $set: {
                     firstName: user.firstName,
-                    lastName: user.lastName,
                     email: user.email
                 }
             }
