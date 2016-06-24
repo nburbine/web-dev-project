@@ -2,27 +2,8 @@
     angular
         .module("RestaurantApp")
         .controller("RestaurantController", RestaurantController)
-        .controller("RestaurantSearchController", RestaurantSearchController);
-    
-    // var restaurants = [
-    //     {
-    //         id: 0,
-    //         name: "Andy's",
-    //         menu: [
-    //             {
-    //                 name: 'Shrimp',
-    //                 description: 'Tasty'
-    //             },
-    //             {
-    //                 name: 'Fish',
-    //                 description: 'Not as tasty'
-    //             }
-    //         ],
-    //         ratings: [5, 4, 3, 4, 5],
-    //         reviews: ['Good', 'Okay', 'Bad'],
-    //         type: 'Seafood'
-    //     }
-    // ];
+        .controller("RestaurantSearchController", RestaurantSearchController)
+        .controller("RestaurantListController", RestaurantListController);
     
     function RestaurantController($routeParams, RestaurantService) {
         var vm = this;
@@ -94,6 +75,32 @@
                 .findRestaurantsByTerm(term)
                 .then(
                 )
+        }
+    }
+
+    function RestaurantListController(RestaurantService) {
+        var vm = this;
+        
+        vm.getMore = getMore;
+
+        function init() {
+            RestaurantService
+                .findAllRestaurants()
+                .then(
+                    function (response) {
+                        console.log(response);
+                        var allRestaurants = response.data;
+                        vm.restaurants = allRestaurants.slice(0, 3);
+                    },
+                    function (error) {
+                        vm.alert = error.body;
+                    }
+                );
+        }
+        init();
+        
+        function getMore() {
+            
         }
     }
 })();

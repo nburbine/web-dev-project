@@ -25,6 +25,11 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
+            .when("/restaurant", {
+                templateUrl: "views/restaurant/restaurant-list.view.client.html",
+                controller: "RestaurantListController",
+                controllerAs: "model"
+            })
             .when("/restaurant/:rid", {
                 templateUrl: "views/restaurant/restaurant.view.client.html",
                 controller: "RestaurantController",
@@ -33,6 +38,11 @@
             .when("/user/:id", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
+                controllerAs: "model"
+            })
+            .when("/user/:id/review", {
+                templateUrl: "views/review/review-list.view.client.html",
+                controller: "ReviewListController",
                 controllerAs: "model"
             })
             .otherwise({

@@ -66,7 +66,7 @@ module.exports = function (app, models) {
     }
     
     function findAllReviewsForUser(req, res) {
-        var userId = req.params.uid;        
+        var userId = req.params.uid;
         reviewModel
             .findAllReviewsForUser(userId)
             .then(

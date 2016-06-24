@@ -1,10 +1,11 @@
 (function () {
     angular
         .module("RestaurantApp")
-        .controller("ReviewController", ReviewController);
-    function ReviewController($routeParams, ReviewService) {
+        .controller("ReviewListController", ReviewListController);
+    
+    function ReviewListController($routeParams, ReviewService) {
         var vm = this;
-        vm.updateUser = updateUser;
+
         // var restaurants = [{
         //     restaurantsname: "foodhouse1",
         //     discription: "place3Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See t",
@@ -38,17 +39,5 @@
                 )
         }
         init();
-
-        function updateUser() {
-            UserService
-                .updateUser(vm.userId, vm.user)
-                .then(
-                    function (response) {
-                        vm.success = "User successfully updated";
-                    },
-                    function (error) {
-                        vm.alert = error.data;
-                    });
-        }
     }
 })();

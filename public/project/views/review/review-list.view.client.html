@@ -1,0 +1,11 @@
+<div class="container">
+    <ul class="list-group">
+        <li ng-repeat="review in model.reviews" class="list-group-item">
+            <h3>{{review.rate}}</h3>
+            <h5>{{review.review}}</h5>
+        </li>
+        <li class="list-group-item">
+            <button class="btn btn-block" ng-click="model.addReview()">Add new review</button>
+        </li>
+    </ul>
+</div>
