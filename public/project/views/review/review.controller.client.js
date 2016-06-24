@@ -55,10 +55,46 @@
         //addReview();
     }
     
-    function NewReviewController($routeParams, ReviewService) {
+    function NewReviewController($routeParams, ReviewService, UserService) {
         var vm = this;
-        
-        
+
+        vm.createReview = createReview;
+
+        vm.userId = $routeParams['uid'];
+
+        vm.review = {
+           rating: 0,
+           review: ""
+        };
+
+        function init() {
+            UserService
+                .findUserById(vm.userId)
+                .then(
+                    function (response) {
+                        vm.user = response.data;
+                    },
+                    function (error) {
+                        vm.alert = error.data;
+                    }
+                )
+        }
+        init();
+
+        function createReview() {
+            console.log(vm.review);
+            ReviewService
+                .createReviewForUser(vm.userId, vm.review)
+                .then(
+                    function (response) {
+                        vm.success = 'Created review';
+                        console.log(response);
+                    },
+                    function (error) {
+                        vm.alert = error.data;
+                    }
+                )
+        }
     }
     
     function EditReviewController($routeParams, ReviewService) {

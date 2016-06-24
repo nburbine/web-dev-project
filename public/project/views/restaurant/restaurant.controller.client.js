@@ -11,9 +11,12 @@
         vm.restaurantId = $routeParams['rid'];
         
         vm.user = {
+            _id: '576c85bf47beeb3c0e43c343',
             rating: 4,
             review: "Bueno"
         };
+
+        vm.userId = vm.user._id;
 
         function init() {
             RestaurantService
@@ -21,6 +24,9 @@
                 .then(
                     function (response) {
                         vm.restaurant = response.data;
+                        if (vm.user.reviews.indexOf(vm.restaurantId)) {
+
+                        }
                     },
                     function (error) {
                         vm.alert = error.body;

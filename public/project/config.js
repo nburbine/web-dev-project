@@ -35,6 +35,11 @@
                 controller: "RestaurantController",
                 controllerAs: "model"
             })
+            .when("/restaurant/:rid/review/:uid", {
+                templateUrl: "views/review/review-new.view.client.html",
+                controller: "NewReviewController",
+                controllerAs: "model"
+            })
             .when("/user/:id", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
@@ -50,8 +55,8 @@
                 controller: "EditReviewController",
                 controllerAs: "model"
             })
-            .otherwise({
-                redirectTo: "/"
-            });
+            // .otherwise({
+            //     redirectTo: "/"
+            // });
     }
 })();
