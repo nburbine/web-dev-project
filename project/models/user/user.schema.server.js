@@ -11,7 +11,8 @@ module.exports = function () {
         },
         type: String,//VIP or not
         reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}],
-        friendList: [{type: mongoose.Schema.Types.ObjectId, ref: 'Friendlist'}],
+        favoriteList: [{type: mongoose.Schema.Types.ObjectId, ref: 'Favoritelist'}],
+        friends: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
         dateCreated: {type: Date, default: Date.now}
     }, {collection: "project.user"});
     return UserSchema;
