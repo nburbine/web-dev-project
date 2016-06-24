@@ -35,6 +35,14 @@
                 controller: "ProfileController",
                 controllerAs: "model"
             })
+            .when("/friend/:id", {
+                templateUrl: "views/friend/friend.view.client.html",
+                controller: "FriendController",
+                controllerAs: "model"
+            })
+
+
+
             .otherwise({
                 redirectTo: "/"
             });
