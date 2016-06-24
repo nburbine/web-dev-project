@@ -1,44 +1,44 @@
 module.exports = function () {
 
-    var WebsiteSchema = require("./review .schema.server.js")();
+    var ReviewSchema = require("./review .schema.server.js")();
     var mongoose = require("mongoose");
-    var Website = mongoose.model("Website", WebsiteSchema);
+    var Review = mongoose.model("Review", ReviewSchema);
 
     var api = {
-        createWebsiteForUser: createWebsiteForUser,
-        deleteWebsite: deleteWebsite,
-        updateWebsite: updateWebsite,
-        findAllWebsitesForUser: findAllWebsitesForUser,
-        findWebsiteById: findWebsiteById
+        createReviewForUser: createReviewForUser,
+        deleteReview: deleteReview,
+        updateReview: updateReview,
+        findAllReviewsForUser: findAllReviewsForUser,
+        findReviewById: findReviewById
     };
     return api;
 
-    function createWebsiteForUser(userId, website) {
-        website._user = userId;
-        return Website.create(website);
+    function createReviewForUser(userId, review) {
+        review._user = userId;
+        return Review.create(review);
     }
 
-    function deleteWebsite(websiteId) {
-        return Website.remove({_id: websiteId});
+    function deleteReview(reviewId) {
+        return Review.remove({_id: reviewId});
     }
 
-    function updateWebsite(websiteId, website) {
-        return Website.update(
-            {_id: websiteId},
+    function updateReview(reviewId, review) {
+        return Review.update(
+            {_id: reviewId},
             {
                 $set: {
-                    name: website.name,
-                    description: website.description
+                    name: review.name,
+                    description: review.description
                 }
             }
         );
     }
 
-    function findAllWebsitesForUser(userId) {
-        return Website.find({_user: userId});
+    function findAllReviewsForUser(userId) {
+        return Review.find({_user: userId});
     }
 
-    function findWebsiteById(websiteId) {
-        return Website.findOne({_id: websiteId});
+    function findReviewById(reviewId) {
+        return Review.findOne({_id: reviewId});
     }
 };
