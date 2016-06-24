@@ -5,18 +5,11 @@
         .controller("RestaurantSearchController", RestaurantSearchController)
         .controller("RestaurantListController", RestaurantListController);
     
-    function RestaurantController($routeParams, RestaurantService) {
+    function RestaurantController($routeParams, RestaurantService, UserService, ReviewService) {
         var vm = this;
 
         vm.restaurantId = $routeParams['rid'];
-        
-        vm.user = {
-            _id: '576c85bf47beeb3c0e43c343',
-            rating: 4,
-            review: "Bueno"
-        };
-
-        vm.userId = vm.user._id;
+        vm.userId = '576c85bf47beeb3c0e43c343';
 
         function init() {
             RestaurantService
@@ -24,14 +17,51 @@
                 .then(
                     function (response) {
                         vm.restaurant = response.data;
-                        if (vm.user.reviews.indexOf(vm.restaurantId)) {
-
-                        }
+                        // if (vm.user.reviews.indexOf(vm.restaurantId)) {
+                        //
+                        // }
                     },
                     function (error) {
                         vm.alert = error.body;
                     }
                 );
+            UserService
+                .findUserById(vm.userId)
+                .then(
+                    function (response) {
+                        vm.user = response.data;
+                        console.log(vm.user);
+                        return vm.user;
+                    },
+                    function (error) {
+                        vm.alert = error.data;
+                    }
+                )
+                .then(
+                    function (user) {
+                        console.log(user);
+                        if (vm.user) {
+                            console.log('looking for review');
+                            ReviewService
+                                .findAllReviewsForUser(vm.userId)
+                                .then(
+                                    function (response) {
+                                        var reviews = response.data;
+                                        for (var i in reviews) {
+                                            if (reviews[i]._restaurant === vm.restaurantId) {
+                                                vm.review = reviews[i];
+                                                return;
+                                            }
+                                        }
+                                    },
+                                    function (error) {
+                                        vm.alert = error.data;
+                                    }
+                                )
+                        }
+                    }
+                );
+
         }
         init();
 

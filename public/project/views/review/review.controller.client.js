@@ -60,11 +60,13 @@
 
         vm.createReview = createReview;
 
+        vm.restaurantId = $routeParams['rid'];
         vm.userId = $routeParams['uid'];
 
         vm.review = {
            rating: 0,
-           review: ""
+           review: "",
+            _restaurant: vm.restaurantId
         };
 
         function init() {

@@ -20,8 +20,8 @@
 
 <div class="container" ng-if="model.user">
     <h3>Your Review</h3>
-    <h4>{{model.user.rating}} "{{model.user.review}}"</h4>
-    {{model.userId}}
+    {{model.review}}
+    <h4>{{model.review.rating}} "{{model.review.review}}"</h4>
     <a href="#/restaurant/{{model.restaurantId}}/review/{{model.userId}}" class="btn btn-block btn-primary">Add Review</a>
 </div>
 
