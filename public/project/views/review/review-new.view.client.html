@@ -1,0 +1,13 @@
+<div class="container">
+    <h2>Add Review</h2>
+    <form>
+        <div class="form-group">
+            <label for="rating">Rating</label>
+            <input id="rating" class="form-control" ng-model="model.review.rating">
+            <label for="review">Review</label>
+            <textarea id="review" class="form-control" ng-model="model.review.review"></textarea>
+        </div>
+    </form>
+    <a class="btn btn-block btn-primary" ng-click="model.createReview()">Save Review</a>
+    <a class="btn btn-block btn-danger">Cancel</a>
+</div>

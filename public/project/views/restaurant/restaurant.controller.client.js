@@ -2,37 +2,14 @@
     angular
         .module("RestaurantApp")
         .controller("RestaurantController", RestaurantController)
-        .controller("RestaurantSearchController", RestaurantSearchController);
+        .controller("RestaurantSearchController", RestaurantSearchController)
+        .controller("RestaurantListController", RestaurantListController);
     
-    // var restaurants = [
-    //     {
-    //         id: 0,
-    //         name: "Andy's",
-    //         menu: [
-    //             {
-    //                 name: 'Shrimp',
-    //                 description: 'Tasty'
-    //             },
-    //             {
-    //                 name: 'Fish',
-    //                 description: 'Not as tasty'
-    //             }
-    //         ],
-    //         ratings: [5, 4, 3, 4, 5],
-    //         reviews: ['Good', 'Okay', 'Bad'],
-    //         type: 'Seafood'
-    //     }
-    // ];
-    
-    function RestaurantController($routeParams, RestaurantService) {
+    function RestaurantController($routeParams, RestaurantService, UserService, ReviewService) {
         var vm = this;
 
         vm.restaurantId = $routeParams['rid'];
-        
-        vm.user = {
-            rating: 4,
-            review: "Bueno"
-        };
+        vm.userId = '576c85bf47beeb3c0e43c343';
 
         function init() {
             RestaurantService
@@ -40,11 +17,51 @@
                 .then(
                     function (response) {
                         vm.restaurant = response.data;
+                        // if (vm.user.reviews.indexOf(vm.restaurantId)) {
+                        //
+                        // }
                     },
                     function (error) {
                         vm.alert = error.body;
                     }
                 );
+            UserService
+                .findUserById(vm.userId)
+                .then(
+                    function (response) {
+                        vm.user = response.data;
+                        console.log(vm.user);
+                        return vm.user;
+                    },
+                    function (error) {
+                        vm.alert = error.data;
+                    }
+                )
+                .then(
+                    function (user) {
+                        console.log(user);
+                        if (vm.user) {
+                            console.log('looking for review');
+                            ReviewService
+                                .findAllReviewsForUser(vm.userId)
+                                .then(
+                                    function (response) {
+                                        var reviews = response.data;
+                                        for (var i in reviews) {
+                                            if (reviews[i]._restaurant === vm.restaurantId) {
+                                                vm.review = reviews[i];
+                                                return;
+                                            }
+                                        }
+                                    },
+                                    function (error) {
+                                        vm.alert = error.data;
+                                    }
+                                )
+                        }
+                    }
+                );
+
         }
         init();
 
@@ -94,6 +111,32 @@
                 .findRestaurantsByTerm(term)
                 .then(
                 )
+        }
+    }
+
+    function RestaurantListController(RestaurantService) {
+        var vm = this;
+        
+        vm.getMore = getMore;
+
+        function init() {
+            RestaurantService
+                .findAllRestaurants()
+                .then(
+                    function (response) {
+                        console.log(response);
+                        var allRestaurants = response.data;
+                        vm.restaurants = allRestaurants.slice(0, 3);
+                    },
+                    function (error) {
+                        vm.alert = error.body;
+                    }
+                );
+        }
+        init();
+        
+        function getMore() {
+            
         }
     }
 })();

@@ -1,0 +1,34 @@
+<div class="container">
+    <h2>Edit Review</h2>
+    <div ng-if="model.success" class="alert alert-success">
+        {{model.success}}
+    </div>
+    <div>
+        <form>
+            <div class="form-group">
+                <div class="nbb-rating">
+                    <label for="rating">Rating</label>
+                    <div>
+                        <div class="btn-group" role="group" id="rating">
+                            <button type="button" class="btn btn-default">1</button>
+                            <button type="button" class="btn btn-default">2</button>
+                            <button type="button" class="btn btn-default">3</button>
+                            <button type="button" class="btn btn-default">4</button>
+                            <button type="button" class="btn btn-default">5</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nbb-review">
+                    <label for="review">Review</label>
+                    <div>
+                        <textarea class="form-control" ng-model="model.review.review" id="review"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <a class="btn btn-block btn-primary" ng-click="model.updateReview()">Save Review</a>
+        <a class="btn btn-block btn-danger"  ng-click="model.deleteReview()">Delete Review</a>
+    </div>
+</div>

@@ -3,23 +3,26 @@
         <ul class="list-group">
             <li class="list-group-item">
                 <h1>{{model.restaurant.name}}</h1>
+                <h4>{{model.restaurant.description}}</h4>
             </li>
             <li class="list-group-item">
                 <h3>{{model.restaurant.rating}}</h3>
             </li>
             <li class="list-group-item">
-                <h3>{{model.restaurant.type}}</h3>
+                <h4>{{model.restaurant.type}}</h4>
             </li>
         </ul>
     </div>
-    <!--<div class="col-xs-6">-->
-        <!--<img src="views/restaurant/photo/download.jpg">-->
-    <!--</div>-->
+    <div class="col-xs-6">
+        <img src="photo/test.jpg" width="75%">
+    </div>
 </div>
 
 <div class="container" ng-if="model.user">
     <h3>Your Review</h3>
-    <h4>{{model.user.rating}} "{{model.user.review}}"</h4>
+    {{model.review}}
+    <h4>{{model.review.rating}} "{{model.review.review}}"</h4>
+    <a href="#/restaurant/{{model.restaurantId}}/review/{{model.userId}}" class="btn btn-block btn-primary">Add Review</a>
 </div>
 
 <div class="container">

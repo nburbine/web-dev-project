@@ -25,9 +25,19 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
+            .when("/restaurant", {
+                templateUrl: "views/restaurant/restaurant-list.view.client.html",
+                controller: "RestaurantListController",
+                controllerAs: "model"
+            })
             .when("/restaurant/:rid", {
                 templateUrl: "views/restaurant/restaurant.view.client.html",
                 controller: "RestaurantController",
+                controllerAs: "model"
+            })
+            .when("/restaurant/:rid/review/:uid", {
+                templateUrl: "views/review/review-new.view.client.html",
+                controller: "NewReviewController",
                 controllerAs: "model"
             })
             .when("/user/:id", {
@@ -35,16 +45,18 @@
                 controller: "ProfileController",
                 controllerAs: "model"
             })
-            .when("/friend/:id", {
-                templateUrl: "views/friend/friend.view.client.html",
-                controller: "FriendController",
+            .when("/user/:id/review", {
+                templateUrl: "views/review/review-list.view.client.html",
+                controller: "ReviewListController",
                 controllerAs: "model"
             })
-
-
-
-            .otherwise({
-                redirectTo: "/"
-            });
+            .when("/user/:id/review/:rid", {
+                templateUrl: "views/review/review-edit.view.client.html",
+                controller: "EditReviewController",
+                controllerAs: "model"
+            })
+            // .otherwise({
+            //     redirectTo: "/"
+            // });
     }
 })();

@@ -1,0 +1,8 @@
+<div class="container">
+    <ul class="list-group">
+        <li ng-repeat="restaurant in model.restaurants" class="list-group-item">
+            <h3><a href="#/restaurant/{{restaurant._id}}">{{restaurant.name}}</a></h3>
+            <h5>{{restaurant.description}}</h5>
+        </li>
+    </ul>
+</div>

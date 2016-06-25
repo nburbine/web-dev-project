@@ -27,8 +27,8 @@ module.exports = function () {
             {_id: reviewId},
             {
                 $set: {
-                    name: review.name,
-                    description: review.description
+                    rating: review.rating,
+                    review: review.review
                 }
             }
         );
