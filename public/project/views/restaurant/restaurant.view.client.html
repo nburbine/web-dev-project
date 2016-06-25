@@ -6,7 +6,13 @@
                 <h4>{{model.restaurant.description}}</h4>
             </li>
             <li class="list-group-item">
-                <h3>{{model.restaurant.rating}}</h3>
+                <h3>{{model.restaurant.rating}} / 5 Average Rating</h3>
+                <h4>
+                    <ng-pluralize count="model.restaurant.rating"
+                                  when="{'1': '1 Rating',
+                                         'other': '{} Ratings'}">
+                    </ng-pluralize>
+                </h4>
             </li>
             <li class="list-group-item">
                 <h4>{{model.restaurant.type}}</h4>
@@ -20,7 +26,6 @@
 
 <div class="container" ng-if="model.user">
     <h3>Your Review</h3>
-    {{model.review}}
     <h4>{{model.review.rating}} "{{model.review.review}}"</h4>
     <a href="#/restaurant/{{model.restaurantId}}/review/{{model.userId}}" class="btn btn-block btn-primary">Add Review</a>
 </div>
@@ -39,7 +44,16 @@
     <h3>Reviews</h3>
     <ul class="list-group">
         <li ng-repeat="review in model.restaurant.reviews" class="list-group-item">
-            <h5>"{{review}}"</h5>
+            <div>
+                <a href="#/user/">
+                <img src="photo/test.jpg" class="pull-left nbb-review-img" height="60px" width="60px">
+                </a>
+            </div>
+            <a href="#">
+            <h4>Andy</h4>
+            </a>
+            <h4>{{review.rating}}</h4>
+            <h5>"{{review.review}}"</h5>
         </li>
     </ul>
 </div>

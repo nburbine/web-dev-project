@@ -17,12 +17,12 @@
                 .then(
                     function (response) {
                         vm.restaurant = response.data;
-                        // if (vm.user.reviews.indexOf(vm.restaurantId)) {
-                        //
-                        // }
+                        console.log(vm.restaurant.reviews.type);
+                        return vm.restaurant.reviews;
                     },
                     function (error) {
                         vm.alert = error.body;
+                        console.log(vm.alert);
                     }
                 );
             UserService
@@ -36,32 +36,29 @@
                     function (error) {
                         vm.alert = error.data;
                     }
-                )
+                );
+            ReviewService
+                .findAllReviewsForRestaurant(vm.restaurantId)
                 .then(
-                    function (user) {
-                        console.log(user);
-                        if (vm.user) {
-                            console.log('looking for review');
-                            ReviewService
-                                .findAllReviewsForUser(vm.userId)
-                                .then(
-                                    function (response) {
-                                        var reviews = response.data;
-                                        for (var i in reviews) {
-                                            if (reviews[i]._restaurant === vm.restaurantId) {
-                                                vm.review = reviews[i];
-                                                return;
-                                            }
-                                        }
-                                    },
-                                    function (error) {
-                                        vm.alert = error.data;
-                                    }
-                                )
+                    function (response) {
+                        var reviews = response.data;
+                        vm.restaurant.reviews = reviews;
+                        var sum = 0;
+                        var numReviews = reviews.length;
+                        for (var i in reviews) {
+                            if (reviews[i]._user === vm.userId) {
+                                vm.review = reviews[i];
+                            }
+                            sum += reviews[i].rate;
                         }
+                        var averageRating = sum = numReviews;
+                        vm.restaurant.rating = averageRating;
+                        vm.restaurant.numRatings = numReviews;
+                    },
+                    function (error) {
+                        vm.alert = error.data;
                     }
                 );
-
         }
         init();
 

@@ -23,6 +23,10 @@ a.list-group-item {
     margin-bottom: 15px;
 }
 
+.nbb-review-img {
+    margin-right: 10px;
+}
+
 .nbb-widget-control {
     position: absolute;
     right: 15px;
