@@ -57,7 +57,16 @@ module.exports = function () {
         return User.find({_user: userId});
     }
     function addFriend(userId,email){
+        var user = findUserById(userId);
         var friend=findUserByEmail(email);
+        if (friend._user == userId) {
+            return null;
+        }
+        for (i in user.friends) {
+            if (user.friends[i] == friend._user) {
+                return null;
+            }
+        }
         return User.update(
             {_id: userId},
             {
