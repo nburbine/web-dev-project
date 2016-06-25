@@ -10,7 +10,12 @@ module.exports = function () {
         updateUser: updateUser,
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
-        findUserById: findUserById
+        findUserById: findUserById,
+        findUserByEmail: findUserByEmail,
+        findFriendsByUserId:findFriendsByUserId,
+        AddFriendById: AddFriendById,
+        deleteFriend: deleteFriend,
+        getFriends: getFriends
     };
     return api;
 
@@ -46,4 +51,42 @@ module.exports = function () {
     function findUserById(userId) {
         return User.findOne({_id: userId});
     }
+    function findUserByEmail(email) {
+        return User.findOne({email: email});
+    }
+    function findFriendsByUserId(userId){
+        return User.find({_user: userId});
+    }
+
+    function AddFriendById(userId, fid) {
+        return User.update(
+            {_id: userId},
+            {
+                $push: {
+                    friends: fid
+                }
+            }
+        );
+    }
+    function deleteFriend(userId,friendId) {
+        return User.update(
+            {_id: userId},
+            {
+                $pull: {
+                    friends: friendId
+                }
+            }
+        );
+    }
+
+    function getFriends(friendlist) {
+        var friends = [];
+
+        return User.find({
+            _id: {$in: friendlist}
+        });
+    }
+
+
+
 };

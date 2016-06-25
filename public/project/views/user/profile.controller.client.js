@@ -18,8 +18,7 @@
 
     function ProfileController($routeParams, UserService, $location, $rootScope) {
         var vm = this;
-        var id = $routeParams["id"];
-        console.log(id);
+        vm.id = $routeParams["id"];
         vm.logout = logout;
 
         vm.updateUser = updateUser;
@@ -29,10 +28,9 @@
         function init() {
             vm.restaurants = restaurants;
             UserService
-                .findUserById(id)
+                .findUserById(vm.id)
                 .then(function (response) {
                     vm.user = response.data;
-                    console.log(vm.user);
                 });
         }
 
