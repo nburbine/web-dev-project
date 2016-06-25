@@ -11,9 +11,10 @@
         </a>
 
         <div id="navbar" class="form-group navbar-collapse navbar-brand collapse text-primary pull-right">
-            <a class="btn btn-danger" href="#login" role="button">Log Out</a>
+            <a class="btn btn-danger" ng-click="model.logout()" role="button">Log Out</a>
 
         </div>
+
 
         <div class="navbar-brand text-primary pull-right">
             <input class="search-input" type="text" id="search-query" placeholder="Search Restaurant" name="q"
@@ -41,18 +42,18 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-4">
-            <img class="img-rounded" src="photo\test.jpg" alt="Generic placeholder image" width="100%" height="100%">
+            <img class="img-rounded" ng-src="{{model.user.url}}" alt="Generic placeholder image" width="100%"
+                 height="100%">
             <div class="form-group">
-                <form action="/api/upload" method="post" enctype="multipart/form-data">
+                <form action="/projectApi/upload" method="post" enctype="multipart/form-data">
                     <input name="myFile" type="file" class="form-control"/>
-                    <input name="width" value="{{model.widget.width}}" style="display: none"/>
-                    <input name="widgetId" value="{{model.widget._id}}" style="display: none"/>
+                    <input name="width" value="100%" style="display: none"/>
+                    <input name="userId" value="{{model.user._id}}" style="display: none"/>
                     <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
                 </form>
             </div>
         </div>
-        <div class="col-xs-7">
-            <div class="container">
+        <div class="col-xs-8">
                 <div ng-if="model.success" class="alert alert-success">
                     {{model.success}}
                 </div>
@@ -89,15 +90,18 @@
                     </div>
                 </form>
                 <div class="form-group">
-                    <a href="" class="btn btn-primary">
+                    <a ng-click="model.updateUser()" class="btn btn-primary">
                         Update information
                     </a>
 
-                    <a href="" class="btn btn-danger">
+                    <a ng-click="model.logout()" class="btn btn-danger">
                         Logout
                     </a>
+                    <a class="btn btn-danger" ng-click="model.unregister()" role="button">Unregister</a>
+
+
                 </div>
-                <div class="form-group"><a href="#/user/{{model.user._id}}/review" class="btn btn-block btn-danger ">
+            <div class="form-group"><a href="#/user/{{model.user._id}}/review" class="btn btn-block btn-success ">
                     My Reviews
                 </a></div>
                 <div class="form-group"><a href="#/user/{{model.user._id}}/friend" class="btn btn-block btn-primary ">
@@ -105,7 +109,6 @@
                 </a></div>
             </div>
         </div>
-    </div>
     <h3>Favorite restaurants</h3>
     <div class="jumbotron" ng-repeat="restaurant in model.restaurants">
 
