@@ -9,9 +9,21 @@
             updateReview: updateReview,
             deleteReview: deleteReview,
             findAllReviewsForUser: findAllReviewsForUser,
-            findReviewById: findReviewById
+            findReviewById: findReviewById,
+            findAllReviewsByIds: findAllReviewsByIds,
+            findAllReviewsForRestaurant: findAllReviewsForRestaurant
         };
         return api;
+        
+        function findAllReviewsForRestaurant(restaurantId) {
+            var url = "/projectApi/review/restaurant/"+restaurantId;
+            return $http.get(url);
+        }
+        
+        function findAllReviewsByIds(reviewIds) {
+            var url = "/projectApi/review";
+            return $http.get(url, reviewIds);
+        }
         
         function findReviewById(reviewId) {
             var url = "/projectApi/review/"+reviewId;

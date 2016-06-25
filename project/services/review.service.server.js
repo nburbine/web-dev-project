@@ -4,9 +4,41 @@ module.exports = function (app, models) {
     
     app.get("/projectApi/user/:uid/review", findAllReviewsForUser);
     app.get("/projectApi/review/:rid", findReviewById);
+    app.get("/projectApi/review/restaurant/:rid", findAllReviewsForRestaurant);
     app.post("/projectApi/user/:uid/review", createReviewForUser);
     app.put("/projectApi/review/:rid", updateReview);
     app.delete("/projectApi/review/:rid", deleteReview);
+
+    function findAllReviewsForRestaurant(req, res) {
+        var restaurantId = req.params.rid;
+        reviewModel
+            .findAllReviewsForRestaurant(restaurantId)
+            .then(
+                function (response) {
+                    res.send(response)
+                },
+                function (error) {
+                    res.status(400).send(error);
+                }
+            )
+    }
+
+    function findAllReviewsByIds(req, res) {
+        var reviewIds = req.body;
+        console.log(reviewIds);
+        reviewModel
+            .findAllReviewsByIds(reviewIds)
+            .then(
+                function (response) {
+                    console.log(response);
+                    res.send(response)
+                },
+                function (error) {
+                    console.log(error);
+                    res.status(400).send(error);
+                }
+            )
+    }
     
     function deleteReview(req, res) {
         var reviewId = req.params.rid;
@@ -29,6 +61,7 @@ module.exports = function (app, models) {
             .updateReview(reviewId, newReview)
             .then(
                 function (review) {
+                    console.log(review);
                     res.send(review);
                 },
                 function (error) {

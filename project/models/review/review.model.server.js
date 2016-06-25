@@ -9,9 +9,33 @@ module.exports = function () {
         deleteReview: deleteReview,
         updateReview: updateReview,
         findAllReviewsForUser: findAllReviewsForUser,
-        findReviewById: findReviewById
+        findReviewById: findReviewById,
+        findAllReviewsForRestaurant: findAllReviewsForRestaurant,
+        findAllReviewsByIds: findAllReviewsByIds
     };
     return api;
+    
+    function findAllReviewsForRestaurant(restaurantId) {
+        return Review.find({
+            _restaurant: restaurantId
+        });
+    }
+
+    function findAllReviewsByIds(reviewIds) {
+        // var reviews = [];
+        // for (var i in reviewIds) {
+        //     reviews.push(Review.find({_id: }));
+        // }
+        // return reviews;
+        console.log(reviewIds);
+        if(reviewIds) {
+            return Review.find({
+                _id: {$in: reviewIds}
+            });
+        } else {
+            return [];
+        }
+    }
 
     function createReviewForUser(userId, review) {
         review._user = userId;
