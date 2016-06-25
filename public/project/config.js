@@ -55,6 +55,11 @@
                 controller: "EditReviewController",
                 controllerAs: "model"
             })
+            .when("/user/:id/friend", {
+                templateUrl: "views/friend/friend.view.client.html",
+                controller: "FriendController",
+                controllerAs: "model"
+            })
             // .otherwise({
             //     redirectTo: "/"
             // });

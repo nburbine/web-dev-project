@@ -5,40 +5,25 @@
 
     function FriendService($http) {
         var api = {
-            addFriendByEmail: addFriendByEmail,
-            findFriendsByUserId: findFriendsByUserId
-
+            AddFriendByEmail: AddFriendByEmail,
+            findFriendsByUserId: findFriendsByUserId,
+            deleteFriend:deleteFriend
         };
         return api;
-        function findFriendsByUserId(_user) {
-            var url = "/projectApi/user/" + userId + "/friend";
+        function findFriendsByUserId(uid) {
+            var url = "/projectApi/user/" + uid + "/friend";
             return $http.get(url);
         }
 
-        function addFriendByEmail(_user, email) {
-            var url = "/projectApi/friend";
-            return $http.post(_user, email);
+        function AddFriendByEmail(uid, email) {
+            var url = "/projectApi/user/" + uid + "/friend/"+email;
+            return $http.post(url);
         }
-
-        function updateRestaurant(restaurantId, restaurant) {
-            var url = "/projectApi/restaurant/" + restaurantId;
-            return $http.put(url, restaurant);
-        }
-
-        function deleteRestaurant(restaurantId) {
-            var url = "/projectApi/restaurant/" + restaurantId;
+        function deleteFriend(uid,friendId) {
+            var url = "/projectApi/user/" + uid + "/friend/"+friendId;
             return $http.delete(url);
         }
 
-        function findAllRestaurants(websiteId) {
-            var url = "/projectApi/restaurant";
-            return $http.get(url);
-        }
 
-        function findRestaurantById(restaurantId) {
-            var url = "/projectApi/restaurant/" + restaurantId;
-            console.log(url);
-            return $http.get(url);
-        }
     }
 })();
