@@ -13,8 +13,9 @@ module.exports = function () {
         findUserById: findUserById,
         findUserByEmail: findUserByEmail,
         findFriendsByUserId:findFriendsByUserId,
-        addFriend:addFriend,
-        deleteFriend:deleteFriend
+        AddFriendById: AddFriendById,
+        deleteFriend: deleteFriend,
+        getFriends: getFriends
     };
     return api;
 
@@ -56,22 +57,13 @@ module.exports = function () {
     function findFriendsByUserId(userId){
         return User.find({_user: userId});
     }
-    function addFriend(userId,email){
-        var user = findUserById(userId);
-        var friend=findUserByEmail(email);
-        if (friend._user == userId) {
-            return null;
-        }
-        for (i in user.friends) {
-            if (user.friends[i] == friend._user) {
-                return null;
-            }
-        }
+
+    function AddFriendById(userId, fid) {
         return User.update(
             {_id: userId},
             {
                 $push: {
-                    friends: friend._user
+                    friends: fid
                 }
             }
         );
@@ -86,4 +78,15 @@ module.exports = function () {
             }
         );
     }
+
+    function getFriends(friendlist) {
+        var friends = [];
+
+        return User.find({
+            _id: {$in: friendlist}
+        });
+    }
+
+
+
 };
