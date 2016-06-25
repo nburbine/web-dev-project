@@ -10,7 +10,6 @@ module.exports = function () {
             token: String
         },
         type: String,//VIP or not
-        reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}],
         favoriteList: [{type: mongoose.Schema.Types.ObjectId, ref: 'Favoritelist'}],
         friends: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
         dateCreated: {type: Date, default: Date.now}

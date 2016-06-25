@@ -6,8 +6,6 @@ module.exports = function () {
         description: String,
         type: String,
         address: String,
-        reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}],
-        ratings: [{type: mongoose.Schema.Types.ObjectId, ref: 'Rating'}],
         dateCreated: {type: Date, default: Date.now},
         url: String,
         menu: [
