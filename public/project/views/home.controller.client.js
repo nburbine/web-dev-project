@@ -3,37 +3,69 @@
         .module("RestaurantApp")
         .controller("HomeController", HomeController);
     
-    function HomeController($routeParams, RestaurantService) {
+    function HomeController($routeParams, RestaurantService, ReviewService) {
         var vm = this;
-        // var restaurants = [{
-        //     restaurantsname: "foodhouse1",
-        //     discription: "place3Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See t"
-        // },
-        //     {
-        //         restaurantsname: "foodhouse2",
-        //         discription: "good place3Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See the detailed description on Franz Josef restaurant or the Café-bar for ..."
-        //     },
-        //     {
-        //         restaurantsname: "foodhouse2",
-        //         discription: "good place3 Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See the detailed description on Franz Josef restaurant or the Café-bar for ..."
-        //     }];
+        
+        vm.populateStars = populateStars;
         
         function init() {
+            var doneRestaurants = 0;
             RestaurantService
                 .findAllRestaurants()
                 .then(
                     function (response) {
-                        var restaurants = response.data;
-                        console.log(restaurants);
-                        vm.restaurants = restaurants.slice(0,3);
-                        console.log(vm.restaurants);
+                        numRestaurants = response.data.length;
+                        return restaurants = response.data;
                     },
                     function (error) {
                         vm.alert = error.data;
                         console.log(error);
                     }
                 )
+                .then(
+                    function (restaurants) {
+                        for (var i in restaurants) {
+                            var restaurantIdx = 0;
+                            ReviewService
+                                .findAllReviewsForRestaurant(restaurants[i]._id)
+                                .then(
+                                    function (response) {
+                                        var restaurant = restaurants[restaurantIdx];
+                                        restaurantIdx += 1;
+                                        var reviews = response.data;
+                                        var sum = 0;
+                                        var numReviews = reviews.length;
+                                        for (var i in reviews) {
+                                            sum += reviews[i].rate;
+                                        }
+                                        var averageRating = sum / numReviews;
+                                        restaurant.rating = averageRating;
+                                        console.log(restaurant);
+                                        return restaurant;
+                                    },
+                                    function (error) {
+                                        vm.alert = error.data;
+                                    }
+                                )
+                                .then(
+                                    function (restaurant) {
+                                        doneRestaurants += 1;
+                                        if(restaurants.length === doneRestaurants) {
+                                            vm.restaurants = restaurants.slice(0,3);
+                                        }
+                                    }
+                                )
+                        }
+                    }
+                )
+
         }
         init();
+
+        function populateStars(id, rate) {
+            console.log(id, rate);
+            var starId = id+" star-"+Math.ceil(rate);
+            document.getElementById(starId).checked = true;
+        }
     }
 })();

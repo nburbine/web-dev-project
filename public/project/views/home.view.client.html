@@ -30,22 +30,34 @@
 <div class="container">
     <div class="jumbotron" ng-repeat="restaurant in model.restaurants">
         <div class="row">
-            <div class="col-xs-4">
+            <div class="col-sm-4">
                 <a href="#/restaurant/{{restaurant._id}}">
                     <img class="img-rounded" src="photo\test.jpg" alt="Generic placeholder image" width="200" height="190">
                 </a>
             </div>
-            <div class="col-xs-8">
+            <div class="col-sm-8">
                 <h2><a href="#/restaurant/{{restaurant._id}}">{{restaurant.name}}</a></h2>
+                <div class="form-group">
+                    <div class="stars">
+                        <form action="">
+                            <input class="star star-5" id="{{restaurant._id}} star-5" type="radio" name="star" value="5" disabled="true"/>
+                            <label class="star star-5" for="{{restaurant._id}} star-5"></label>
+                            <input class="star star-4" id="{{restaurant._id}} star-4" type="radio" name="star" value="4" disabled="true"/>
+                            <label class="star star-4" for="{{restaurant._id}} star-4"></label>
+                            <input class="star star-3" id="{{restaurant._id}} star-3" type="radio" name="star" value="3" disabled="true"/>
+                            <label class="star star-3" for="{{restaurant._id}} star-3"></label>
+                            <input class="star star-2" id="{{restaurant._id}} star-2" type="radio" name="star" value="2" disabled="true"/>
+                            <label class="star star-2" for="{{restaurant._id}} star-2"></label>
+                            <input class="star star-1" id="{{restaurant._id}} star-1" type="radio" name="star" value="1" disabled="true"/>
+                            <label class="star star-1" for="{{restaurant._id}} star-1"></label>
+                        </form>
+                        <div>
+                            {{model.populateStars(restaurant._id, restaurant.rating)}}
+                        </div>
+                    </div>
+                </div>
                 <p>{{restaurant.description}}</p>
                 <p>{{restaurant.address}}</p>
-                <div class="rating">
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star half"></i>
-                </div>
             </div>
         </div>
     </div>
