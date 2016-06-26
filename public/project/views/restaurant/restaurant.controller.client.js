@@ -9,10 +9,19 @@
         var vm = this;
 
         vm.restaurantId = $routeParams['rid'];
-        vm.userId = '57700e9e17e3315804c4de28';
         vm.populateStars = populateStars;
 
         function init() {
+            UserService
+                .checkLoggedin()
+                .then(
+                    function (response) {
+                        if (!(response.data === "0")) {
+                            vm.user = response.data;
+                        }
+                    }
+                );
+
             RestaurantService
                 .findRestaurantById(vm.restaurantId)
                 .then(
@@ -25,18 +34,18 @@
                         console.log(vm.alert);
                     }
                 );
-            UserService
-                .findUserById(vm.userId)
-                .then(
-                    function (response) {
-                        vm.user = response.data;
-                        console.log(vm.user);
-                        return vm.user;
-                    },
-                    function (error) {
-                        vm.alert = error.data;
-                    }
-                );
+            // UserService
+            //     .findUserById(vm.userId)
+            //     .then(
+            //         function (response) {
+            //             vm.user = response.data;
+            //             console.log(vm.user);
+            //             return vm.user;
+            //         },
+            //         function (error) {
+            //             vm.alert = error.data;
+            //         }
+            //     );
             ReviewService
                 .findAllReviewsForRestaurant(vm.restaurantId)
                 .then(

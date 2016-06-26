@@ -42,12 +42,12 @@
     </div>
 </div>
 
-<div class="container" ng-if="model.userId">
+<div class="container" ng-if="model.user">
     <div ng-show="model.review">
         <h3>Your Review</h3>
         <ul class="list-group">
             <li class="list-group-item">
-                <a class="glyphicon glyphicon-edit pull-right" href="#/user/{{model.userId}}/review/{{model.review._id}}"></a>
+                <a class="glyphicon glyphicon-edit pull-right" href="#/user/{{model.user._id}}/review/{{model.review._id}}"></a>
             <div class="stars">
                 <form action="">
                     <input class="star star-5" id="{{model.review._user}} star-5" type="radio" name="star" value="5" disabled="true"/>
@@ -72,7 +72,7 @@
             </ul>
     </div>
     <div ng-show="!model.review">
-        <a href="#/restaurant/{{model.restaurantId}}/review/{{model.userId}}" class="btn btn-block btn-primary">Add Review</a>
+        <a href="#/restaurant/{{model.restaurantId}}/review/{{model.user._id}}" class="btn btn-block btn-primary">Add Review</a>
     </div>
 </div>
 
