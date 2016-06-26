@@ -16,13 +16,15 @@
         }];
 
 
-    function ProfileController($routeParams, UserService, $location, $rootScope) {
+    function ProfileController($routeParams, UserService, $location, $rootScope, FavoriteService) {
         var vm = this;
         vm.id = $routeParams["id"];
         vm.logout = logout;
 
         vm.updateUser = updateUser;
         vm.unregister = unregister;
+        vm.addList = addList;
+        vm.deleteList = deleteList;
 
         function init() {
             vm.restaurants = restaurants;
@@ -31,6 +33,11 @@
                 .then(function (response) {
                     vm.user = response.data;
                 });
+            FavoriteService
+                .findAllListsForUser(vm.id)
+                .then(function (response) {
+                    vm.lists = response.data;
+                })
         }
 
         init();
@@ -75,6 +82,60 @@
                     }
                 )
 
+        }
+
+        function addList() {
+            if (vm.listname) {
+                if (!vm.listname) {
+                    vm.error = "Please enter a name";
+                }
+                else {
+                    vm.error = null;
+                    var newlist = {
+                        name: vm.listname,
+                        _users: [],
+                        description: "2"
+                    };
+                    newlist._users.push(vm.id);
+
+
+                    FavoriteService
+                        .createList(newlist)
+                        .then(
+                            function (response) {
+                                FavoriteService
+                                    .findAllListsForUser(vm.id)
+                                    .then(function (response) {
+                                        vm.lists = response.data;
+                                    })
+                            },
+                            function (error) {
+                                vm.error = error.data;
+                            }
+                        );
+                }
+            }
+            else {
+                vm.error = "Please enter a name";
+            }
+
+        }
+
+        function deleteList(listId) {
+            FavoriteService
+                .deleteListForUser(vm.id, listId)
+                .then(
+                    function (response) {
+                        FavoriteService
+                            .findAllListsForUser(vm.id)
+                            .then(function (response) {
+                                vm.lists = response.data;
+                            })
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    }
+                )
         }
     }
 })();

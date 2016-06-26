@@ -102,8 +102,6 @@ module.exports = function () {
     }
 
     function getFriends(friendlist) {
-        var friends = [];
-
         return User.find({
             _id: {$in: friendlist}
         });

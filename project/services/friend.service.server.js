@@ -6,9 +6,6 @@ module.exports = function (app, models) {
     app.post("/projectApi/user/:uid/friend/:fid", AddFriendById);
     app.get("/projectApi/email/:email", findUserByEmail);
     app.post("/projectApi/friends", getFriends);
-<<<<<<< HEAD
-    app.delete("/projectApi/user/:uid/friend/:friendId", deleteFriend);
-=======
     app.post("/projectApi/upload", upload.single('myFile'), uploadImage);
 
 
@@ -36,11 +33,6 @@ module.exports = function (app, models) {
             );
     }
 
-
-
-
-
->>>>>>> origin/master
 
     function getFriends(req, res) {
         var friendsList = req.body;

@@ -54,73 +54,105 @@
             </div>
         </div>
         <div class="col-xs-8">
-                <div ng-if="model.success" class="alert alert-success">
-                    {{model.success}}
-                </div>
-                <div ng-if="model.alert" class="alert alert-danger">
-                    {{model.alert}}
-                </div>
-                <form class="responsive">
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input ng-model="model.user.username"
-                               class="form-control"
-                               name="username"
-                               id="username"
-                               placeholder="Username"
-                               type="text"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input ng-model="model.user.email"
-                               class="form-control"
-                               name="email"
-                               id="email"
-                               placeholder="emailaddress"
-                               type="email"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="nickName">nickName</label>
-                        <input ng-model=model.user.nickname
-                               class="form-control"
-                               name="nickName"
-                               id="nickName"
-                               placeholder="Nickname"
-                               type="text"/>
-                    </div>
-                </form>
-                <div class="form-group">
-                    <a ng-click="model.updateUser()" class="btn btn-primary">
-                        Update information
-                    </a>
-
-                    <a ng-click="model.logout()" class="btn btn-danger">
-                        Logout
-                    </a>
-                    <a class="btn btn-danger" ng-click="model.unregister()" role="button">Unregister</a>
-
-
-                </div>
-            <div class="form-group"><a href="#/user/{{model.user._id}}/review" class="btn btn-block btn-success ">
-                    My Reviews
-                </a></div>
-                <div class="form-group"><a href="#/user/{{model.user._id}}/friend" class="btn btn-block btn-primary ">
-                    My Friends
-                </a></div>
+            <div ng-if="model.success" class="alert alert-success">
+                {{model.success}}
             </div>
-        </div>
-    <h3>Favorite restaurants</h3>
-    <div class="jumbotron" ng-repeat="restaurant in model.restaurants">
+            <div ng-if="model.alert" class="alert alert-danger">
+                {{model.alert}}
+            </div>
+            <form class="responsive">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input ng-model="model.user.username"
+                           class="form-control"
+                           name="username"
+                           id="username"
+                           placeholder="Username"
+                           type="text"/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input ng-model="model.user.email"
+                           class="form-control"
+                           name="email"
+                           id="email"
+                           placeholder="emailaddress"
+                           type="email"/>
+                </div>
+                <div class="form-group">
+                    <label for="nickName">nickName</label>
+                    <input ng-model=model.user.nickname
+                           class="form-control"
+                           name="nickName"
+                           id="nickName"
+                           placeholder="Nickname"
+                           type="text"/>
+                </div>
+            </form>
+            <div class="form-group">
+                <a ng-click="model.updateUser()" class="btn btn-primary">
+                    Update information
+                </a>
 
-        <h4>{{restaurant.restaurantsname}}</h4>
-        <p>{{restaurant.discription}}</p>
-        <div class="rating">
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star half"></i>
+                <a ng-click="model.logout()" class="btn btn-danger">
+                    Logout
+                </a>
+                <a class="btn btn-danger" ng-click="model.unregister()" role="button">Unregister</a>
+
+
+            </div>
+            <div class="form-group"><a href="#/user/{{model.user._id}}/review" class="btn btn-block btn-success ">
+                My Reviews
+            </a></div>
+            <div class="form-group"><a href="#/user/{{model.user._id}}/friend" class="btn btn-block btn-primary ">
+                My Friends
+            </a></div>
         </div>
+    </div>
+    <div class="in">
+        <h3>Favorite Restaurant Lists</h3>     <a href="">
+        <hr>
+        <div ng-show="model.success" class="alert alert-success">
+            {{model.success}}
+        </div>
+
+        <div ng-show="model.error" class="alert alert-danger">
+            {{model.error}}
+        </div>
+        <div class="container">
+            <div class="input-group">
+                <input ng-model="model.listname" type="text" class="form-control input-lg"
+                       placeholder="New Favorite List Name">
+      <span class="input-group-btn">
+        <button ng-click="model.addList()" class="btn btn-info  input-lg" type="button">Create New List
+        </button>
+      </span>
+            </div>
+
+        </div>
+
+    </a></div>
+
+    <div class="container">
+        <table class="table table-hover">
+            <thead ng-show="model.lists">
+            <tr>
+                <th>name</th>
+                <th>description</th>
+                <th>edit/delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="list in model.lists">
+                <td>{{list.name}}</td>
+                <td>{{list.description}}</td>
+                <td><a class="btn" href="" type="button"><span
+                        class="glyphicon glyphicon-edit"></span></a>
+                    <a class="btn" ng-click="model.deleteList(list._id)" type="button"><span
+                            class="glyphicon glyphicon-remove"></span></a></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
 

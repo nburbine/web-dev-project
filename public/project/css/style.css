@@ -127,5 +127,9 @@ div.row {
 }
 
 .glyphicon-remove {
-    font-size: 200%;
+    font-size: 150%;
+}
+
+.glyphicon-edit {
+    font-size: 150%;
 }
