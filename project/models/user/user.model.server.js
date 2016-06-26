@@ -15,9 +15,22 @@ module.exports = function () {
         findFriendsByUserId:findFriendsByUserId,
         AddFriendById: AddFriendById,
         deleteFriend: deleteFriend,
-        getFriends: getFriends
+        getFriends: getFriends,
+        uploadImage: uploadImage
     };
     return api;
+    function uploadImage(userId, url) {
+        return User.update(
+            {_id: userId},
+            {
+                $set: {
+                    url: url
+                }
+            }
+        );
+    }
+
+
 
     function createUser(user) {
         return User.create(user);
@@ -59,6 +72,15 @@ module.exports = function () {
     }
 
     function AddFriendById(userId, fid) {
+        User.update(
+            {_id: fid},
+            {
+                $push: {
+                    friends: userId
+                }
+            }
+        );
+
         return User.update(
             {_id: userId},
             {

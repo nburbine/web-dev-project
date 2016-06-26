@@ -78,6 +78,7 @@
         init();
 
         function updateUser() {
+            console.log("comehere");
             UserService
                 .updateUser(vm.userId, vm.user)
                 .then(

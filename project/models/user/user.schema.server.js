@@ -5,6 +5,7 @@ module.exports = function () {
         password: String,
         nickname: String,
         email: String,
+        url: String,
         google: {
             id: String,
             token: String

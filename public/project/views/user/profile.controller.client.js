@@ -23,7 +23,6 @@
 
         vm.updateUser = updateUser;
         vm.unregister = unregister;
-        var index = -1;
 
         function init() {
             vm.restaurants = restaurants;
@@ -52,7 +51,7 @@
 
         function unregister() {
             UserService
-                .deleteUser(id)
+                .deleteUser(model.user._id)
                 .then(
                     function (response) {
                         $location.url("/login");
@@ -66,7 +65,7 @@
         function updateUser() {
             console.log(vm.user);
             UserService
-                .updateUser(id, vm.user)
+                .updateUser(vm.user._id, vm.user)
                 .then(
                     function (response) {
                         vm.success = "User successfully updated";
