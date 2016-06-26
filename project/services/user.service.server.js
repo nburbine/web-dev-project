@@ -100,6 +100,7 @@ module.exports = function (app, models) {
                         return;
                     } else {
                         req.body.password = bcrypt.hashSync(password);
+                        req.body.url = "/uploads/11c102dac82bfebdef714f336b5c2094";
                         return userModel
                             .createUser(req.body);
                     }

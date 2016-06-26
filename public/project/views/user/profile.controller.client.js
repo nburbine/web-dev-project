@@ -32,7 +32,9 @@
                 .findUserById(vm.id)
                 .then(function (response) {
                     vm.user = response.data;
+                    console.log(vm.user.url);
                 });
+
             FavoriteService
                 .findAllListsForUser(vm.id)
                 .then(function (response) {
