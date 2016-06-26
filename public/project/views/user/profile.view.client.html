@@ -152,14 +152,14 @@
             <tr>
                 <th>name</th>
                 <th>description</th>
-                <th>edit/delete</th>
+                <th ng-if="model.currentUser">edit/delete</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="list in model.lists">
                 <td>{{list.name}}</td>
                 <td>{{list.description}}</td>
-                <td><a class="btn" href="#/user/{{model.id}}/favorite/{{list._id}}" type="button"><span
+                <td ng-if="model.currentUser"><a class="btn" href="#/user/{{model.user._id}}/favorite/{{list._id}}" type="button"><span
                         class="glyphicon glyphicon-edit"></span></a>
                     <a class="btn" ng-click="model.deleteList(list._id)" type="button"><span
                             class="glyphicon glyphicon-remove"></span></a></td>

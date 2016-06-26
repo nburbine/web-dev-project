@@ -76,7 +76,7 @@
 
         function unregister() {
             UserService
-                .deleteUser(model.user._id)
+                .deleteUser(vm.user._id)
                 .then(
                     function (response) {
                         $location.url("/login");
@@ -114,7 +114,7 @@
                         _users: [],
                         description: "2"
                     };
-                    newlist._users.push(vm.id);
+                    newlist._users.push(vm.user._id);
 
 
                     FavoriteService
@@ -122,7 +122,7 @@
                         .then(
                             function (response) {
                                 FavoriteService
-                                    .findAllListsForUser(vm.id)
+                                    .findAllListsForUser(vm.user._id)
                                     .then(function (response) {
                                         vm.lists = response.data;
                                     })
@@ -141,11 +141,11 @@
 
         function deleteList(listId) {
             FavoriteService
-                .deleteListForUser(vm.id, listId)
+                .deleteListForUser(vm.user._id, listId)
                 .then(
                     function (response) {
                         FavoriteService
-                            .findAllListsForUser(vm.id)
+                            .findAllListsForUser(vm.user._id)
                             .then(function (response) {
                                 vm.lists = response.data;
                             })
