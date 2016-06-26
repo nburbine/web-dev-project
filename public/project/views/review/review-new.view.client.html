@@ -1,13 +1,27 @@
 <div class="container">
-    <h2>Add Review</h2>
+    <h2>Add Review for {{model.restaurant.name}}</h2>
     <form>
         <div class="form-group">
-            <label for="rating">Rating</label>
-            <input id="rating" class="form-control" ng-model="model.review.rating">
+            <div class="stars" id="rating">
+                <form action="">
+                    <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star" value="3"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star" value="2"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star" value="1"/>
+                    <label class="star star-1" for="star-1"></label>
+                </form>
+            </div><br/>
+            <div ng-show="model.user.vip">
             <label for="review">Review</label>
-            <textarea id="review" class="form-control" ng-model="model.review.review"></textarea>
+            <textarea id="review" class="form-control" name="review"></textarea>
+            </div>
         </div>
     </form>
     <a class="btn btn-block btn-primary" ng-click="model.createReview()">Save Review</a>
-    <a class="btn btn-block btn-danger">Cancel</a>
+    <a class="btn btn-block btn-danger" href="#/restaurant/{{model.restaurantId}}">Cancel</a>
 </div>

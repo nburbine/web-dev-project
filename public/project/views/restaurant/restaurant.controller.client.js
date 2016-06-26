@@ -41,18 +41,22 @@
                 .findAllReviewsForRestaurant(vm.restaurantId)
                 .then(
                     function (response) {
+                        vm.restaurant.reviews = [];
+
                         var reviews = response.data;
-                        vm.restaurant.reviews = reviews;
                         var sum = 0;
                         var numReviews = reviews.length;
+
                         for (var i in reviews) {
                             if (reviews[i]._user === vm.userId) {
                                 vm.review = reviews[i];
                             }
+                            if (reviews[i].review) {
+                                vm.restaurant.reviews.push(reviews[i]);
+                            }
                             sum += reviews[i].rate;
                         }
-                        var averageRating = sum = numReviews;
-                        vm.restaurant.rating = averageRating;
+                        vm.restaurant.rating = sum / numReviews;
                         vm.restaurant.numRatings = numReviews;
                     },
                     function (error) {

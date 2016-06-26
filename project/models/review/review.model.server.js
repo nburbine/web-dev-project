@@ -51,7 +51,7 @@ module.exports = function () {
             {_id: reviewId},
             {
                 $set: {
-                    rating: review.rating,
+                    rate: review.rate,
                     review: review.review
                 }
             }

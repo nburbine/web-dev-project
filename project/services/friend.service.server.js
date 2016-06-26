@@ -5,8 +5,8 @@ module.exports = function (app, models) {
     app.post("/projectApi/user/:uid/friend/:fid", AddFriendById);
     app.get("/projectApi/email/:email", findUserByEmail);
     app.post("/projectApi/friends", getFriends);
-
     app.delete("/projectApi/user/:uid/friend/:friendId", deleteFriend);
+
     function getFriends(req, res) {
         var friendsList = req.body;
         userModel

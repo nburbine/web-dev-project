@@ -1,25 +1,27 @@
 <div class="container">
-    <h2>Edit Review</h2>
+    <h2>Edit Review for {{model.restaurant.name}}</h2>
     <div ng-if="model.success" class="alert alert-success">
         {{model.success}}
     </div>
     <div>
         <form>
             <div class="form-group">
-                <div class="nbb-rating">
-                    <label for="rating">Rating</label>
-                    <div>
-                        <div class="btn-group" role="group" id="rating">
-                            <button type="button" class="btn btn-default">1</button>
-                            <button type="button" class="btn btn-default">2</button>
-                            <button type="button" class="btn btn-default">3</button>
-                            <button type="button" class="btn btn-default">4</button>
-                            <button type="button" class="btn btn-default">5</button>
-                        </div>
+                    <div class="stars" id="rating">
+                        <form action="">
+                            <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
+                            <label class="star star-5" for="star-5"></label>
+                            <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>
+                            <label class="star star-4" for="star-4"></label>
+                            <input class="star star-3" id="star-3" type="radio" name="star" value="3"/>
+                            <label class="star star-3" for="star-3"></label>
+                            <input class="star star-2" id="star-2" type="radio" name="star" value="2"/>
+                            <label class="star star-2" for="star-2"></label>
+                            <input class="star star-1" id="star-1" type="radio" name="star" value="1"/>
+                            <label class="star star-1" for="star-1"></label>
+                        </form>
                     </div>
-                </div>
 
-                <div class="nbb-review">
+                <div class="nbb-review" ng-show="model.user.vip">
                     <label for="review">Review</label>
                     <div>
                         <textarea class="form-control" ng-model="model.review.review" id="review"></textarea>

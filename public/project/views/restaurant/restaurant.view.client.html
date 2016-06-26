@@ -8,7 +8,7 @@
             <li class="list-group-item">
                 <h3>{{model.restaurant.rating}} / 5 Average Rating</h3>
                 <h4>
-                    <ng-pluralize count="model.restaurant.rating"
+                    <ng-pluralize count="model.restaurant.numRatings"
                                   when="{'1': '1 Rating',
                                          'other': '{} Ratings'}">
                     </ng-pluralize>
@@ -25,9 +25,16 @@
 </div>
 
 <div class="container" ng-if="model.user">
-    <h3>Your Review</h3>
-    <h4>{{model.review.rating}} "{{model.review.review}}"</h4>
-    <a href="#/restaurant/{{model.restaurantId}}/review/{{model.userId}}" class="btn btn-block btn-primary">Add Review</a>
+    <div ng-show="model.review">
+        <h3>Your Review</h3>
+        <h4>{{model.review.rate}}</h4>
+        <div ng-show="model.review.review">
+            <h4>"{{model.review.review}}"</h4>
+        </div>
+    </div>
+    <div ng-show="!model.review">
+        <a href="#/restaurant/{{model.restaurantId}}/review/{{model.userId}}" class="btn btn-block btn-primary">Add Review</a>
+    </div>
 </div>
 
 <div class="container">
