@@ -28,45 +28,45 @@
 <div class="container">
     I am search result
 
-    <div class="jumbotron" ng-repeat="restaurant in model.restaurants">
-        <div class="row">
-            <div class="col-xs-4">
-                <img class="img-rounded" src="photo\test.jpg" alt="Generic placeholder image" width="200" height="190">
-            </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th ng-click="sortData('name')">
+                Name
+                <div ng-class="getSortClass('name')"></div>
+            </th>
+            <th ng-click="sortData('rate')">
+                rate
+                <div ng-class="getSortClass('rate')"></div>
+            </th>
+            <th ng-click="sortData('description')">
+                description
+                <div ng-class="getSortClass('description')"></div>
+            </th>
+            <th ng-click="sortData('reviews')">
+                reviews
+                <div ng-class="getSortClass('reviews')"></div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="restaurant in model.restaurants | orderBy:sortColumn:reverseSort">
+            <td>
+                <a href="#">
+                    {{restaurant.name}}
+                </a>
 
-            <div class="col-xs-8">
+            </td>
+            <td> {{restaurant.name}}</td>
+            <td> {{restaurant.rate}}</td>
+            <td> {{restaurant.description}}</td>
+            <td> {{restaurant.reviews}}</td>
+        </tr>
+        </tbody>
+    </table>
 
-                <h4>{{restaurant.restaurantsname}}</h4>
-                <p>{{restaurant.discription}}</p>
-                <div class="rating">
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star half"></i>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
-
-
-<ul>
-    <li>
-        <a href="#/restaurant/:rid">restaurant</a>
-    </li>
-    <li>
-        <a href="#/login">Login</a>
-    </li>
-    <li>
-        <a href="test/index.html">Test MongoDB</a>
-    </li>
-    <li>
-        <a href="#/user/3">Profile Page</a>
-    </li>
-</ul>
-
-
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-header">

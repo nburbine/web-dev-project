@@ -3,24 +3,32 @@
         .module("RestaurantApp")
         .controller("SearchController", SearchController)
 
-    function SearchController($routeParams, RestaurantService) {
+    function SearchController($scope, $routeParams, RestaurantService) {
         var vm = this;
-        var restaurants = [{
-            restaurantsname: "foodhouse1",
-            discription: "place3Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See t"
-        },
-            {
-                restaurantsname: "foodhouse2",
-                discription: "good place3Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See the detailed description on Franz Josef restaurant or the Café-bar for ..."
-            },
-            {
-                restaurantsname: "foodhouse2",
-                discription: "good place3 Our luxury Franz Josef restaurant offers not only keenly price lunch menu but also a ... See the detailed description on Franz Josef restaurant or the Café-bar for ..."
-            }];
+
+        $scope.sortColumn = "name";
+        $scope.reverseSort = false;
+
+        $scope.sortData = function (column) {
+            $scope.reverseSort = ($scope.sortColumn == column) ?
+                !$scope.reverseSort : false;
+            $scope.sortColumn = column;
+        };
+
+        $scope.getSortClass = function (column) {
+
+            if ($scope.sortColumn == column) {
+                return $scope.reverseSort
+                    ? 'arrow-down'
+                    : 'arrow-up';
+            }
+
+            return '';
+        };
+
 
         function init() {
-            vm.restaurants = restaurants;
-            console.log(vm.restaurants);
+
         }
 
         init();
