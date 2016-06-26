@@ -60,7 +60,7 @@
                 controller: "FriendController",
                 controllerAs: "model"
             })
-            .when("/user/:id/favorite/:fid", {
+            .when("/user/:id/favorite/:lid", {
                 templateUrl: "views/favorite/favorite.view.client.html",
                 controller: "FavoriteController",
                 controllerAs: "model"
