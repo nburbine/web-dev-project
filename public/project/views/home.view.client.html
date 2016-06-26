@@ -5,10 +5,14 @@
             <a class="navbar-brand">Restaurant App</a>
         </div>
         <div id="navbar" class="">
-            <ul class="nav navbar-nav navbar-right">
+            <div ng-if="!model.user"><ul class="nav navbar-nav navbar-right">
                 <li><a class="btn btn-default" href="#login" role="button">Login</a></li>
                 <li><a class="btn btn-default" href="#register" role="button">Register</a></li>
+            </ul></div>
+            <div ng-if="model.user"><ul class="nav navbar-nav navbar-right">
+                <li><a class="btn btn-default" href="#/user/{{model.user._id}}">Profile</a></li>
             </ul>
+            </div>
             <form class="navbar-form navbar-center">
                 <input type="text" class="form-control" placeholder="Search Restaurant">
                 <a ng-click="model.searchPhotos(searchText)" href="#search"
@@ -18,10 +22,7 @@
                 </a>
             </form>
         </div>
-
-
     </div>
-
 </nav>
 
 

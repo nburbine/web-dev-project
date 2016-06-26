@@ -3,12 +3,22 @@
         .module("RestaurantApp")
         .controller("HomeController", HomeController);
     
-    function HomeController($routeParams, RestaurantService, ReviewService) {
+    function HomeController($routeParams, RestaurantService, ReviewService, UserService) {
         var vm = this;
         
         vm.populateStars = populateStars;
         
         function init() {
+            UserService
+                .checkLoggedin()
+                .then(
+                    function (response) {
+                        if (!(response.data === "0")) {
+                            vm.user = response.data;
+                        }
+                    }
+                );
+            
             var doneRestaurants = 0;
             RestaurantService
                 .findAllRestaurants()
@@ -40,7 +50,6 @@
                                         }
                                         var averageRating = sum / numReviews;
                                         restaurant.rating = averageRating;
-                                        console.log(restaurant);
                                         return restaurant;
                                     },
                                     function (error) {
