@@ -145,7 +145,7 @@
                     .createReviewForUser(vm.userId, vm.review)
                     .then(
                         function (response) {
-                            window.location = '#/restaurant/'+vm.restaurantId;
+                            window.history.back();
                         },
                         function (error) {
                             vm.alert = error.data;

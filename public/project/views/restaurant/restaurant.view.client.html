@@ -1,6 +1,6 @@
 <div class="container">
     <div class="col-xs-12 col-sm-6">
-        <img class="nbb-restaurant-img" src="photo/test.jpg" width="75%">
+        <img class="nbb-restaurant-img" src="{{model.restaurant.url}}" width="75%">
     </div>
     <div class="col-sm-6 col-xs-12">
         <ul class="list-group">
@@ -80,8 +80,8 @@
     <h3>Top Dishes</h3>
     <ul class="list-group">
         <li ng-repeat="dish in model.restaurant.menu" class="list-group-item">
-            <h4>{{dish.name}}</h4>
-            <h5>{{dish.description}}</h5>
+            <h3>{{dish.foodName}}</h3>
+            <p>{{dish.description}}</p>
         </li>
     </ul>
 </div>
