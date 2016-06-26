@@ -36,31 +36,25 @@
                 <div ng-class="getSortClass('name')"></div>
             </th>
             <th ng-click="sortData('rate')">
-                rate
-                <div ng-class="getSortClass('rate')"></div>
+                rating
+                <div ng-class="getSortClass('rating')"></div>
             </th>
             <th ng-click="sortData('description')">
                 description
                 <div ng-class="getSortClass('description')"></div>
             </th>
             <th ng-click="sortData('reviews')">
-                reviews
-                <div ng-class="getSortClass('reviews')"></div>
+                numReviews
+                <div ng-class="getSortClass('numReviews')"></div>
             </th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="restaurant in model.restaurants | orderBy:sortColumn:reverseSort">
-            <td>
-                <a href="#">
-                    {{restaurant.name}}
-                </a>
-
-            </td>
             <td> {{restaurant.name}}</td>
-            <td> {{restaurant.rate}}</td>
+            <td> {{restaurant.rating}}</td>
             <td> {{restaurant.description}}</td>
-            <td> {{restaurant.reviews}}</td>
+            <td> {{restaurant.numReviews}}</td>
         </tr>
         </tbody>
     </table>

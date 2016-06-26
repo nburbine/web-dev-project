@@ -44,7 +44,9 @@ module.exports = function () {
 
     function searchRestaurant(keyword) {
         // return Restaurant.find({ $or: [ {"name" : "/.*"+keyword+".*/i"}, {"type" : "/.*"+keyword+".*/i"} ] });
+        // console.log(keyword);
         var r = new RegExp(keyword, 'i');
+        // return Restaurant.find({name: "The Rusty Tire"});
         return Restaurant.find({$or: [{name: {$regex: r}}, {"type": {$regex: r}}]});
         // return Restaurant.find({ $or: [ {"name" : " '/.*sea.*/i'"}, {"type" : "'/.*ood.*/i'"} ] });
     }

@@ -3,12 +3,9 @@
         .module("RestaurantApp")
         .controller("SearchController", SearchController)
 
-    function SearchController($scope, $routeParams, RestaurantService) {
+    function SearchController($scope, $routeParams, RestaurantService, ReviewService) {
         var vm = this;
         vm.keyword = $routeParams["keyword"];
-        console.log(vm.keyword);
-
-
         $scope.sortColumn = "name";
         $scope.reverseSort = false;
 
@@ -31,22 +28,53 @@
 
 
         function init() {
+            var doneRestaurants = 0;
             RestaurantService
                 .searchRestaurant(vm.keyword)
                 .then(function (response) {
-                    vm.restaurants = response.data;
-                    console.log(vm.restaurants);
-                });
-            //.then(function (response) {
-            //        FriendService
-            //            .getFriends(vm.user.friends)
-            //            .then(function (response) {
-            //                vm.friends = response.data;
-            //            })
-            //    }
-            //)
+                        numRestaurants = response.data.length;
+                        return restaurants = response.data;
+                    },
+                    function (error) {
+                        vm.alert = error.data;
+                        console.log(error);
+                    })
+                .then(function (restaurants) {
+                        for (var i in restaurants) {
+                            var restaurantIdx = 0;
+                            ReviewService
+                                .findAllReviewsForRestaurant(restaurants[i]._id)
+                                .then(
+                                    function (response) {
+                                        var restaurant = restaurants[restaurantIdx];
+                                        restaurantIdx += 1;
+                                        var reviews = response.data;
+                                        var sum = 0;
+                                        var numReviews = reviews.length;
+                                        for (var i in reviews) {
+                                            sum += reviews[i].rate;
+                                        }
+                                        var averageRating = sum / numReviews;
+                                        restaurant.rating = averageRating;
+                                        return restaurant;
+                                    },
+                                    function (error) {
+                                        vm.alert = error.data;
+                                    }
+                                )
+                                .then(
+                                    function (restaurant) {
+                                        doneRestaurants += 1;
+                                        if (restaurants.length === doneRestaurants) {
+                                            vm.restaurants = restaurants;
+                                            console.log(vm.restaurants);
+                                        }
+                                    }
+                                )
+                        }
+                    }
+                );
         }
-
         init();
     }
 })();
