@@ -60,6 +60,11 @@
                 controller: "FriendController",
                 controllerAs: "model"
             })
+            .when("/user/:id/favorite/:fid", {
+                templateUrl: "views/favorite/favorite.view.client.html",
+                controller: "FavoriteController",
+                controllerAs: "model"
+            })
             // .otherwise({
             //     redirectTo: "/"
             // });

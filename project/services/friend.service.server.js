@@ -12,6 +12,11 @@ module.exports = function (app, models) {
     app.delete("/projectApi/user/:uid/friend/:friendId", deleteFriend);
     function uploadImage(req, res) {
         var userId = req.body.userId;
+        if (!req.file) {
+            res.redirect("/project/#/user/" + userId);
+        }
+        else {
+
         var width = req.body.width;
         var myFile = req.file;
 
@@ -21,6 +26,7 @@ module.exports = function (app, models) {
         var destination = myFile.destination;  // folder where file is saved to
         var size = myFile.size;
         var mimetype = myFile.mimetype;
+            console.log(originalname);
         userModel
             .uploadImage(userId, "/uploads/" + filename)
             .then(
@@ -31,6 +37,8 @@ module.exports = function (app, models) {
                     res.status(404).send(error);
                 }
             );
+        }
+
     }
 
 
