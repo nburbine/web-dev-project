@@ -40,7 +40,12 @@
                                 .findAllReviewsForRestaurant(restaurants[i]._id)
                                 .then(
                                     function (response) {
-                                        var restaurant = restaurants[restaurantIdx];
+                                        for (var i in restaurants) {
+                                            if (response._restaurant === restaurants[i]._id) {
+                                                var restaurant = restaurants[i];
+                                                break;
+                                            }
+                                        }
                                         restaurantIdx += 1;
                                         var reviews = response.data;
                                         var sum = 0;

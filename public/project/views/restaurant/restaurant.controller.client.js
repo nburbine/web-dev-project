@@ -69,11 +69,33 @@
                         vm.restaurant.rating = sum / numReviews;
                         vm.restaurant.numRatings = numReviews;
                         populateStars(vm.restaurant._id, vm.restaurant.rating);
+                        return vm.restaurant.reviews;
                     },
                     function (error) {
                         vm.alert = error.data;
                     }
-                );
+                )
+                .then(
+                    function (reviews) {
+                        for (var i in reviews) {
+                            UserService
+                                .findUserById(reviews[i]._user)
+                                .then(
+                                    function (response) {
+                                        var user = response.data;
+                                        for (var i in reviews) {
+                                            if (user._id === reviews[i]._user) {
+                                                var review = reviews[i];
+                                                console.log(review);
+                                                break;
+                                            }
+                                        }
+                                        review.user = user;
+                                    }
+                                )
+                        }
+                    }
+                )
         }
         init();
 
