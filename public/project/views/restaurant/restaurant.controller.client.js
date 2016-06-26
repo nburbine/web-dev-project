@@ -9,7 +9,8 @@
         var vm = this;
 
         vm.restaurantId = $routeParams['rid'];
-        vm.userId = '576c85bf47beeb3c0e43c343';
+        vm.userId = '57700e9e17e3315804c4de28';
+        vm.populateStars = populateStars;
 
         function init() {
             RestaurantService
@@ -50,6 +51,7 @@
                         for (var i in reviews) {
                             if (reviews[i]._user === vm.userId) {
                                 vm.review = reviews[i];
+                                console.log('user review: ', reviews[i]);
                             }
                             if (reviews[i].review) {
                                 vm.restaurant.reviews.push(reviews[i]);
@@ -58,6 +60,7 @@
                         }
                         vm.restaurant.rating = sum / numReviews;
                         vm.restaurant.numRatings = numReviews;
+                        populateStars(vm.restaurant._id, vm.restaurant.rating);
                     },
                     function (error) {
                         vm.alert = error.data;
@@ -99,6 +102,11 @@
                 )
         }
         //addRestaurant();
+
+        function populateStars(id, rate) {
+            var starId = id+" star-"+Math.ceil(rate);
+            document.getElementById(starId).checked = true;
+        }
     }
 
     function RestaurantSearchController(RestaurantService) {

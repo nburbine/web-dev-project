@@ -37,6 +37,11 @@ input {
     margin-bottom: 5px;
 }
 
+img {
+    margin-bottom: 15px;
+    vertical-align: middle;
+}
+
 body {
     padding-top: 100px;
     padding-bottom: 60px;

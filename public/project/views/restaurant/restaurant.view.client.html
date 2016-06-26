@@ -1,12 +1,30 @@
 <div class="container">
-    <div class="col-xs-6">
+    <div class="col-xs-12 col-md-6">
+        <img src="photo/test.jpg" width="75%">
+    </div>
+    <div class="col-md-6 col-xs-12">
         <ul class="list-group">
             <li class="list-group-item">
                 <h1>{{model.restaurant.name}}</h1>
                 <h4>{{model.restaurant.description}}</h4>
             </li>
             <li class="list-group-item">
-                <h3>{{model.restaurant.rating}} / 5 Average Rating</h3>
+                <div class="form-group">
+                    <div class="stars" id="rating">
+                        <form action="">
+                            <input class="star star-5" id="{{model.restaurant._id}} star-5" type="radio" name="star" value="5" disabled="true"/>
+                            <label class="star star-5" for="{{model.restaurant._id}} star-5"></label>
+                            <input class="star star-4" id="{{model.restaurant._id}} star-4" type="radio" name="star" value="4" disabled="true"/>
+                            <label class="star star-4" for="{{model.restaurant._id}} star-4"></label>
+                            <input class="star star-3" id="{{model.restaurant._id}} star-3" type="radio" name="star" value="3" disabled="true"/>
+                            <label class="star star-3" for="{{model.restaurant._id}} star-3"></label>
+                            <input class="star star-2" id="{{model.restaurant._id}} star-2" type="radio" name="star" value="2" disabled="true"/>
+                            <label class="star star-2" for="{{model.restaurant._id}} star-2"></label>
+                            <input class="star star-1" id="{{model.restaurant._id}} star-1" type="radio" name="star" value="1" disabled="true"/>
+                            <label class="star star-1" for="{{model.restaurant._id}} star-1"></label>
+                        </form>
+                    </div>
+                </div>
                 <h4>
                     <ng-pluralize count="model.restaurant.numRatings"
                                   when="{'1': '1 Rating',
@@ -19,15 +37,31 @@
             </li>
         </ul>
     </div>
-    <div class="col-xs-6">
-        <img src="photo/test.jpg" width="75%">
-    </div>
 </div>
 
-<div class="container" ng-if="model.user">
+<div class="container" ng-if="model.userId">
     <div ng-show="model.review">
+        <a class="glyphicon glyphicon-edit pull-right" href="#/user/{{model.userId}}/review/{{model.review._id}}"></a>
         <h3>Your Review</h3>
-        <h4>{{model.review.rate}}</h4>
+        <div class="form-group">
+            <div class="stars">
+                <form action="">
+                    <input class="star star-5" id="{{model.review._user}} star-5" type="radio" name="star" value="5" disabled="true"/>
+                    <label class="star star-5" for="{{model.review._user}} star-5"></label>
+                    <input class="star star-4" id="{{model.review._user}} star-4" type="radio" name="star" value="4" disabled="true"/>
+                    <label class="star star-4" for="{{model.review._user}} star-4"></label>
+                    <input class="star star-3" id="{{model.review._user}} star-3" type="radio" name="star" value="3" disabled="true"/>
+                    <label class="star star-3" for="{{model.review._user}} star-3"></label>
+                    <input class="star star-2" id="{{model.review._user}} star-2" type="radio" name="star" value="2" disabled="true"/>
+                    <label class="star star-2" for="{{model.review._user}} star-2"></label>
+                    <input class="star star-1" id="{{model.review._user}} star-1" type="radio" name="star" value="1" disabled="true"/>
+                    <label class="star star-1" for="{{model.review._user}} star-1"></label>
+                </form>
+                <div ng-if="model.review">
+                {{model.populateStars(model.review._user, model.review.rate)}}
+                </div>
+            </div>
+        </div>
         <div ng-show="model.review.review">
             <h4>"{{model.review.review}}"</h4>
         </div>
@@ -51,12 +85,31 @@
     <h3>Reviews</h3>
     <ul class="list-group">
         <li ng-repeat="review in model.restaurant.reviews" class="list-group-item">
+            <div class="form-group pull-right">
+                <div class="stars">
+                    <form action="">
+                        <input class="star star-5" id="{{review._id}} star-5" type="radio" name="star" value="5" disabled="true"/>
+                        <label class="star star-5" for="{{review._id}} star-5"></label>
+                        <input class="star star-4" id="{{review._id}} star-4" type="radio" name="star" value="4" disabled="true"/>
+                        <label class="star star-4" for="{{review._id}} star-4"></label>
+                        <input class="star star-3" id="{{review._id}} star-3" type="radio" name="star" value="3" disabled="true"/>
+                        <label class="star star-3" for="{{review._id}} star-3"></label>
+                        <input class="star star-2" id="{{review._id}} star-2" type="radio" name="star" value="2" disabled="true"/>
+                        <label class="star star-2" for="{{review._id}} star-2"></label>
+                        <input class="star star-1" id="{{review._id}} star-1" type="radio" name="star" value="1" disabled="true"/>
+                        <label class="star star-1" for="{{review._id}} star-1"></label>
+                    </form>
+                    <div>
+                        {{model.populateStars(review._id, review.rate)}}
+                    </div>
+                </div>
+            </div>
             <div>
-                <a href="#/user/">
+                <a href="#/user/{{review._user}}">
                 <img src="photo/test.jpg" class="pull-left nbb-review-img" height="60px" width="60px">
                 </a>
             </div>
-            <a href="#">
+            <a href="#/user/{{review._user}}">
             <h4>Andy</h4>
             </a>
             <h4>{{review.rating}}</h4>

@@ -60,8 +60,8 @@
                 controller: "FriendController",
                 controllerAs: "model"
             })
-            // .otherwise({
-            //     redirectTo: "/"
-            // });
+            .otherwise({
+                redirectTo: "/"
+            });
     }
 })();
