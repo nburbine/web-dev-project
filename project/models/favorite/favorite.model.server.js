@@ -9,7 +9,8 @@ module.exports = function () {
         findAllListsForUser: findAllListsForUser,
         findListById: findListById,
         updateList: updateList,
-        deleteListForUser: deleteListForUser
+        deleteListForUser: deleteListForUser,
+        addListForUser: addListForUser
 
     };
     return api;
@@ -43,6 +44,17 @@ module.exports = function () {
             {_id: listId},
             {
                 $pull: {
+                    _users: userId
+                }
+            }
+        );
+    }
+
+    function addListForUser(listId, userId) {
+        return Favorite.update(
+            {_id: listId},
+            {
+                $push: {
                     _users: userId
                 }
             }

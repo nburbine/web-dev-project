@@ -4,11 +4,10 @@ module.exports = function (app, models) {
 
     app.post("/projectApi/list", createList);
     app.get("/projectApi/user/:uid/list", findAllListsForUser);
-    //createList: createList,
-    //    findAllListsForUser: findAllListsForUser,
-    //    findListById: findListById,
-    //    updateList: updateList,
+    app.get("/projectApi/list/:lid", findListById);
+    app.put("/projectApi/list/", updateList);
     app.delete("/projectApi/user/:uid/list/:lid", deleteListForUser);
+    app.put("/projectApi/user/:uid/list/:lid", addListForUser);
     //    deleteListForUser: deleteListForUser
 
 
@@ -54,5 +53,48 @@ module.exports = function (app, models) {
             );
     }
 
+    function findListById(req, res) {
+        var lid = req.params.lid;
+        //console.log(userId);
+        favoriteModel
+            .findListById(lid)
+            .then(
+                function (list) {
+                    res.send(list);
+                },
+                function (error) {
+                    res.status(400).send(error);
+                }
+            );
+    }
+
+    function updateList(req, res) {
+        var list = req.body;
+        favoriteModel
+            .updateList(list._id, list)
+            .then(
+                function (list) {
+                    res.send(200);
+                },
+                function (error) {
+                    res.status(404).send("Unable to update list with ID: " + lid);
+                }
+            );
+    }
+
+    function addListForUser(req, res) {
+        var uid = req.params.uid;
+        var lid = req.params.lid;
+        favoriteModel
+            .addListForUser(lid, uid)
+            .then(
+                function (status) {
+                    res.send(200);
+                },
+                function (error) {
+                    res.status(400).send("Unable to add list with ID: " + lid);
+                }
+            );
+    }
 
 };

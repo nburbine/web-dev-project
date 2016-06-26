@@ -68,7 +68,7 @@
                            name="username"
                            id="username"
                            placeholder="Username"
-                           type="text"/>
+                           type="text" disabled/>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -80,7 +80,7 @@
                            type="email"/>
                 </div>
                 <div class="form-group">
-                    <label for="nickName">nickName</label>
+                    <label for="nickName">Nickname</label>
                     <input ng-model=model.user.nickname
                            class="form-control"
                            name="nickName"
@@ -146,7 +146,7 @@
             <tr ng-repeat="list in model.lists">
                 <td>{{list.name}}</td>
                 <td>{{list.description}}</td>
-                <td><a class="btn" href="" type="button"><span
+                <td><a class="btn" href="#/user/{{model.id}}/favorite/{{list._id}}" type="button"><span
                         class="glyphicon glyphicon-edit"></span></a>
                     <a class="btn" ng-click="model.deleteList(list._id)" type="button"><span
                             class="glyphicon glyphicon-remove"></span></a></td>

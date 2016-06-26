@@ -1,0 +1,88 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <a href="#">
+                    <span class="navbar-brand glyphicon glyphicon-play text-primary pull-left"
+                          aria-hidden="true">I am a logo</span>
+        </a>
+
+        <a href="">
+                <span class="navbar-brand glyphicon glyphicon-eye-open text-primary pull-left"
+                      aria-hidden="true"></span>
+        </a>
+
+        <div id="navbar" class="form-group navbar-collapse navbar-brand collapse text-primary pull-right">
+            <a class="btn btn-danger" href="#login" role="button">Log Out</a>
+
+        </div>
+
+        <div class="navbar-brand text-primary pull-right">
+            <input class="search-input" type="text" id="search-query" placeholder="Search Restaurant" name="q"
+                   autocomplete="off" spellcheck="false">
+            <a ng-click="model.searchPhotos(searchText)" href="#search"
+               class="btn btn-default"
+               type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a></div>
+    </div>
+</nav>
+<div class="container">
+    My Favorite List
+    <div class="dropdown pull-right">
+        <button class="btn btn-info dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"> Share this list to
+            Friends
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+            <li ng-repeat="friend in model.friends" role="presentation">
+                <a ng-click="model.shareListToFriend(friend._id)" role="menuitem" tabindex="-1">{{friend.nickname}}</a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="form-group">
+        <label for="name">List Name</label>
+        <input ng-model="model.list.name"
+               class="form-control"
+               name="name"
+               id="name"
+               placeholder="List Name"
+               type="text"/>
+</div>
+    <div class="form-group">
+        <label for="description">Description</label>
+    <textarea ng-model="model.list.description"
+              rows="3"
+              class="form-control"
+              name="description"
+              id="description"
+              placeholder="description"
+    ></textarea>
+    </div>
+    <div class="form-group">
+        <a ng-click="model.updateList()" class="btn btn-primary">
+            Update Information
+        </a>
+    </div>
+
+</div>
+
+
+<div ng-show="model.success" class="alert alert-success">
+    {{model.success}}
+</div>
+
+<div ng-show="model.error" class="alert alert-danger">
+    {{model.error}}
+</div>
+
+<div class="container">
+    <h3>Restaurants</h3>
+    <table class="table table-hover">
+        <tr ng-repeat="restaurant in model.restaurants">
+            <td>{{restaurant.name}}</td>
+            <td>{{friend.email}}</td>
+            <td><a ng-click="model.deleteFriend(friend._id)" type="button"><span
+                    class="glyphicon glyphicon-remove"></span></a></td>
+        </tr>
+    </table>
+
+</div>

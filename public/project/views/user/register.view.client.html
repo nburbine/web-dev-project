@@ -1,57 +1,101 @@
 <div class="container">
-
+    <div class="container text-center">
     <h2>
         Register
     </h2>
-
+    </div>
     <div ng-if="model.error" class="alert alert-danger">
         {{model.error}}
     </div>
+    <div class="container">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="username" class="control-label col-sm-2">Username</label>
+                <div class="col-sm-8">
+                    <input ng-model="model.user.username"
+                           class="form-control"
+                           name="username"
+                           id="username"
+                           type="text"
+                           placeholder="username"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nickname" class="control-label  col-sm-2">Nickname</label>
+                <div class="col-sm-8">
+                    <input ng-model="model.user.nickname"
+                           class="form-control"
+                           name="nickname"
+                           id="nickname"
+                           type="text"
+                           placeholder="nickname"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="control-label col-sm-2">Email</label>
+                <div class="col-sm-8">
+                    <input ng-model="model.user.email"
+                           class="form-control"
+                           name="email"
+                           id="email"
+                           type="text"
+                           placeholder="email"/></div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="control-label col-sm-2">Password</label>
+                <div class="col-sm-8">
+                    <input ng-model="model.user.password"
+                           class="form-control"
+                           name="password"
+                           id="password"
+                           type="password"
+                           placeholder="password"/></div>
+            </div>
+            <div class="form-group">
+                <label for="verifyPassword" class="control-label  col-sm-2">Verify Password</label>
+                <div class="col-sm-8">
+                    <input ng-model="model.user.password2"
+                           class="form-control"
+                           name="verifyPassword"
+                           id="verifyPassword"
+                           type="password"
+                           placeholder="verify password"/></div>
+            </div>
 
-    <form>
-        <input ng-model="model.user.username"
-               class="form-control"
-               name="username"
-               id="username"
-               type="text"
-               placeholder="username"/>
-        <input ng-model="model.user.nickname"
-               class="form-control"
-               name="nickname"
-               id="nickname"
-               type="text"
-               placeholder="nickname"/>
-        <input ng-model="model.user.email"
-               class="form-control"
-               name="email"
-               id="email"
-               type="text"
-               placeholder="email"/>
-        <input ng-model="model.user.password"
-               class="form-control"
-               name="password"
-               id="password"
-               type="password"
-               placeholder="password"/>
-        <input ng-model="model.user.password2"
-               class="form-control"
-               name="verifyPassword"
-               id="verifyPassword"
-               type="password"
-               placeholder="verify password"/>
-        <div class="checkbox">
-            <label>
-                <input ng-model="model.user.type"
-                       type="checkbox"> VIP member(able to post reviews for restaurants)
-            </label>
-        </div>
-    </form>
+            <div class="form-group">
+                <div class="col-sm-2">
 
-    <a ng-click="model.register()" class="btn btn-block btn-primary">
-        Register
-    </a>
+                </div>
+                <div class="col-sm-8">
+                    <div class="checkbox ">
+                        <label>
+                            <input ng-model="model.user.type"
+                                   type="checkbox"> VIP member(able to post reviews for restaurants)
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
 
-    <a href="#/login" class="btn btn-block btn-danger">
-        Cancel
-    </a>
+                </div>
+                <div class="col-sm-8">
+                    <a ng-click="model.register()" class="btn btn-block btn-primary">
+                        Register
+                    </a>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+
+                </div>
+                <div class="col-sm-8">
+                    <a href="#/" class="btn btn-block btn-danger">
+                        Cancel
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+
 </div>
