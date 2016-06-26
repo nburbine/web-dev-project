@@ -18,8 +18,10 @@
 
     function ProfileController($routeParams, UserService, $location, $rootScope, FavoriteService) {
         var vm = this;
-        vm.id = $routeParams["id"];
         vm.logout = logout;
+
+        vm.profileId = $routeParams['id'];
+        vm.currentUser = false;
 
         vm.updateUser = updateUser;
         vm.unregister = unregister;
@@ -27,16 +29,30 @@
         vm.deleteList = deleteList;
 
         function init() {
-            vm.restaurants = restaurants;
             UserService
-                .findUserById(vm.id)
-                .then(function (response) {
-                    vm.user = response.data;
-                    console.log(vm.user.url);
-                });
+                .checkLoggedin()
+                .then(
+                    function (response) {
+                        if (!(response.data === "0")) {
+                            vm.user = response.data;
+                            console.log(vm.user);
+                            if (vm.user._id === vm.profileId) {
+                                vm.currentUser = true;
+                            } 
+                        }
+                    }
+                );
+
+            UserService
+                .findUserById(vm.profileId)
+                .then(
+                    function (response) {
+                        vm.profileUser = response.data;
+                    }
+                );
 
             FavoriteService
-                .findAllListsForUser(vm.id)
+                .findAllListsForUser(vm.profileId)
                 .then(function (response) {
                     vm.lists = response.data;
                 })
