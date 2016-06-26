@@ -75,14 +75,6 @@
         }
         init();
 
-        function populateStars() {
-            console.log('afsd');
-            console.log(document.getElementById('star-5'));
-            $timeout(function () {
-                console.log('asfd');
-            }, 1);
-        }
-
         function addReview() {
             var review = {
                 _user: vm.userId,
@@ -105,8 +97,7 @@
         vm.userId = $routeParams['uid'];
 
         vm.review = {
-            _restaurant: vm.restaurantId,
-
+            _restaurant: vm.restaurantId
         };
 
         function init() {
@@ -141,7 +132,7 @@
                 }
             }
 
-            var review = document.getElementsByName('review').value;
+            var review = document.getElementById('review').value;
             if (review) {
                 vm.review.review = review;
             }
