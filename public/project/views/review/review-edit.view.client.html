@@ -3,6 +3,9 @@
     <div ng-if="model.success" class="alert alert-success">
         {{model.success}}
     </div>
+    <div ng-if="model.alert" class="alert alert-danger">
+        {{model.alert}}
+    </div>
     <div>
         <form>
             <div class="form-group">
@@ -24,7 +27,7 @@
                 <div class="nbb-review" ng-show="model.user.type">
                     <label for="review">Review</label>
                     <div>
-                        <textarea class="form-control" ng-model="model.review.review" id="review"></textarea>
+                        <textarea class="form-control" ng-model="model.review.review" id="review" rows="5"></textarea>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,8 @@
 <div class="container">
     <h2>Add Review for {{model.restaurant.name}}</h2>
+    <div ng-if="model.alert" class="alert alert-danger">
+        {{model.alert}}
+    </div>
     <form>
         <div class="form-group">
             <div class="stars" id="rating">
@@ -18,10 +21,10 @@
             </div><br/>
             <div ng-show="model.user.type">
             <label for="review">Review</label>
-            <textarea id="review" class="form-control" name="review"></textarea>
+            <textarea id="review" class="form-control" name="review" rows="5"></textarea>
             </div>
         </div>
     </form>
     <a class="btn btn-block btn-primary" ng-click="model.createReview()">Save Review</a>
-    <a class="btn btn-block btn-danger" href="#/restaurant/{{model.restaurantId}}">Cancel</a>
+    <a class="btn btn-block btn-danger" ng-click="model.cancel()">Cancel</a>
 </div>

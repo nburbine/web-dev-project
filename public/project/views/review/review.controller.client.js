@@ -92,6 +92,7 @@
         var vm = this;
 
         vm.createReview = createReview;
+        vm.cancel = cancel;
 
         vm.restaurantId = $routeParams['rid'];
         vm.userId = $routeParams['uid'];
@@ -152,6 +153,11 @@
                     )
             }
         }
+
+        function cancel() {
+            console.log(window.history);
+            window.history.back();
+        }
     }
     
     function EditReviewController($routeParams, ReviewService, RestaurantService, UserService) {
@@ -185,6 +191,8 @@
                                 stars[i].checked = true;
                             }
                         }
+                        var textarea = document.getElementById('review');
+
                         return vm.review._restaurant;
                     },
                     function (error) {
@@ -218,7 +226,7 @@
                     function (response) {
                         vm.success = "Changes Saved";
                         console.log(response);
-                        window.location = '#/user/'+vm.userId+'/review';
+                        window.history.back();
                     },
                     function (error) {
                         vm.alert = error.data;
@@ -232,6 +240,7 @@
                 .then(
                     function (response) {
                         console.log(response);
+                        window.history.back();
                     },
                     function (error) {
                         vm.alert = error;
