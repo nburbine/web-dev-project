@@ -63,9 +63,10 @@
         init();
 
         function populateStars(id, rate) {
-            console.log(id, rate);
-            var starId = id+" star-"+Math.ceil(rate);
-            document.getElementById(starId).checked = true;
+            if (rate) {
+                var starId = id + " star-" + Math.ceil(rate);
+                document.getElementById(starId).checked = true;
+            }
         }
     }
 })();

@@ -18,7 +18,6 @@
                 .then(
                     function (response) {
                         vm.restaurant = response.data;
-                        console.log(vm.restaurant.reviews.type);
                         return vm.restaurant.reviews;
                     },
                     function (error) {
@@ -104,8 +103,10 @@
         //addRestaurant();
 
         function populateStars(id, rate) {
-            var starId = id+" star-"+Math.ceil(rate);
-            document.getElementById(starId).checked = true;
+            if (rate) {
+                var starId = id + " star-" + Math.ceil(rate);
+                document.getElementById(starId).checked = true;
+            }
         }
     }
 
