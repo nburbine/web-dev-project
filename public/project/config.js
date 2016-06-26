@@ -60,19 +60,13 @@
                 controller: "FriendController",
                 controllerAs: "model"
             })
-<<<<<<< HEAD
-            .otherwise({
-                redirectTo: "/"
-            });
-=======
             .when("/user/:id/favorite/:lid", {
                 templateUrl: "views/favorite/favorite.view.client.html",
                 controller: "FavoriteController",
                 controllerAs: "model"
             })
-            // .otherwise({
-            //     redirectTo: "/"
-            // });
->>>>>>> origin/master
+            .otherwise({
+                redirectTo: "/"
+            });
     }
 })();
