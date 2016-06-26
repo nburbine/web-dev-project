@@ -3,25 +3,29 @@
     <div>
         <ul class="list-group">
             <li ng-repeat="review in model.reviews" class="list-group-item">
-                {{review}}
-                <h3 ng-model="review.restaurant"></h3>
-                <div class="stars" id="rating">
-                        <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
-                        <label class="star star-5" for="star-5"></label>
-                        <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>
-                        <label class="star star-4" for="star-4"></label>
-                        <input class="star star-3" id="star-3" type="radio" name="star" value="3"/>
-                        <label class="star star-3" for="star-3"></label>
-                        <input class="star star-2" id="star-2" type="radio" name="star" value="2"/>
-                        <label class="star star-2" for="star-2"></label>
-                        <input class="star star-1" id="star-1" type="radio" name="star" value="1"/>
-                        <label class="star star-1" for="star-1"></label>
+                <a class="glyphicon glyphicon-edit pull-right" href="#/user/{{model.userId}}/review/{{review._id}}"></a>
+                <a href="#/restaurant/{{review._restaurant}}">
+                    <h3>{{review.restaurant.name}}</h3>
+                </a>
+                <div class="form-group">
+                    <div class="stars" id="rating">
+                        <form action="">
+                            <input class="star star-5" id="{{review._id}} star-5" type="radio" name="star" value="5" disabled="true"/>
+                            <label class="star star-5" for="{{review._id}} star-5"></label>
+                            <input class="star star-4" id="{{review._id}} star-4" type="radio" name="star" value="4" disabled="true"/>
+                            <label class="star star-4" for="{{review._id}} star-4"></label>
+                            <input class="star star-3" id="{{review._id}} star-3" type="radio" name="star" value="3" disabled="true"/>
+                            <label class="star star-3" for="{{review._id}} star-3"></label>
+                            <input class="star star-2" id="{{review._id}} star-2" type="radio" name="star" value="2" disabled="true"/>
+                            <label class="star star-2" for="{{review._id}} star-2"></label>
+                            <input class="star star-1" id="{{review._id}} star-1" type="radio" name="star" value="1" disabled="true"/>
+                            <label class="star star-1" for="{{review._id}} star-1"></label>
+                        </form>
+                    </div>
                 </div>
                 <h5>{{review.review}}</h5>
-                <a href="#/user/{{model.userId}}/review/{{review._id}}">Edit</a>
+                <a repeat-end="{{review._id}}, {{review.rate}}"></a>
             </li>
-
-            <div ng-init="model.populateStars()"></div>
         </ul>
     </div>
 </div>

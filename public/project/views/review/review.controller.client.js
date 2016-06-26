@@ -3,68 +3,85 @@
         .module("RestaurantApp")
         .controller("ReviewListController", ReviewListController)
         .controller("NewReviewController", NewReviewController)
-        .controller("EditReviewController", EditReviewController);
+        .controller("EditReviewController", EditReviewController)
+        .directive("repeatEnd", repeatEnd);
+
+    function repeatEnd($timeout) {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attrs) {
+                $timeout(function () {
+                    var values = attrs.repeatEnd.split(", ");
+                    var reviewId = values[0];
+                    var rate = values[1];
+                    var starId = reviewId+" star-"+rate;
+                    document.getElementById(starId).checked = true;
+                }, 0)
+            }
+        }
+    }
     
     function ReviewListController($routeParams, ReviewService, RestaurantService, $timeout) {
         var vm = this;
-
+        var doneReviews = 0;
+        var reviewIdx = 0;
         vm.userId = $routeParams['id'];
 
         function init() {
-            vm.reviews = [];
+            var reviews = [];
             ReviewService
                 .findAllReviewsForUser(vm.userId)
                 .then(
                     function (response) {
-                        var reviews = response.data;
-                        vm.reviews = reviews;
-                        var restaurantIds = [];
-                        for (var i in reviews) {
-                            restaurantIds.push(reviews[i]._restaurant);
-                        }
-                        return [reviews, restaurantIds];
+                        return response.data;
                     },
                     function (error) {
                         vm.alert = error.body;
                     }
-                // )
-                // .then(
-                //     function (values) {
-                //         var reviews = values[0];
-                //         var restaurantIds = values[1];
-                //         for (var i in restaurantIds) {
-                //             RestaurantService
-                //                 .findRestaurantById(restaurantIds[i])
-                //                 .then(
-                //                     function (response) {
-                //                         var restaurant = response.data;
-                //                         reviews[i].restaurant = restaurant;
-                //                         return reviews[i];
-                //                     }
-                //                 )
-                //         }
-                //     }
-                // )
-                // .then(
-                //     function (review) {
-                //         vm.reviews.push(review);
-                //     }
+                )
+                .then(
+                    function (reviews) {
+                        var numReviews = reviews.length;
+                        for (var i in reviews) {
+                            RestaurantService
+                                .findRestaurantById(reviews[i]._restaurant)
+                                .then(
+                                    function (response) {
+                                        var restaurant = response.data;
+                                        var review = reviews[reviewIdx];
+                                        reviewIdx += 1;
+                                        review.restaurant = restaurant;
+                                        return [restaurant, numReviews];
+                                    },
+                                    function (error) {
+                                        console.log('error', error)
+                                    }
+                                )
+                                .then(
+                                    function (values) {
+                                        var numReviews = values[1];
+                                        doneReviews += 1;
+                                        if (doneReviews === numReviews) {
+                                            vm.reviews = reviews;
+                                        }
+                                    },
+                                    function (error) {
+                                        console.log(error, 'error');
+                                    }
+                                )
+                        }
+                    }
                 )
         }
         init();
 
-
-        // for (var i in reviews) {
-        //     RestaurantService
-        //         .findRestaurantById(reviews[i]._restaurant)
-        //         .then(
-        //             function (response) {
-        //                 var restaurant = response.data;
-        //                 console.log(restaurant.name);
-        //                 reviews[i].restaurant = restaurant.name;
-        //             }
-        //         )
-        // }
+        function populateStars() {
+            console.log('afsd');
+            console.log(document.getElementById('star-5'));
+            $timeout(function () {
+                console.log('asfd');
+            }, 1);
+        }
 
         function addReview() {
             var review = {
