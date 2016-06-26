@@ -1,29 +1,27 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <a href="#/">
-                    <span class="navbar-brand glyphicon glyphicon-play text-primary pull-left"
-                          aria-hidden="true">I am a logo</span>
-        </a>
-
-        <a href="">
-                <span class="navbar-brand glyphicon glyphicon-eye-open text-primary pull-left"
-                      aria-hidden="true"></span>
-        </a>
-
-        <div id="navbar" class="form-group navbar-collapse navbar-brand collapse text-primary pull-right">
-            <a class="btn btn-success" href="#login" role="button">Login</a>
-            <a class="btn btn-success" href="#register" role="button">Register</a>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <img class="logo pull-left" src="photo\logo.jpg">
+            <a class="navbar-brand">Restaurant App</a>
+        </div>
+        <div id="navbar" class="">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="btn btn-default" href="#login" role="button">Login</a></li>
+                <li><a class="btn btn-default" href="#register" role="button">Register</a></li>
+            </ul>
+            <form class="navbar-form navbar-center">
+                <input type="text" class="form-control" placeholder="Search Restaurant">
+                <a ng-click="model.searchPhotos(searchText)" href="#search"
+                   class="btn btn-default"
+                   type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+            </form>
         </div>
 
-        <div class="navbar-brand text-primary pull-right">
-            <input class="search-input" type="text" id="search-query" placeholder="Search Restaurant" name="q"
-                   autocomplete="off" spellcheck="false">
-            <a ng-click="model.searchPhotos(searchText)" href="#search"
-               class="btn btn-default"
-               type="button">
-            <span class="glyphicon glyphicon-search"></span>
-            </a></div>
+
     </div>
+
 </nav>
 
 
@@ -32,7 +30,7 @@
         <div class="row">
             <div class="col-sm-4">
                 <a href="#/restaurant/{{restaurant._id}}">
-                    <img class="img-rounded" src="photo\test.jpg" alt="Generic placeholder image" width="200" height="190">
+                    <img class="img-rounded nbb-restaurant-img" src="photo\test.jpg" alt="Generic placeholder image" width="200" height="190">
                 </a>
             </div>
             <div class="col-sm-8">
