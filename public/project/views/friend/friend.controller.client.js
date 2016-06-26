@@ -80,7 +80,6 @@
             return false;
         }
 
-
         function deleteFriend(fid) {
             FriendService
                 .deleteFriend(vm.id, fid)

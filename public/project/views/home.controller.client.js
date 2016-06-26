@@ -2,12 +2,12 @@
     angular
         .module("RestaurantApp")
         .controller("HomeController", HomeController);
-    
-    function HomeController($routeParams, RestaurantService, ReviewService, UserService) {
+
+    function HomeController($location, UserService, RestaurantService, ReviewService) {
         var vm = this;
         
         vm.populateStars = populateStars;
-        
+        vm.searchRestaurant = searchRestaurant;
         function init() {
             UserService
                 .checkLoggedin()
@@ -76,6 +76,10 @@
                 var starId = id + " star-" + Math.ceil(rate);
                 document.getElementById(starId).checked = true;
             }
+        }
+
+        function searchRestaurant(keyword) {
+            $location.url("/search/" + keyword);
         }
     }
 })();

@@ -9,7 +9,8 @@ module.exports = function () {
         deleteRestaurant: deleteRestaurant,
         updateRestaurant: updateRestaurant,
         findAllRestaurants: findAllRestaurants,
-        findRestaurantById: findRestaurantById
+        findRestaurantById: findRestaurantById,
+        searchRestaurant: searchRestaurant
     };
     return api;
 
@@ -40,4 +41,12 @@ module.exports = function () {
     function findRestaurantById(restaurantId) {
         return Restaurant.findOne({_id: restaurantId});
     }
+
+    function searchRestaurant(keyword) {
+        // return Restaurant.find({ $or: [ {"name" : "/.*"+keyword+".*/i"}, {"type" : "/.*"+keyword+".*/i"} ] });
+        var r = new RegExp(keyword, 'i');
+        return Restaurant.find({$or: [{name: {$regex: r}}, {"type": {$regex: r}}]});
+        // return Restaurant.find({ $or: [ {"name" : " '/.*sea.*/i'"}, {"type" : "'/.*ood.*/i'"} ] });
+    }
+
 };

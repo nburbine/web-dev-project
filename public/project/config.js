@@ -20,9 +20,9 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            .when("/search", {
-                templateUrl: "views/search.view.client.html",
-                controller: "RegisterController",
+            .when("/search/:keyword", {
+                templateUrl: "views/search/search.view.client.html",
+                controller: "SearchController",
                 controllerAs: "model"
             })
             .when("/restaurant", {
