@@ -5,6 +5,9 @@
 
     function SearchController($scope, $routeParams, RestaurantService) {
         var vm = this;
+        vm.keyword = $routeParams["keyword"];
+        console.log(vm.keyword);
+
 
         $scope.sortColumn = "name";
         $scope.reverseSort = false;
@@ -28,11 +31,22 @@
 
 
         function init() {
-
+            RestaurantService
+                .searchRestaurant(vm.keyword)
+                .then(function (response) {
+                    vm.restaurants = response.data;
+                    console.log(vm.restaurants);
+                });
+            //.then(function (response) {
+            //        FriendService
+            //            .getFriends(vm.user.friends)
+            //            .then(function (response) {
+            //                vm.friends = response.data;
+            //            })
+            //    }
+            //)
         }
 
         init();
     }
-
-
 })();

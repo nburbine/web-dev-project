@@ -6,6 +6,8 @@ module.exports = function (app, models) {
     app.post("/projectApi/restaurant/", createRestaurant);
     app.delete("/projectApi/restaurant/:rid", deleteRestaurant);
     app.put("/projectApi/restaurant/:rid", updateRestaurant);
+    app.get("/projectApi/search/:keyword", searchRestaurant);
+
     
     function getRestaurants(req, res) {
         var restaurantId = req.params.rid;
@@ -84,6 +86,21 @@ module.exports = function (app, models) {
                 },
                 function (error) {
                     res.status(404).send("Unable to remove restaurant with ID: " + restaurantId)
+                }
+            );
+    }
+
+    function searchRestaurant(req, res) {
+        var keyword = req.params.keyword;
+        restaurantModel
+            .searchRestaurant(keyword)
+            .then(
+                function (data) {
+                    var restaurants = data;
+                    res.send(restaurants);
+                },
+                function (error) {
+                    res.status(400).send(error)
                 }
             );
     }
