@@ -46,7 +46,19 @@
     <div class="col-sm-6 col-xs-12">
         <ul class="list-group">
             <li class="list-group-item">
+                <div class="form-inline">
                 <h1>{{model.restaurant.name}}</h1>
+                    <div class="dropdown pull-right">
+                        <button class="btn btn-info dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+                            Favorite this restaurant
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <li ng-repeat="list in model.lists" role="presentation">
+                                <a ng-click="model.favoriteRestaurant(list._id)" role="menuitem" tabindex="-1">{{list.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="stars" id="rating">
                         <form action="">

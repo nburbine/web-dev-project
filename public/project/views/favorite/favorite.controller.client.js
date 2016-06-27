@@ -10,6 +10,13 @@
         vm.updateList = updateList;
         vm.shareListToFriend = shareListToFriend;
         vm.searchRestaurant = searchRestaurant;
+        vm.removeRestaurantFromList = removeRestaurantFromList;
+        vm.restaurants = [{
+            _id: "123",
+            name: "233",
+            type: 'seafood',
+
+        }];
         function searchRestaurant(keyword) {
             if (!keyword) {
             } else {
@@ -30,7 +37,6 @@
                             })
                     }
                 );
-
             FavoriteService
                 .findListById(vm.lid)
                 .then(function (response) {
@@ -93,6 +99,24 @@
                         }
                     )
             }
+        }
+
+        function removeRestaurantFromList(rid) {
+            FavoriteService
+                .removeRestaurantFromList(vm.lid, rid)
+                .then(
+                    function (response) {
+                        FavoriteService
+                            .findListById(vm.lid)
+                            .then(function (response) {
+                                vm.list = response.data;
+                            });
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    }
+                )
+
         }
     }
 

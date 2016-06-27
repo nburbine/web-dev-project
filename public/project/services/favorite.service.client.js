@@ -42,5 +42,10 @@
             var url = "/projectApi/list/" + lid;
             return $http.get(url);
         }
+
+        function removeRestaurantFromList(lid, rid) {
+            var url = "/projectApi/list/" + lid + "/restaurant/" + rid;
+            return $http.delete(url);
+        }
     }
 })();
