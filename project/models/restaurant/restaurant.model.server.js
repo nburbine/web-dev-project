@@ -10,7 +10,8 @@ module.exports = function () {
         updateRestaurant: updateRestaurant,
         findAllRestaurants: findAllRestaurants,
         findRestaurantById: findRestaurantById,
-        searchRestaurant: searchRestaurant
+        searchRestaurant: searchRestaurant,
+        getRestaurants: getRestaurants
     };
     return api;
 
@@ -49,6 +50,13 @@ module.exports = function () {
         // return Restaurant.find({name: "The Rusty Tire"});
         return Restaurant.find({$or: [{name: {$regex: r}}, {"type": {$regex: r}}]});
         // return Restaurant.find({ $or: [ {"name" : " '/.*sea.*/i'"}, {"type" : "'/.*ood.*/i'"} ] });
+    }
+
+
+    function getRestaurants(restaurantlist) {
+        return Restaurant.find({
+            _id: {$in: restaurantlist}
+        });
     }
 
 };

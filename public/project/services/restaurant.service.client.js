@@ -10,7 +10,8 @@
             deleteRestaurant: deleteRestaurant,
             findAllRestaurants: findAllRestaurants,
             findRestaurantById: findRestaurantById,
-            searchRestaurant: searchRestaurant
+            searchRestaurant: searchRestaurant,
+            getRestaurants: getRestaurants
         };
         return api;
 
@@ -43,6 +44,11 @@
         function searchRestaurant(keyword) {
             var url = "/projectApi/search/" + keyword;
             return $http.get(url);
+        }
+
+        function getRestaurants(rlist) {
+            var url = "/projectApi/restaurants";
+            return $http.post(url, rlist);
         }
     }
 })();

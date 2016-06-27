@@ -10,7 +10,9 @@
             deleteListForUser: deleteListForUser,
             addListForUser: addListForUser,
             findListById: findListById,
-            updateList: updateList
+            updateList: updateList,
+            addRestaurantToList: addRestaurantToList,
+            removeRestaurantFromList: removeRestaurantFromList
         };
         return api;
 
@@ -46,6 +48,11 @@
         function removeRestaurantFromList(lid, rid) {
             var url = "/projectApi/list/" + lid + "/restaurant/" + rid;
             return $http.delete(url);
+        }
+
+        function addRestaurantToList(lid, rid) {
+            var url = "/projectApi/list/" + lid + "/restaurant/" + rid;
+            return $http.get(url);
         }
     }
 })();

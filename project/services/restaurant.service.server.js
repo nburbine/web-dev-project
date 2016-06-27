@@ -7,6 +7,7 @@ module.exports = function (app, models) {
     app.delete("/projectApi/restaurant/:rid", deleteRestaurant);
     app.put("/projectApi/restaurant/:rid", updateRestaurant);
     app.get("/projectApi/search/:keyword", searchRestaurant);
+    app.post("/projectApi/restaurants", getRestaurants);
 
     
     function getRestaurants(req, res) {
@@ -103,5 +104,18 @@ module.exports = function (app, models) {
                     res.status(400).send(error)
                 }
             );
+    }
+
+    function getRestaurants(req, res) {
+        var restaurantList = req.body;
+        restaurantModel
+            .getRestaurants(restaurantList)
+            .then(
+                function (restaurants) {
+                    res.json(restaurants);
+                },
+                function (err) {
+                    done(err, null);
+                })
     }
 };
