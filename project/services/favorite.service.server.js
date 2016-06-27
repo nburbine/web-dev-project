@@ -9,7 +9,7 @@ module.exports = function (app, models) {
     app.delete("/projectApi/user/:uid/list/:lid", deleteListForUser);
     app.put("/projectApi/user/:uid/list/:lid", addListForUser);
     //    deleteListForUser: deleteListForUser
-
+    app.delete("/projectApi/list/:lid/restaurant/:rid", removeRestaurantFromList);
 
     function createList(req, res) {
         var newlist = req.body;
@@ -93,6 +93,21 @@ module.exports = function (app, models) {
                 },
                 function (error) {
                     res.status(400).send("Unable to add list with ID: " + lid);
+                }
+            );
+    }
+
+    function removeRestaurantFromList(req, res) {
+        var rid = req.params.rid;
+        var lid = req.params.lid;
+        favoriteModel
+            .removeRestaurantFromList(lid, uid)
+            .then(
+                function (status) {
+                    res.send(200);
+                },
+                function (error) {
+                    res.status(400).send("Unable to remove restaurant with ID: " + lid);
                 }
             );
     }

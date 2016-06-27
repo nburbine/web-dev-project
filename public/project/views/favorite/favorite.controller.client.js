@@ -10,6 +10,8 @@
         vm.updateList = updateList;
         vm.shareListToFriend = shareListToFriend;
         vm.searchRestaurant = searchRestaurant;
+        vm.removeRestaurantFromList = removeRestaurantFromList;
+
         function searchRestaurant(keyword) {
             if (!keyword) {
             } else {
@@ -49,7 +51,14 @@
                 .findUserById(vm.id)
                 .then(function (response) {
                     vm.user = response.data;
-                });
+                        FriendService
+                            .getFriends(vm.user.friends)
+                            .then(function (response) {
+                                vm.friends = response.data;
+                                console.log(vm.friends);
+                            })
+                    }
+                );
 
             FavoriteService
                 .findListById(vm.lid)
@@ -113,6 +122,24 @@
                         }
                     )
             }
+        }
+
+        function removeRestaurantFromList(rid) {
+            FavoriteService
+                .removeRestaurantFromList(vm.lid, rid)
+                .then(
+                    function (response) {
+                        FavoriteService
+                            .findListById(vm.lid)
+                            .then(function (response) {
+                                vm.list = response.data;
+                            });
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    }
+                )
+
         }
     }
 

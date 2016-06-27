@@ -10,8 +10,8 @@ module.exports = function () {
         findListById: findListById,
         updateList: updateList,
         deleteListForUser: deleteListForUser,
-        addListForUser: addListForUser
-
+        addListForUser: addListForUser,
+        removeRestaurantFromList: removeRestaurantFromList
     };
     return api;
 
@@ -56,6 +56,17 @@ module.exports = function () {
             {
                 $push: {
                     _users: userId
+                }
+            }
+        );
+    }
+
+    function removeRestaurantFromList(lid, rid) {
+        return Favorite.update(
+            {_id: lid},
+            {
+                $pull: {
+                    restaurants: rid
                 }
             }
         );

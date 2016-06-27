@@ -3,14 +3,18 @@
         .module("RestaurantApp")
         .controller("RestaurantController", RestaurantController)
         .controller("RestaurantSearchController", RestaurantSearchController)
-        .controller("RestaurantListController", RestaurantListController);
     
-    function RestaurantController($routeParams, RestaurantService, UserService, ReviewService, $location) {
+    function RestaurantController($routeParams, RestaurantService, UserService, ReviewService, FavoriteService, $location) {
         var vm = this;
 
         vm.restaurantId = $routeParams['rid'];
         vm.populateStars = populateStars;
         vm.searchRestaurant = searchRestaurant;
+        vm.favoriteRestaurant = favoriteRestaurant;
+        
+        function favoriteRestaurant(listId) {
+        }
+        
         function searchRestaurant(keyword) {
             if (!keyword) {
             } else {
@@ -25,6 +29,13 @@
                     function (response) {
                         if (!(response.data === "0")) {
                             vm.user = response.data;
+                            console.log(vm.user);
+                            FavoriteService
+                                .findAllListsForUser(vm.user._id)
+                                .then(function (response) {
+                                    vm.lists = response.data;
+                                    console.log(vm.lists);
+                                })
                         }
                     }
                 );
