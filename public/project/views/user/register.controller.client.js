@@ -8,6 +8,7 @@
         var vm = this;
 
         vm.register = register;
+        vm.searchRestaurant = searchRestaurant;
         function register() {
             if (vm.user.username == null) {
                 vm.error = "Please enter username and password";
@@ -28,6 +29,14 @@
                             vm.error = error.data;
                         }
                     );
+            }
+        }
+
+        function searchRestaurant(keyword) {
+            if (!keyword) {
+
+            } else {
+                $location.url("/search/" + keyword);
             }
         }
     }

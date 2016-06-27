@@ -79,7 +79,11 @@
         }
 
         function searchRestaurant(keyword) {
+            if (!keyword) {
+
+            } else {
             $location.url("/search/" + keyword);
+            }
         }
     }
 })();

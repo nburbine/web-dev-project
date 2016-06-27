@@ -6,6 +6,15 @@
     function LoginController($location, UserService, $rootScope) {
         var vm = this;
         vm.login = login;
+        vm.searchRestaurant = searchRestaurant;
+        function searchRestaurant(keyword) {
+            if (!keyword) {
+            } else {
+                $location.url("/search/" + keyword);
+            }
+        }
+
+
         function login() {
             UserService
                 .login(vm.username, vm.password)
