@@ -86,7 +86,7 @@
                     description: "Good seafood",
                     type: "Seafood",
                     address: "7 Yawkey Way",
-                    url: "",
+                    url: "photo/andy.jpg",
                     menu: [
                         {
                             description: "Deep fried fish",
@@ -110,7 +110,7 @@
                     description: "Standard pub fare",
                     type: "Pub",
                     address: "3 Huntington Avenue",
-                    url: "photo/test.jpg",
+                    url: "photo/bar.jpg",
                     menu: [
                         {
                             description: "A dozen spicy wings",
@@ -129,7 +129,7 @@
                     description: "Chic sushi",
                     type: "Sushi",
                     address: "800 Tremont Avenue",
-                    url: "",
+                    url: "photo/sushi.jpg",
                     menu: [
                         {
                             description: "6 tuna rolls",
