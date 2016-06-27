@@ -146,7 +146,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="list in model.lists">
-                <td>{{list.name}}</td>
+                <td><a href="#/user/{{model.user._id}}/favorite/{{list._id}}">{{list.name}}</a></td>
                 <td>{{list.description}}</td>
                 <td ng-if="model.currentUser"><a class="btn" href="#/user/{{model.user._id}}/favorite/{{list._id}}" type="button"><span
                         class="glyphicon glyphicon-edit"></span></a>

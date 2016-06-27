@@ -101,7 +101,7 @@
             </thead>
             <tbody>
         <tr ng-repeat="restaurant in model.restaurants">
-            <td>{{restaurant.name}}</td>
+            <td><a href="#/restaurant/{{restaurant._id}}">{{restaurant.name}}</a></td>
             <td>{{restaurant.type}}</td>
             <td><a ng-click="model.removeRestaurantFromList(restaurant._id)" type="button"><span
                     class="glyphicon glyphicon-remove"></span></a></td>

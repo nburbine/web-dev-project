@@ -11,8 +11,7 @@ module.exports = function (app, models) {
     //    deleteListForUser: deleteListForUser
     app.delete("/projectApi/list/:lid/restaurant/:rid", removeRestaurantFromList);
     app.get("/projectApi/list/:lid/restaurant/:rid", addRestaurantToList);
-
-    addRestaurantToList
+    
     function createList(req, res) {
         var newlist = req.body;
         favoriteModel
