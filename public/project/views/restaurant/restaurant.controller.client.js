@@ -11,8 +11,31 @@
         vm.populateStars = populateStars;
         vm.searchRestaurant = searchRestaurant;
         vm.favoriteRestaurant = favoriteRestaurant;
-        
-        function favoriteRestaurant(listId) {
+
+        function favoriteRestaurant(list) {
+            vm.error = null;
+            vm.success = null;
+            if (inList(list.restaurants, vm.restaurantId)) {
+                vm.error = "You already favorite this restaurant in the list";
+            }
+            else {
+                FavoriteService
+                    .addRestaurantToList(list._id, vm.restaurantId)
+                    .then(function (response) {
+                        vm.success = "Successfully add to favorite list";
+                    });
+            }
+        }
+
+        function inList(restaurantlist, rid) {
+            if (rid) {
+                for (i in restaurantlist) {
+                    if (restaurantlist[i] == rid) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
         
         function searchRestaurant(keyword) {

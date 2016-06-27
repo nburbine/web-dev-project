@@ -3,7 +3,7 @@
         .module("RestaurantApp")
         .controller("FavoriteController", FavoriteController);
 
-    function FavoriteController($routeParams, UserService, FavoriteService, FriendService, $location) {
+    function FavoriteController($routeParams, UserService, FavoriteService, FriendService, $location, RestaurantService) {
         var vm = this;
         vm.id = $routeParams["id"];
         vm.lid = $routeParams["lid"];
@@ -55,7 +55,6 @@
                             .getFriends(vm.user.friends)
                             .then(function (response) {
                                 vm.friends = response.data;
-                                console.log(vm.friends);
                             })
                     }
                 );
@@ -64,7 +63,13 @@
                 .findListById(vm.lid)
                 .then(function (response) {
                     vm.list = response.data;
-                });
+                    RestaurantService
+                        .getRestaurants(vm.list.restaurants)
+                        .then(function (response) {
+                            vm.restaurants = response.data;
+                        })
+                })
+
         }
 
         init();
@@ -133,6 +138,11 @@
                             .findListById(vm.lid)
                             .then(function (response) {
                                 vm.list = response.data;
+                                RestaurantService
+                                    .getRestaurants(vm.list.restaurants)
+                                    .then(function (response) {
+                                        vm.restaurants = response.data;
+                                    })
                             });
                     },
                     function (error) {

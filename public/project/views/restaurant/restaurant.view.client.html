@@ -38,6 +38,16 @@
     </div>
 </nav>
 
+<div class="container">
+    <div ng-show="model.success" class="alert alert-success">
+        {{model.success}}
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+</div>
+
 
 <div class="container">
     <div class="col-xs-12 col-sm-6">
@@ -54,7 +64,8 @@
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                             <li ng-repeat="list in model.lists" role="presentation">
-                                <a ng-click="model.favoriteRestaurant(list._id)" role="menuitem" tabindex="-1">{{list.name}}</a>
+                                <a ng-click="model.favoriteRestaurant(list)" type="button" role="menuitem"
+                                   tabindex="-1">{{list.name}}</a>
                             </li>
                         </ul>
                     </div>

@@ -11,6 +11,7 @@ module.exports = function () {
         updateList: updateList,
         deleteListForUser: deleteListForUser,
         addListForUser: addListForUser,
+        addRestaurantToList: addRestaurantToList,
         removeRestaurantFromList: removeRestaurantFromList
     };
     return api;
@@ -61,6 +62,16 @@ module.exports = function () {
         );
     }
 
+    function addRestaurantToList(lid, rid) {
+        return Favorite.update(
+            {_id: lid},
+            {
+                $push: {
+                    restaurants: rid
+                }
+            }
+        );
+    }
     function removeRestaurantFromList(lid, rid) {
         return Favorite.update(
             {_id: lid},
