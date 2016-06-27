@@ -17,12 +17,30 @@
             }
         }
         function init() {
+            vm.owner = false;
             UserService
                 .checkLoggedin()
                 .then(
                     function (response) {
                         if (!(response.data === "0")) {
                             vm.currentUser = response.data;
+                            if (vm.currentUser._id === vm.id) {
+                                vm.owner = true;
+                                return true;
+                            }
+                        }
+                    }
+                )
+                .then(
+                    function (owner) {
+                        if (owner) {
+                            FriendService
+                                .getFriends(vm.currentUser.friends)
+                                .then(function (response) {
+                                    vm.friends = response.data;
+                                })                        
+                        } else {
+                            
                         }
                     }
                 );
@@ -31,15 +49,7 @@
                 .findUserById(vm.id)
                 .then(function (response) {
                     vm.user = response.data;
-                })
-                .then(function (response) {
-                        FriendService
-                            .getFriends(vm.user.friends)
-                            .then(function (response) {
-                                vm.friends = response.data;
-                            })
-                    }
-                );
+                });
 
             FavoriteService
                 .findListById(vm.lid)

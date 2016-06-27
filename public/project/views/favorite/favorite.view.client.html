@@ -40,8 +40,8 @@
 
 
 <div class="container">
-    My Favorite List
-    <div class="dropdown pull-right">
+    <h3>Favorite List</h3>
+    <div class="dropdown pull-right" id="nbb-dropdown" ng-if="model.owner">
         <button class="btn btn-info dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"> Share this list to
             Friends
             <span class="caret"></span></button>
@@ -51,7 +51,7 @@
             </li>
 
         </ul>
-    </div>
+    </div><br/>
     <div class="form-group">
         <label for="name">List Name</label>
         <input ng-model="model.list.name"
@@ -59,8 +59,9 @@
                name="name"
                id="name"
                placeholder="List Name"
-               type="text"/>
-</div>
+               type="text"
+               ng-disabled="!model.owner"/>
+    </div>
     <div class="form-group">
         <label for="description">Description</label>
     <textarea ng-model="model.list.description"
@@ -69,9 +70,10 @@
               name="description"
               id="description"
               placeholder="description"
+              ng-disabled="!model.owner"
     ></textarea>
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-if="model.owner">
         <a ng-click="model.updateList()" class="btn btn-primary">
             Update Information
         </a>
