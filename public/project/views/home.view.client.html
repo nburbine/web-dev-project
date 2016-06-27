@@ -1,17 +1,29 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container">
         <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
             <img class="logo pull-left" src="photo\logo.jpg">
-            <a class="navbar-brand">Restaurant App</a>
+            <a href="#/" class="navbar-brand">Restaurant App</a>
+
         </div>
-        <div id="navbar" class="">
-            <div ng-if="!model.user"><ul class="nav navbar-nav navbar-right">
-                <li><a class="btn btn-default" href="#login" role="button">Login</a></li>
-                <li><a class="btn btn-default" href="#register" role="button">Register</a></li>
-            </ul></div>
-            <div ng-if="model.user"><ul class="nav navbar-nav navbar-right">
-                <li><a class="btn btn-default" href="#/user/{{model.user._id}}">Profile</a></li>
-            </ul>
+        <div id="navbar" class="navbar-collapse collapse">
+            <div ng-if="!model.user">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="btn btn-default" href="#login" role="button">Login</a></li>
+                    <li><a class="btn btn-default" href="#register" role="button">Register</a></li>
+                </ul>
+            </div>
+            <div ng-if="model.user">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="btn btn-default" href="#/user/{{model.user._id}}">Profile</a></li>
+                </ul>
             </div>
             <form class="navbar-form navbar-center">
                 <input ng-model="model.keyword"
@@ -32,7 +44,8 @@
         <div class="row">
             <div class="col-sm-4">
                 <a href="#/restaurant/{{restaurant._id}}">
-                    <img class="img-rounded nbb-restaurant-img" src="photo\test.jpg" alt="Generic placeholder image" width="200" height="190">
+                    <img class="img-rounded nbb-restaurant-img" src="photo\test.jpg" alt="Generic placeholder image"
+                         width="200" height="190">
                 </a>
             </div>
             <div class="col-sm-8">
@@ -40,15 +53,20 @@
                 <div class="form-group">
                     <div class="stars">
                         <form action="">
-                            <input class="star star-5" id="{{restaurant._id}} star-5" type="radio" name="star" value="5" disabled="true"/>
+                            <input class="star star-5" id="{{restaurant._id}} star-5" type="radio" name="star" value="5"
+                                   disabled="true"/>
                             <label class="star star-5" for="{{restaurant._id}} star-5"></label>
-                            <input class="star star-4" id="{{restaurant._id}} star-4" type="radio" name="star" value="4" disabled="true"/>
+                            <input class="star star-4" id="{{restaurant._id}} star-4" type="radio" name="star" value="4"
+                                   disabled="true"/>
                             <label class="star star-4" for="{{restaurant._id}} star-4"></label>
-                            <input class="star star-3" id="{{restaurant._id}} star-3" type="radio" name="star" value="3" disabled="true"/>
+                            <input class="star star-3" id="{{restaurant._id}} star-3" type="radio" name="star" value="3"
+                                   disabled="true"/>
                             <label class="star star-3" for="{{restaurant._id}} star-3"></label>
-                            <input class="star star-2" id="{{restaurant._id}} star-2" type="radio" name="star" value="2" disabled="true"/>
+                            <input class="star star-2" id="{{restaurant._id}} star-2" type="radio" name="star" value="2"
+                                   disabled="true"/>
                             <label class="star star-2" for="{{restaurant._id}} star-2"></label>
-                            <input class="star star-1" id="{{restaurant._id}} star-1" type="radio" name="star" value="1" disabled="true"/>
+                            <input class="star star-1" id="{{restaurant._id}} star-1" type="radio" name="star" value="1"
+                                   disabled="true"/>
                             <label class="star star-1" for="{{restaurant._id}} star-1"></label>
                         </form>
                         <div>
@@ -62,34 +80,3 @@
         </div>
     </div>
 </div>
-
-
-<ul>
-    <li>
-        <a href="#/restaurant/0">restaurant</a>
-    </li>
-    <li>
-        <a href="#/login">Login</a>
-    </li>
-    <li>
-        <a href="test/index.html">Test MongoDB</a>
-    </li>
-    <li>
-        <a href="#/user/3">Profile Page</a>
-    </li>
-</ul>
-
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <p class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}" class="navbar-link" id="navbar-profile">
-                    <span class="glyphicon glyphicon-user"></span>
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>
-
-

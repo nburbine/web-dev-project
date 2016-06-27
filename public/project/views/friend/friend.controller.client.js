@@ -9,6 +9,13 @@
         vm.addFriendByEmail=addFriendByEmail;
         vm.deleteFriend = deleteFriend;
         vm.friend = null;
+        vm.searchRestaurant = searchRestaurant;
+        function searchRestaurant(keyword) {
+            if (!keyword) {
+            } else {
+                $location.url("/search/" + keyword);
+            }
+        }
         function init() {
             vm.currentUser = false;
             UserService
