@@ -12,6 +12,7 @@ module.exports = function () {
         findUserByCredentials: findUserByCredentials,
         findUserById: findUserById,
         findUserByEmail: findUserByEmail,
+        findUserByGoogleId: findUserByGoogleId,
         findFriendsByUserId:findFriendsByUserId,
         AddFriendById: AddFriendById,
         deleteFriend: deleteFriend,
@@ -19,6 +20,9 @@ module.exports = function () {
         uploadImage: uploadImage
     };
     return api;
+    function findUserByGoogleId(googleId) {
+        return UserModel.findOne({'google.id': googleId});
+    }
     function uploadImage(userId, url) {
         return User.update(
             {_id: userId},
