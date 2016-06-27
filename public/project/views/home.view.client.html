@@ -43,7 +43,7 @@
     <div class="jumbotron" ng-repeat="restaurant in model.restaurants">
         <div class="row">
             <div class="col-sm-4">
-                {{restaurant.url}}
+                {{restaurant}}
                 <a href="#/restaurant/{{restaurant._id}}">
                     <img class="img-rounded nbb-restaurant-img" ng-src="{{restaurant.url}}" alt="Generic placeholder image"
                          width="200" height="190">
