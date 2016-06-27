@@ -11,9 +11,19 @@ module.exports = function () {
         findAllReviewsForUser: findAllReviewsForUser,
         findReviewById: findReviewById,
         findAllReviewsForRestaurant: findAllReviewsForRestaurant,
-        findAllReviewsByIds: findAllReviewsByIds
+        findAllReviewsByIds: findAllReviewsByIds,
+        findExistingReview: findExistingReview
     };
     return api;
+
+    function findExistingReview(userId, restaurantId) {
+        return Review.find({
+            $and: [
+                {_user: userId},
+                {_restaurant: restaurantId}
+            ]
+        })
+    }
     
     function findAllReviewsForRestaurant(restaurantId) {
         return Review.find({

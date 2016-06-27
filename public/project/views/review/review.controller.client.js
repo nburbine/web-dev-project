@@ -126,37 +126,57 @@
         init();
 
         function createReview() {
-            var stars = document.getElementsByName('star');
-            for (var i in stars) {
-                if (stars[i].checked) {
-                    vm.review.rate = parseInt(stars[i].value);
-                }
-            }
+            ReviewService
+                .alreadyReviewed(vm.userId, vm.restaurantId)
+                .then(
+                    function (response) {
+                        if (response.data) {
+                            vm.alert = 'You have already reviewed this restaurant';
+                        } else {
+                            var stars = document.getElementsByName('star');
+                            for (var i in stars) {
+                                if (stars[i].checked) {
+                                    vm.review.rate = parseInt(stars[i].value);
+                                }
+                            }
 
-            var review = document.getElementById('review').value;
-            if (review) {
-                vm.review.review = review;
-            }
+                            var review = document.getElementById('review').value;
+                            if (review) {
+                                vm.review.review = review;
+                            }
 
-            if (! (1<=vm.review.rate && vm.review.rate<=5)) {
-                vm.alert = 'Please enter rating'
-            } else {
-                ReviewService
-                    .createReviewForUser(vm.userId, vm.review)
-                    .then(
-                        function (response) {
-                            window.history.back();
-                        },
-                        function (error) {
-                            vm.alert = error.data;
+                            if (!(1 <= vm.review.rate && vm.review.rate <= 5)) {
+                                vm.alert = 'Please enter rating'
+                            } else {
+                                ReviewService
+                                    .createReviewForUser(vm.userId, vm.review)
+                                    .then(
+                                        function (response) {
+                                            window.history.back();
+                                        },
+                                        function (error) {
+                                            vm.alert = error.data;
+                                        }
+                                    )
+                            }
                         }
-                    )
-            }
+                    }
+                );
         }
 
         function cancel() {
             console.log(window.history);
             window.history.back();
+        }
+
+        function checkReviewed(userId, restaurantId) {
+            ReviewService
+                .alreadyReviewed(userId, restaurantId)
+                .then(
+                    function (response) {
+                        return response.data;
+                    }
+                )
         }
     }
     

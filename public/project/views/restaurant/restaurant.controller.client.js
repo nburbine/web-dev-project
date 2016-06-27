@@ -53,11 +53,12 @@
                         vm.restaurant.reviews = [];
 
                         var reviews = response.data;
+                        console.log(reviews);
                         var sum = 0;
                         var numReviews = reviews.length;
 
                         for (var i in reviews) {
-                            if (reviews[i]._user === vm.userId) {
+                            if (reviews[i]._user === vm.user._id) {
                                 vm.review = reviews[i];
                                 console.log('user review: ', reviews[i]);
                             }

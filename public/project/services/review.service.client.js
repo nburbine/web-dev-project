@@ -11,9 +11,15 @@
             findAllReviewsForUser: findAllReviewsForUser,
             findReviewById: findReviewById,
             findAllReviewsByIds: findAllReviewsByIds,
-            findAllReviewsForRestaurant: findAllReviewsForRestaurant
+            findAllReviewsForRestaurant: findAllReviewsForRestaurant,
+            alreadyReviewed: alreadyReviewed
         };
         return api;
+
+        function alreadyReviewed(userId, restaurantId) {
+            var url = "/projectApi/review/check";
+            return $http.post(url, {userId: userId, restaurantId: restaurantId});
+        }
         
         function findAllReviewsForRestaurant(restaurantId) {
             var url = "/projectApi/review/restaurant/"+restaurantId;

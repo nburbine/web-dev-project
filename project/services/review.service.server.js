@@ -5,9 +5,27 @@ module.exports = function (app, models) {
     app.get("/projectApi/user/:uid/review", findAllReviewsForUser);
     app.get("/projectApi/review/:rid", findReviewById);
     app.get("/projectApi/review/restaurant/:rid", findAllReviewsForRestaurant);
+    app.post("/projectApi/review/check/", checkReviewed);
     app.post("/projectApi/user/:uid/review", createReviewForUser);
     app.put("/projectApi/review/:rid", updateReview);
     app.delete("/projectApi/review/:rid", deleteReview);
+
+    function checkReviewed(req, res) {
+        var userId = req.body.userId;
+        var restaurantId = req.body.restaurantId;
+        reviewModel
+            .findExistingReview(userId, restaurantId)
+            .then(
+                function (response) {
+                    console.log(response);
+                    if (response.length) {
+                        res.send(true);
+                    } else {
+                        res.send(false);
+                    }
+                }
+            );
+    }
 
     function findAllReviewsForRestaurant(req, res) {
         var restaurantId = req.params.rid;

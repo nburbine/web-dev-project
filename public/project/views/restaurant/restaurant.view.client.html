@@ -90,7 +90,7 @@
     <h3>Reviews</h3>
     <ul class="list-group">
         <li ng-repeat="review in model.restaurant.reviews" class="list-group-item">
-            <div class="form-group pull-right">
+            <div class="form-group">
                 <div class="stars">
                     <form action="">
                         <input class="star star-5" id="{{review._id}} star-5" type="radio" name="star" value="5" disabled="true"/>
@@ -114,11 +114,11 @@
                 <img src="photo/test.jpg" class="pull-left nbb-review-img" height="60px" width="60px">
                 </a>
             </div>
-            <a href="#/user/{{review._user}}">
+            <div><a href="#/user/{{review._user}}">
             <h4>{{review.user.nickname}}</h4>
             </a>
-            <h4>{{review.rating}}</h4>
-            <p>"{{review.review}}"</p>
+            <h4>"{{review.review}}"</h4>
+            </div>
         </li>
     </ul>
 </div>
