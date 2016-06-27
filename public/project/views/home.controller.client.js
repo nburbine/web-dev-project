@@ -80,6 +80,7 @@
         init();
         
         function initializeData() {
+            
             var restaurants = [
                 {
                     name: "Andy's",
