@@ -65,7 +65,7 @@
                         var numReviews = reviews.length;
 
                         for (var i in reviews) {
-                            if (reviews[i]._user === vm.user._id) {
+                            if (vm.user && (reviews[i]._user === vm.user._id)) {
                                 vm.review = reviews[i];
                                 console.log('user review: ', reviews[i]);
                             }

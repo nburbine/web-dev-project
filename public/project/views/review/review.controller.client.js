@@ -21,7 +21,7 @@
         }
     }
     
-    function ReviewListController($routeParams, ReviewService, RestaurantService, $location) {
+    function ReviewListController($routeParams, ReviewService, RestaurantService, $location, UserService) {
         var vm = this;
         var doneReviews = 0;
         var reviewIdx = 0;
@@ -36,6 +36,21 @@
 
         function init() {
             var reviews = [];
+            vm.currentUser = false;
+            UserService
+                .checkLoggedin()
+                .then(
+                    function (response) {
+                        if (!(response.data === "0")) {
+                            vm.user = response.data;
+                            console.log(vm.user);
+                            if (vm.user._id === vm.userId) {
+                                vm.currentUser = true;
+                            }
+                        }
+                    }
+                );
+
             ReviewService
                 .findAllReviewsForUser(vm.userId)
                 .then(

@@ -41,11 +41,11 @@
 
 
 <div class="container">
-    <h1>My Reviews</h1>
+    <h1>Reviews</h1>
     <div>
         <ul class="list-group">
             <li ng-repeat="review in model.reviews" class="list-group-item">
-                <a class="glyphicon glyphicon-edit pull-right" href="#/user/{{model.userId}}/review/{{review._id}}"></a>
+                <a ng-if="model.currentUser" class="glyphicon glyphicon-edit pull-right" href="#/user/{{model.userId}}/review/{{review._id}}"></a>
                 <a href="#/restaurant/{{review._restaurant}}">
                     <h3>{{review.restaurant.name}}</h3>
                 </a>
@@ -65,7 +65,9 @@
                         </form>
                     </div>
                 </div>
-                <h5>{{review.review}}</h5>
+                <div ng-if="review.review">
+                <h4>"{{review.review}}"</h4>
+                </div>
                 <a repeat-end="{{review._id}}, {{review.rate}}"></a>
             </li>
         </ul>

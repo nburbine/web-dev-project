@@ -3,7 +3,7 @@
         .module("RestaurantApp")
         .controller("SearchController", SearchController)
 
-    function SearchController($location, $scope, $routeParams, RestaurantService, ReviewService) {
+    function SearchController($location, $scope, $routeParams, RestaurantService, ReviewService, UserService) {
         var vm = this;
         vm.keyword = $routeParams["keyword"];
         vm.searchRestaurant = searchRestaurant;
@@ -37,6 +37,20 @@
 
 
         function init() {
+            UserService
+                .checkLoggedin()
+                .then(
+                    function (response) {
+                        if (!(response.data === "0")) {
+                            vm.user = response.data;
+                            console.log(vm.user);
+                            if (vm.user._id === vm.profileId) {
+                                vm.currentUser = true;
+                            }
+                        }
+                    }
+                );
+
             var doneRestaurants = 0;
             RestaurantService
                 .searchRestaurant(vm.keyword)
@@ -67,7 +81,7 @@
                                             for (var i in reviews) {
                                                 sum += reviews[i].rate;
                                             }
-                                            var averageRating = sum / numReviews;
+                                            var averageRating = sum / restaurant.numReviews;
                                             restaurant.rating = averageRating;
                                             return restaurant;
                                         }
