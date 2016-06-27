@@ -80,11 +80,11 @@
         init();
         
         function initializeData() {
-            
+
             var restaurants = [
                 {
                     name: "Andy's",
-                    description: "Good seafood",
+                    description: "Tasty seafood",
                     type: "Seafood",
                     address: "7 Yawkey Way",
                     url: "photo/andy.jpg",
