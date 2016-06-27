@@ -38,22 +38,27 @@
                 .then(
                     function (restaurants) {
                         for (var i in restaurants) {
-                            var restaurantIdx = 0;
                             ReviewService
                                 .findAllReviewsForRestaurant(restaurants[i]._id)
                                 .then(
                                     function (response) {
-                                        var restaurant = restaurants[restaurantIdx];
-                                        restaurantIdx += 1;
                                         var reviews = response.data;
-                                        var sum = 0;
-                                        var numReviews = reviews.length;
-                                        for (var i in reviews) {
-                                            sum += reviews[i].rate;
+                                        if (reviews.length) {
+                                            for (var i in restaurants) {
+                                                if (restaurants[i]._id === reviews[0]._restaurant) {
+                                                    var restaurant = restaurants[i];
+                                                    break;
+                                                }
+                                            }
+                                            var sum = 0;
+                                            var numReviews = reviews.length;
+                                            for (var i in reviews) {
+                                                sum += reviews[i].rate;
+                                            }
+                                            var averageRating = sum / numReviews;
+                                            restaurant.rating = averageRating;
+                                            return restaurant;
                                         }
-                                        var averageRating = sum / numReviews;
-                                        restaurant.rating = averageRating;
-                                        return restaurant;
                                     },
                                     function (error) {
                                         vm.alert = error.data;

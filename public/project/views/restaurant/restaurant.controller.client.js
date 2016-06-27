@@ -52,18 +52,7 @@
                         console.log(vm.alert);
                     }
                 );
-            // UserService
-            //     .findUserById(vm.userId)
-            //     .then(
-            //         function (response) {
-            //             vm.user = response.data;
-            //             console.log(vm.user);
-            //             return vm.user;
-            //         },
-            //         function (error) {
-            //             vm.alert = error.data;
-            //         }
-            //     );
+            
             ReviewService
                 .findAllReviewsForRestaurant(vm.restaurantId)
                 .then(
