@@ -7,7 +7,6 @@ module.exports = function (app, models) {
     app.delete("/projectApi/restaurant/:rid", deleteRestaurant);
     app.put("/projectApi/restaurant/:rid", updateRestaurant);
     app.get("/projectApi/search/:keyword", searchRestaurant);
-
     
     function getRestaurants(req, res) {
         var restaurantId = req.params.rid;
