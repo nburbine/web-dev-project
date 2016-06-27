@@ -26,6 +26,13 @@
         var doneReviews = 0;
         var reviewIdx = 0;
         vm.userId = $routeParams['id'];
+        vm.searchRestaurant = searchRestaurant;
+        function searchRestaurant(keyword) {
+            if (!keyword) {
+            } else {
+                $location.url("/search/" + keyword);
+            }
+        }
 
         function init() {
             var reviews = [];
@@ -96,7 +103,13 @@
 
         vm.restaurantId = $routeParams['rid'];
         vm.userId = $routeParams['uid'];
-
+        vm.searchRestaurant = searchRestaurant;
+        function searchRestaurant(keyword) {
+            if (!keyword) {
+            } else {
+                $location.url("/search/" + keyword);
+            }
+        }
         vm.review = {
             _restaurant: vm.restaurantId
         };
@@ -165,7 +178,13 @@
         
         vm.updateReview = updateReview;
         vm.deleteReview = deleteReview;
-        
+        vm.searchRestaurant = searchRestaurant;
+        function searchRestaurant(keyword) {
+            if (!keyword) {
+            } else {
+                $location.url("/search/" + keyword);
+            }
+        }
         vm.userId = $routeParams['id'];
         vm.reviewId = $routeParams['rid'];
         

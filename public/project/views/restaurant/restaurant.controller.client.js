@@ -10,6 +10,13 @@
 
         vm.restaurantId = $routeParams['rid'];
         vm.populateStars = populateStars;
+        vm.searchRestaurant = searchRestaurant;
+        function searchRestaurant(keyword) {
+            if (!keyword) {
+            } else {
+                $location.url("/search/" + keyword);
+            }
+        }
 
         function init() {
             UserService
@@ -146,6 +153,13 @@
 
         vm.search = search;
         vm.restaurants = [];
+        vm.searchRestaurant = searchRestaurant;
+        function searchRestaurant(keyword) {
+            if (!keyword) {
+            } else {
+                $location.url("/search/" + keyword);
+            }
+        }
 
         function search(term) {
             RestaurantService
@@ -159,6 +173,13 @@
         var vm = this;
         
         vm.getMore = getMore;
+        vm.searchRestaurant = searchRestaurant;
+        function searchRestaurant(keyword) {
+            if (!keyword) {
+            } else {
+                $location.url("/search/" + keyword);
+            }
+        }
 
         function init() {
             RestaurantService

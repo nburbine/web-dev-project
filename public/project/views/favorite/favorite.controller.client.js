@@ -9,6 +9,13 @@
         vm.lid = $routeParams["lid"];
         vm.updateList = updateList;
         vm.shareListToFriend = shareListToFriend;
+        vm.searchRestaurant = searchRestaurant;
+        function searchRestaurant(keyword) {
+            if (!keyword) {
+            } else {
+                $location.url("/search/" + keyword);
+            }
+        }
         function init() {
             UserService
                 .findUserById(vm.id)

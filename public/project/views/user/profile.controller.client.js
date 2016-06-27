@@ -27,6 +27,15 @@
         vm.unregister = unregister;
         vm.addList = addList;
         vm.deleteList = deleteList;
+        vm.searchRestaurant = searchRestaurant;
+        function searchRestaurant(keyword) {
+            if (!keyword) {
+            } else {
+                $location.url("/search/" + keyword);
+            }
+        }
+
+
 
         function init() {
             UserService

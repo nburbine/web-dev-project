@@ -3,9 +3,18 @@
         .module("RestaurantApp")
         .controller("SearchController", SearchController)
 
-    function SearchController($scope, $routeParams, RestaurantService, ReviewService) {
+    function SearchController($location, $scope, $routeParams, RestaurantService, ReviewService) {
         var vm = this;
         vm.keyword = $routeParams["keyword"];
+        vm.searchRestaurant = searchRestaurant;
+        function searchRestaurant(keyword) {
+            if (!keyword) {
+            } else {
+                $location.url("/search/" + keyword);
+            }
+        }
+
+
         $scope.sortColumn = "name";
         $scope.reverseSort = false;
 
