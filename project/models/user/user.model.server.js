@@ -21,7 +21,7 @@ module.exports = function () {
     };
     return api;
     function findUserByGoogleId(googleId) {
-        return UserModel.findOne({'google.id': googleId});
+        return User.findOne({'google.id': googleId});
     }
     function uploadImage(userId, url) {
         return User.update(
