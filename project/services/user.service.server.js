@@ -17,8 +17,8 @@ module.exports = function (app, models) {
     app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
     app.get('/auth/google/callback',
         passport.authenticate('google', {
-            successRedirect: '/#/profile',
-            failureRedirect: '/#/login'
+            successRedirect: '#/',
+            failureRedirect: '#/login'
         }));
 
     var googleConfig = {
