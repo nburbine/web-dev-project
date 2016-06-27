@@ -3,21 +3,35 @@
         .module("RestaurantApp")
         .controller("FriendController", FriendController);
 
-    function FriendController($routeParams, UserService,FriendService) {
+    function FriendController($routeParams, UserService, FriendService) {
         var vm = this;
-        vm.id = $routeParams["id"];
+        vm.profileId = $routeParams["id"];
         vm.addFriendByEmail=addFriendByEmail;
         vm.deleteFriend = deleteFriend;
         vm.friend = null;
         function init() {
+            vm.currentUser = false;
             UserService
-                .findUserById(vm.id)
+                .checkLoggedin()
+                .then(
+                    function (response) {
+                        if (!(response.data === "0")) {
+                            vm.user = response.data;
+                            if (vm.user._id === vm.profileId) {
+                                vm.currentUser = true;
+                            }
+                        }
+                    }
+                );
+
+            UserService
+                .findUserById(vm.profileId)
                 .then(function (response) {
-                    vm.user = response.data;
+                    vm.profileUser = response.data;
                 })
                 .then(function (response) {
                         FriendService
-                            .getFriends(vm.user.friends)
+                            .getFriends(vm.profileUser.friends)
                             .then(function (response) {
                                 vm.friends = response.data;
                             })
@@ -33,21 +47,21 @@
                 .then(
                     function (response) {
                         vm.friend = response.data;
-                        if (vm.user.email == vm.friend.email) {
+                        if (vm.profileUser.email == vm.friend.email) {
                             vm.error = "you cannot add your self";
                         }
-                        else if (FriendAlready(vm.user.friends, vm.friend._id)) {
+                        else if (FriendAlready(vm.profileUser.friends, vm.friend._id)) {
                             vm.error = "you already have this friend";
                         }
                         else {
                             FriendService
-                                .addFriendById(vm.id, vm.friend._id)
+                                .addFriendById(vm.profileId, vm.friend._id)
                                 .then(
                                     function (response) {
                                         UserService
-                                            .findUserById(vm.id)
+                                            .findUserById(vm.profileId)
                                             .then(function (response) {
-                                                vm.user = response.data;
+                                                vm.profileUser = response.data;
                                             })
                                             .then(function (response) {
                                                     FriendService
@@ -82,17 +96,17 @@
 
         function deleteFriend(fid) {
             FriendService
-                .deleteFriend(vm.id, fid)
+                .deleteFriend(vm.profileId, fid)
                 .then(
                     function (response) {
                         UserService
-                            .findUserById(vm.id)
+                            .findUserById(vm.profileId)
                             .then(function (response) {
-                                vm.user = response.data;
+                                vm.profileUser = response.data;
                             })
                             .then(function (response) {
                                     FriendService
-                                        .getFriends(vm.user.friends)
+                                        .getFriends(vm.profileUser.friends)
                                         .then(function (response) {
                                             vm.friends = response.data;
                                         })
