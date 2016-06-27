@@ -3,7 +3,7 @@
         .module("RestaurantApp")
         .controller("FavoriteController", FavoriteController);
 
-    function FavoriteController($routeParams, UserService, FavoriteService, FriendService) {
+    function FavoriteController($routeParams, UserService, FavoriteService, FriendService, $location) {
         var vm = this;
         vm.id = $routeParams["id"];
         vm.lid = $routeParams["lid"];
@@ -17,6 +17,16 @@
             }
         }
         function init() {
+            UserService
+                .checkLoggedin()
+                .then(
+                    function (response) {
+                        if (!(response.data === "0")) {
+                            vm.currentUser = response.data;
+                        }
+                    }
+                );
+
             UserService
                 .findUserById(vm.id)
                 .then(function (response) {

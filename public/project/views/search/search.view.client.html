@@ -71,7 +71,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="restaurant in model.restaurants | orderBy:sortColumn:reverseSort">
-            <td> {{restaurant.name}}</td>
+            <td><a href="#/restaurant/{{restaurant._id}}"> {{restaurant.name}}</a></td>
             <td> {{restaurant.rating}}</td>
             <td> {{restaurant.description}}</td>
             <td> {{restaurant.numReviews}}</td>

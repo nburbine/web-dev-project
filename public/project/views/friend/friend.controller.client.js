@@ -3,7 +3,7 @@
         .module("RestaurantApp")
         .controller("FriendController", FriendController);
 
-    function FriendController($routeParams, UserService, FriendService) {
+    function FriendController($routeParams, UserService, FriendService, $location) {
         var vm = this;
         vm.profileId = $routeParams["id"];
         vm.addFriendByEmail=addFriendByEmail;

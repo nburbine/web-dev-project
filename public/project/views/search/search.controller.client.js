@@ -55,17 +55,22 @@
                                 .findAllReviewsForRestaurant(restaurants[i]._id)
                                 .then(
                                     function (response) {
-                                        var restaurant = restaurants[restaurantIdx];
-                                        restaurantIdx += 1;
                                         var reviews = response.data;
-                                        var sum = 0;
-                                        var numReviews = reviews.length;
-                                        for (var i in reviews) {
-                                            sum += reviews[i].rate;
+                                        var restaurant = restaurants[restaurantIdx];
+                                        restaurant.numReviews = reviews.length;
+                                        restaurantIdx += 1;
+                                        if (restaurant.numReviews === 0) {
+                                            restaurant.rating = 'No reviews';
+                                            return restaurant;
+                                        } else {
+                                            var sum = 0;
+                                            for (var i in reviews) {
+                                                sum += reviews[i].rate;
+                                            }
+                                            var averageRating = sum / numReviews;
+                                            restaurant.rating = averageRating;
+                                            return restaurant;
                                         }
-                                        var averageRating = sum / numReviews;
-                                        restaurant.rating = averageRating;
-                                        return restaurant;
                                     },
                                     function (error) {
                                         vm.alert = error.data;

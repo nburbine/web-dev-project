@@ -5,7 +5,7 @@
         .controller("RestaurantSearchController", RestaurantSearchController)
         .controller("RestaurantListController", RestaurantListController);
     
-    function RestaurantController($routeParams, RestaurantService, UserService, ReviewService) {
+    function RestaurantController($routeParams, RestaurantService, UserService, ReviewService, $location) {
         var vm = this;
 
         vm.restaurantId = $routeParams['rid'];
@@ -149,7 +149,7 @@
         }
     }
 
-    function RestaurantSearchController(RestaurantService) {
+    function RestaurantSearchController(RestaurantService, $location) {
         var vm = this;
 
         vm.search = search;
@@ -170,7 +170,7 @@
         }
     }
 
-    function RestaurantListController(RestaurantService) {
+    function RestaurantListController(RestaurantService, $location) {
         var vm = this;
         
         vm.getMore = getMore;

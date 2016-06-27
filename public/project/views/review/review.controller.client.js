@@ -21,7 +21,7 @@
         }
     }
     
-    function ReviewListController($routeParams, ReviewService, RestaurantService, $timeout) {
+    function ReviewListController($routeParams, ReviewService, RestaurantService, $location) {
         var vm = this;
         var doneReviews = 0;
         var reviewIdx = 0;
@@ -95,7 +95,7 @@
         //addReview();
     }
     
-    function NewReviewController($routeParams, ReviewService, UserService, RestaurantService) {
+    function NewReviewController($routeParams, ReviewService, UserService, RestaurantService, $location) {
         var vm = this;
 
         vm.createReview = createReview;
@@ -193,7 +193,7 @@
         }
     }
     
-    function EditReviewController($routeParams, ReviewService, RestaurantService, UserService) {
+    function EditReviewController($routeParams, ReviewService, RestaurantService, UserService, $location) {
         var vm = this;
         
         vm.updateReview = updateReview;
